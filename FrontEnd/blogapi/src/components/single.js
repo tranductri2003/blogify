@@ -52,6 +52,14 @@ export default function Post() {
                     >
                         {data.posts.excerpt}
                     </Typography>
+                    <Typography
+                        variant="h6"
+                        align="center"
+                        color="textSecondary"
+                        paragraph
+                    >
+                        {data.posts.content}
+                    </Typography>
                 </Container>
             </div>
         </Container>

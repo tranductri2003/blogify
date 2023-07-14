@@ -20,7 +20,7 @@ class PostUserWritePermission(BasePermission):
 
 
 class PostList(viewsets.ModelViewSet):
-    permission_classes = [PostUserWritePermission]
+    permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
 
     def get_object(self, queryset=None, **kwargs):
