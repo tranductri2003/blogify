@@ -56,6 +56,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    # 'your_project.middleware.NoRedirectMiddleware',
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -133,6 +134,23 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
 
 ]
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = [
+#     "https://example.com",
+#     "https://sub.example.com",
+#     "http://localhost:8080",
+#     "http://127.0.0.1:9000"
+# ]
+# CORS_ALLOW_ORIGINS = ['*']
+# CORS_ALLOW_METHODS = (
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# )
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
