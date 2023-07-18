@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../axios';
+import axiosInstance from '../../axios';
 import { useParams } from 'react-router-dom';
 //MaterialUI
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,11 +20,15 @@ export default function Post() {
     const { slug } = useParams();
     const classes = useStyles();
 
-    const [data, setData] = useState({ posts: [] });
+    const [data, setData] = useState({
+        posts: [],
+    });
 
     useEffect(() => {
-        axiosInstance.get("posts/?slug=" + slug).then((res) => {
-            setData({ posts: res.data });
+        axiosInstance.get('post/' + slug + '/').then((res) => {
+            setData({
+                posts: res.data,
+            });
             console.log(res.data);
         });
     }, [setData]);
@@ -32,7 +36,7 @@ export default function Post() {
     return (
         <Container component="main" maxWidth="md">
             <CssBaseline />
-            <div className={classes.paper}></div>
+            <div className={classes.paper}> </div>{' '}
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
                     <Typography
@@ -42,27 +46,18 @@ export default function Post() {
                         color="textPrimary"
                         gutterBottom
                     >
-                        {data.posts[0]?.title}
-                    </Typography>
+                        {data.posts.title}{' '}
+                    </Typography>{' '}
                     <Typography
                         variant="h5"
                         align="center"
                         color="textSecondary"
                         paragraph
                     >
-                        {data.posts[0]?.excerpt}
-                    </Typography>
-                    <Typography
-                        variant="h6"
-                        align="center"
-                        color="textSecondary"
-                        paragraph
-                    >
-                        {data.posts[0]?.content}
-                    </Typography>
-
-                </Container>
-            </div>
+                        {data.posts.excerpt}{' '}
+                    </Typography>{' '}
+                </Container>{' '}
+            </div>{' '}
         </Container>
     );
 }
