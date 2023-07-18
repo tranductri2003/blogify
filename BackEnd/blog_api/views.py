@@ -20,20 +20,7 @@ class PostUserWritePermission(BasePermission):
 
 
 class PostList(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    serializer_class = PostSerializer
-
-    def get_object(self, queryset=None, **kwargs):
-        item = self.kwargs.get('pk')
-        return get_object_or_404(Post, slug=item)
-
-    # Define Custom Queryset
-    def get_queryset(self):
-        return Post.objects.all()
-
-
-class PostList(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
 
     def get_object(self, queryset=None, **kwargs):
