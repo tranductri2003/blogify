@@ -14,9 +14,6 @@ const axiosInstance = axios.create({
     },
 });
 
-console.log(axiosInstance.defaults.headers);
-console.log(axiosInstance.defaults.headers);
-console.log(axiosInstance.defaults.headers);
 axiosInstance.interceptors.response.use(
     (response) => {
         return response;
@@ -86,5 +83,4 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-console.log(axiosInstance.defaults.headers);
 export default axiosInstance;
