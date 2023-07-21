@@ -14,3 +14,4 @@ list_display xác định các trường cần hiển thị trong danh sách cá
 prepopulated_fields cho phép tạo giá trị tự động cho trường slug dựa trên trường title.
 """
 admin.site.register(models.Category)
+admin.site.register(models.Comment)

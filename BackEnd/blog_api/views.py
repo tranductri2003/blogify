@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from blog.models import Post
-from .serializers import PostSerializer
+from .serializers import PostSerializer, CommentSerializer
 from rest_framework import viewsets, filters, generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -16,20 +16,20 @@ class PostList(generics.ListAPIView):
 
 
 class PostDetail(generics.RetrieveAPIView):
-
     serializer_class = PostSerializer
 
-    def get_object(self, queryset=None, **kwargs):
+    def get_object(self):
         item = self.kwargs.get('pk')
-        return get_object_or_404(Post, slug=item)
+        post = get_object_or_404(Post, slug=item)
+        return post
 
 # Post Search
 
 
 class PostListDetailfilter(generics.ListAPIView):
 
-    queryset = Post.objects.all()
     serializer_class = PostSerializer
+    queryset = Post.objects.all()
     filter_backends = [filters.SearchFilter]
     # '^' Starts-with search.
     # '=' Exact matches.
@@ -59,8 +59,8 @@ class CreatePost(APIView):
 
 class AdminPostDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = Post.objects.all()
     serializer_class = PostSerializer
+    queryset = Post.objects.all()
 
 
 class EditPost(generics.UpdateAPIView):
