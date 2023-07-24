@@ -17,19 +17,23 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
     comment: {
         marginTop: theme.spacing(2),
         padding: theme.spacing(2),
         backgroundColor: '#f5f5f5',
         borderRadius: theme.spacing(1),
+        fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
     postContent: {
         textAlign: 'justify', // Căn đều hai lề
         whiteSpace: 'pre-wrap', // Xuống dòng giống như trong trang admin
         marginBottom: theme.spacing(2), // Khoảng cách dưới nội dung
+        fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
 }));
+
 const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 

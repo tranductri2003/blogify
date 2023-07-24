@@ -31,7 +31,7 @@ export default function Footer() {
                 <Grid container spacing={4} justify="space-evenly">
                     {footers.map((footer) => (
                         <Grid item xs={6} sm={3} key={footer.title}>
-                            <Typography variant="h6" color="textPrimary" gutterBottom>
+                            <Typography variant="h6" color="textPrimary" gutterBottom style={{ fontFamily: 'cursive', fontSize: '28px', fontWeight: 'bold' }}>
                                 {footer.title}
                             </Typography>
                             <ul>
@@ -43,6 +43,7 @@ export default function Footer() {
                                             color="textSecondary"
                                             target="_blank"
                                             rel="noopener"
+                                            style={{ fontFamily: 'cursive', fontSize: '18px' }}
                                         >
                                             {item.label}
                                         </Link>
@@ -54,7 +55,7 @@ export default function Footer() {
                 </Grid>
             </Container>
             <Box mt={5} textAlign="center">
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="textSecondary" style={{ fontFamily: 'cursive', fontSize: '14px' }}>
                     © {new Date().getFullYear()} Your Website. All rights reserved.
                 </Typography>
             </Box>

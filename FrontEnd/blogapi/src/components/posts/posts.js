@@ -6,7 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom'; // Import thẻ Link từ react-router-dom
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -14,16 +14,15 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         margin: theme.spacing(1, 1.5),
+        fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
     cardHeader: {
-        backgroundColor:
-            theme.palette.type === 'light'
-                ? theme.palette.grey[200]
-                : theme.palette.grey[700],
+        backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
     },
     postTitle: {
         fontSize: '16px',
         textAlign: 'left',
+        fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
     postText: {
         display: 'flex',
@@ -32,12 +31,14 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '12px',
         textAlign: 'left',
         marginBottom: theme.spacing(2),
+        fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
 }));
 
 const Posts = (props) => {
     const { posts } = props;
     const classes = useStyles();
+
     if (!posts || posts.length === 0) return <p>Can not find any posts, sorry</p>;
     return (
         <React.Fragment>
@@ -45,14 +46,10 @@ const Posts = (props) => {
                 <Grid container spacing={5} alignItems="flex-end">
                     {posts.map((post) => {
                         return (
-                            // Enterprise card is full width at sm breakpoint
                             <Grid item key={post.id} xs={12} md={4}>
                                 <Card className={classes.card}>
-                                    <Link
-                                        color="textPrimary"
-                                        href={'post/' + post.slug}
-                                        className={classes.link}
-                                    >
+                                    {/* Sử dụng thẻ Link để điều hướng */}
+                                    <Link to={`/post/${post.slug}`} className={classes.link}>
                                         <CardMedia
                                             className={classes.cardMedia}
                                             image={post.image}
@@ -60,12 +57,7 @@ const Posts = (props) => {
                                         />
                                     </Link>
                                     <CardContent className={classes.cardContent}>
-                                        <Typography
-                                            gutterBottom
-                                            variant="h6"
-                                            component="h2"
-                                            className={classes.postTitle}
-                                        >
+                                        <Typography gutterBottom variant="h6" component="h2" className={classes.postTitle}>
                                             {post.title.substr(0, 50)}...
                                         </Typography>
                                         <div className={classes.postText}>
@@ -83,4 +75,5 @@ const Posts = (props) => {
         </React.Fragment>
     );
 };
+
 export default Posts;

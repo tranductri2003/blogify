@@ -1,4 +1,3 @@
-// Thêm import cho Icon, Avatar, và makeStyles
 import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -21,9 +20,10 @@ const useStyles = makeStyles((theme) => ({
     link: {
         margin: theme.spacing(1, 1.5),
         color: '#ffffff', // Thay đổi màu chữ cho các Link và Button
+        fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
     toolbarTitle: {
-        flexGrow: 1,
+        // flexGrow: 1,
         display: 'flex',
         alignItems: 'center', // Hiển thị logo ở giữa theo chiều ngang
     },
@@ -33,20 +33,25 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1.75rem', // Kích thước cho tiêu đề "Blog"
         fontWeight: 600, // Độ đậm cho tiêu đề "Blog"
         textDecoration: 'none', // Loại bỏ gạch chân cho tiêu đề "Blog"
+        fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
     registerButton: {
-        marginRight: theme.spacing(1), // Khoảng cách giữa các nút
-        backgroundColor: '#f44336', // Màu nền cho nút "Register"
+        marginRight: theme.spacing(1),
+        backgroundColor: '#0F4C75', // Màu nền cho nút "Register"
         color: '#ffffff', // Màu chữ cho nút "Register"
+        fontFamily: 'cursive', // Font chữ cursive cho nút "Login"
+
     },
     loginButton: {
-        marginRight: theme.spacing(1), // Khoảng cách giữa các nút
-        backgroundColor: '#3f51b5', // Màu nền cho nút "Login"
+        marginRight: theme.spacing(1),
+        backgroundColor: '#3282B8', // Màu nền cho nút "Login"
         color: '#ffffff', // Màu chữ cho nút "Login"
+        fontFamily: 'cursive', // Font chữ cursive cho nút "Login"
     },
     logoutButton: {
-        backgroundColor: '#3f51b5', // Màu nền cho nút "Logout"
+        backgroundColor: '#BBE1FA', // Màu nền cho nút "Logout"
         color: '#ffffff', // Màu chữ cho nút "Logout"
+        fontFamily: 'cursive', // Font chữ cursive cho nút "Logout"
     },
     searchInput: {
         backgroundColor: '#f5f5f5', // Màu nền cho ô tìm kiếm
@@ -79,15 +84,16 @@ function Header() {
                 elevation={0}
                 className={classes.appBar}
             >
-                <Toolbar className={classes.toolbar}>
+
+                <Toolbar className={classes.toolbar} style={{ justifyContent: 'space-between' }}>
                     <div className={classes.toolbarTitle}>
                         {/* Thêm logo */}
-                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#9AC5F4' }}>
+                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#9AC5F4', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
                         </Avatar>
                         <Typography
                             variant="h6"
-                            color="textPrimary" // Sử dụng màu chữ mặc định của Material-UI
+                            color="textPrimary"
                             noWrap
                             className={classes.logo}
                             component={NavLink}
@@ -98,32 +104,32 @@ function Header() {
                     </div>
                     <div className={classes.toolbarTitle}>
                         {/* Thêm logo */}
-                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#99DBF5' }}>
+                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#99DBF5', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
                         </Avatar>
                         <Typography
                             variant="h6"
-                            color="textPrimary" // Sử dụng màu chữ mặc định của Material-UI
+                            color="textPrimary"
                             noWrap
                             className={classes.logo}
                             component={NavLink}
-                            to="/category/lequydon"
+                            to="/category/buoc-qua-mau-xanh-hi-vong"
                         >
                             Lê Quý Đôn
                         </Typography>
                     </div>
                     <div className={classes.toolbarTitle}>
                         {/* Thêm logo */}
-                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#A7ECEE' }}>
+                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#A7ECEE', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
                         </Avatar>
                         <Typography
                             variant="h6"
-                            color="textPrimary" // Sử dụng màu chữ mặc định của Material-UI
+                            color="textPrimary"
                             noWrap
                             className={classes.logo}
                             component={NavLink}
-                            to="/category/bachkhoa"
+                            to="/category/nang-bach-khoa"
                         >
                             Bách khoa
                         </Typography>
@@ -137,44 +143,50 @@ function Header() {
                         inputClassName={classes.searchInput}
                     />
 
-                    <nav>
+                    <div>
                         {/* Nút "Register" */}
-                        <Link
+                        <Button
                             color="textPrimary"
-                            href="#"
-                            className={classes.link}
+                            variant="contained"
+                            className={classes.registerButton}
                             component={NavLink}
                             to="/register"
+                            style={{ marginRight: '5px' }}
                         >
                             Register
-                        </Link>
-                    </nav>
+                        </Button>
 
-                    {/* Nút "Login" */}
-                    <Button
-                        href="#"
-                        variant="contained"
-                        className={classes.loginButton}
-                        component={NavLink}
-                        to="/login"
-                    >
-                        Login
-                    </Button>
+                        {/* Nút "Login" */}
+                        <Button
+                            href="#"
+                            variant="contained"
+                            color="textPrimary"
+                            className={classes.loginButton}
+                            component={NavLink}
+                            to="/login"
+                            style={{ fontFamily: 'cursive', marginRight: '5px' }}
+                        >
+                            Login
+                        </Button>
 
-                    {/* Nút "Logout" */}
-                    <Button
-                        href="#"
-                        variant="contained"
-                        className={classes.logoutButton}
-                        component={NavLink}
-                        to="/logout"
-                    >
-                        Logout
-                    </Button>
+                        {/* Nút "Logout" */}
+                        <Button
+                            href="#"
+                            variant="contained"
+                            color="textPrimary"
+                            className={classes.logoutButton}
+                            component={NavLink}
+                            to="/logout"
+                            style={{ fontFamily: 'cursive' }}
+                        >
+                            Logout
+                        </Button>
+                    </div>
                 </Toolbar>
             </AppBar>
         </React.Fragment>
     );
 }
+
 
 export default Header;
