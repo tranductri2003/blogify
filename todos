@@ -1,7 +1,7 @@
 ✔ -BE: Category API @done(23-07-24 11:17)
 ✔ -FE: Category API @done(23-07-24 16:32)
 ✔ -FE: Update  UI  @started(23-07-24 11:36) @done(23-07-24 16:42) @lasted(5h6m12s)
-☐ -BE: Update Blog API to Blog @started(23-07-24 16:42)
+✔ -BE: Update Blog API to Blog @started(23-07-24 16:42) @done(23-07-24 16:50) @lasted(8m6s)
 
 ☐ -BE: User API
         ☐ BE: Add new Avatar atribute to user profile
