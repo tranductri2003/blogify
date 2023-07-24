@@ -3,14 +3,19 @@
 ✔ -FE: Update  UI  @started(23-07-24 11:36) @done(23-07-24 16:42) @lasted(5h6m12s)
 ✔ -BE: Update Blog API to Blog @started(23-07-24 16:42) @done(23-07-24 16:50) @lasted(8m6s)
 
-☐ -BE: User API
-        ☐ BE: Add new Avatar atribute to user profile
-        ☐ BE: User API return all user's information
+
+
+✔ -BE: User API @started(23-07-24 16:53) @done(23-07-24 23:22) @lasted(6h29m59s)
+        ✔ BE: Add new Avatar atribute to user profile @done(23-07-24 23:22)
+        ✔ BE: User API return all user's information @done(23-07-24 23:22)
         
 ☐ -FE: User API
         ☐ Update main screen
         ☐ Update comment upon User API 
-        
+
+☐ -BE: Post 
+        ☐ Update permissions for each roles
+
 ☐ -FE: Post 
         ☐ Update full CRUD in a single post
 
@@ -22,6 +27,9 @@
          
 ☐ -FE: Post API
         ☐ Update single post UI
+
+☐ -BE: Fix custom password
+
 
 ☐ Tạo thẻ debit VISA
 ☐ Cập nhật tên miền

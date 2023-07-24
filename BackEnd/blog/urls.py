@@ -11,9 +11,9 @@ urlpatterns = [
     path('post/<str:pk>/', PostDetail.as_view(), name='detailpost'),
     path('search/', PostListDetailfilter.as_view(), name='searchpost'),
     # Post Admin URLs
-    path('admin/create/', CreatePost.as_view(), name='createpost'),
-    path('admin/edit/postdetail/<int:pk>/',
+    path('admin/post/create/', CreatePost.as_view(), name='createpost'),
+    path('admin/post/edit/postdetail/<int:pk>/',
          AdminPostDetail.as_view(), name='admindetailpost'),
-    path('admin/edit/<int:pk>/', EditPost.as_view(), name='editpost'),
-    path('admin/delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
+    path('admin/post/edit/<int:pk>/', EditPost.as_view(), name='editpost'),
+    path('admin/post/delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
 ]

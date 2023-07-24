@@ -1,10 +1,13 @@
+from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import CustomUserSerializer
+from rest_framework import viewsets, filters, generics, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import AllowAny
+from users.models import NewUser
 
 
 class CustomUserCreate(APIView):
@@ -18,6 +21,21 @@ class CustomUserCreate(APIView):
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserList(generics.ListAPIView):
+
+    serializer_class = CustomUserSerializer
+    queryset = NewUser.objects.all()
+
+
+class UserDetail(generics.RetrieveAPIView):
+    serializer_class = CustomUserSerializer
+
+    def get_object(self):
+        item = self.kwargs.get('pk')
+        user = get_object_or_404(NewUser, user_name=item)
+        return user
 
 
 class BlacklistTokenUpdateView(APIView):

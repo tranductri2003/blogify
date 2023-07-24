@@ -80,14 +80,14 @@ const Posts = (props) => {
                                             <TableCell align="left">
                                                 <Link
                                                     color="textPrimary"
-                                                    href={'/admin/edit/' + post.id}
+                                                    href={'/admin/post/edit/' + post.id}
                                                     className={classes.link}
                                                 >
                                                     <EditIcon></EditIcon>
                                                 </Link>
                                                 <Link
                                                     color="textPrimary"
-                                                    href={'/admin/delete/' + post.id}
+                                                    href={'/admin/post/delete/' + post.id}
                                                     className={classes.link}
                                                 >
                                                     <DeleteForeverIcon></DeleteForeverIcon>
@@ -99,7 +99,7 @@ const Posts = (props) => {
                                 <TableRow>
                                     <TableCell colSpan={4} align="right">
                                         <Button
-                                            href={'/admin/create'}
+                                            href={'/admin/post/create'}
                                             variant="contained"
                                             color="primary"
                                         >

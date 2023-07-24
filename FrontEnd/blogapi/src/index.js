@@ -24,9 +24,9 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route exact path="/category/:slug" component={App} />
         <Route exact path="/admin" component={Admin} />
-        <Route exact path="/admin/create" component={Create} />
-        <Route exact path="/admin/edit/:id" component={Edit} />
-        <Route exact path="/admin/delete/:id" component={Delete} />
+        <Route exact path="/admin/post/create" component={Create} />
+        <Route exact path="/admin/post/edit/:id" component={Edit} />
+        <Route exact path="/admin/post/delete/:id" component={Delete} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />

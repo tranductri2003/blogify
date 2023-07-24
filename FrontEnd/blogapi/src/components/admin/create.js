@@ -90,7 +90,7 @@ export default function Create() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-        const URL = 'http://127.0.0.1:8000/api/admin/create/';
+        const URL = 'http://127.0.0.1:8000/api/admin/post/create/';
         let formData = new FormData();
         formData.append('title', postData.title);
         formData.append('slug', postData.slug);
