@@ -17,7 +17,9 @@
 
 ☐ -BE: Post API
         ☐ BE: Add new vote attribute to Post model
-        
+☐ -FE: Post API
+        ☐ BE: Update UI for vote
+         
 ☐ -FE: Post API
         ☐ Update single post UI
 
