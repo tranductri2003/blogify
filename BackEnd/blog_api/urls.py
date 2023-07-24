@@ -1,10 +1,13 @@
-from .views import PostList, PostDetail, PostListDetailfilter, CreatePost, EditPost, AdminPostDetail, DeletePost
+from .views import PostList, PostListByCategory, PostDetail, PostListDetailfilter, CreatePost, EditPost, AdminPostDetail, DeletePost
 from django.urls import path
 
 app_name = 'blog_api'
 
 urlpatterns = [
     path('', PostList.as_view(), name='listpost'),
+    path('category/<slug:slug>/',
+         PostListByCategory.as_view(), name='post-list-by-category'),
+
     path('post/<str:pk>/', PostDetail.as_view(), name='detailpost'),
     path('search/', PostListDetailfilter.as_view(), name='searchpost'),
     # Post Admin URLs

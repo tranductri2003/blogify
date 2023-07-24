@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from blog.models import Post
+from blog.models import Post, Category
 from .serializers import PostSerializer, CommentSerializer
 from rest_framework import viewsets, filters, generics, permissions
 from rest_framework.response import Response
@@ -13,6 +13,14 @@ class PostList(generics.ListAPIView):
 
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+
+
+class PostListByCategory(generics.ListAPIView):
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        slug = self.kwargs['slug']
+        return Post.objects.filter(category__slug=slug)
 
 
 class PostDetail(generics.RetrieveAPIView):

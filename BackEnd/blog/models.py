@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from autoslug import AutoSlugField
 
 
 def upload_to(instance, filename):
@@ -10,6 +11,9 @@ def upload_to(instance, filename):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    # Trường slug tự động cập nhật từ name
+    # slug = AutoSlugField(populate_from='name', null=False)
+    slug = models.SlugField(max_length=250)
 
     def __str__(self):
         return self.name

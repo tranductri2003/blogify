@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from blog.models import Post, Comment
+from blog.models import Post, Comment, Category
 from django.conf import settings
 
 
