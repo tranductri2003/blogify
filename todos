@@ -1,5 +1,26 @@
 ✔ -BE: Category API @done(23-07-24 11:17)
-☐ -FE: Category API @started(23-07-24 11:18)
+✔ -FE: Category API @done(23-07-24 16:32)
+✔ -FE: Update  UI  @started(23-07-24 11:36) @done(23-07-24 16:42) @lasted(5h6m12s)
+☐ -BE: Update Blog API to Blog @started(23-07-24 16:42)
+
 ☐ -BE: User API
+        ☐ BE: Add new Avatar atribute to user profile
+        ☐ BE: User API return all user's information
+        
 ☐ -FE: User API
-☐ -BE: Update Blog API to Blog
+        ☐ Update main screen
+        ☐ Update comment upon User API 
+        
+☐ -FE: Post 
+        ☐ Update full CRUD in a single post
+
+
+☐ -BE: Post API
+        ☐ BE: Add new vote attribute to Post model
+        
+☐ -FE: Post API
+        ☐ Update single post UI
+
+☐ Tạo thẻ debit VISA
+☐ Cập nhật tên miền
+☐ Deploy AWS EC2
