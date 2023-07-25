@@ -8,8 +8,8 @@
 ✔ -BE: User API @started(23-07-24 16:53) @done(23-07-24 23:22) @lasted(6h29m59s)
         ✔ BE: Add new Avatar atribute to user profile @done(23-07-24 23:22)
         ✔ BE: User API return all user's information @done(23-07-24 23:22)
-        
-☐ -FE: User API
+☐ -FE: Build REACT FILE @started(23-07-25 10:45)
+☐ -FE: User API @started(23-07-24 23:23)
         ☐ Update main screen
         ☐ Update comment upon User API 
 
@@ -31,6 +31,6 @@
 ☐ -BE: Fix custom password
 
 
-☐ Tạo thẻ debit VISA
+✔ Tạo thẻ debit VISA @done(23-07-25 10:43)
 ☐ Cập nhật tên miền
 ☐ Deploy AWS EC2
