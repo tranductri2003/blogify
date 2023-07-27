@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -161,7 +162,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 
-    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 
 }
 SWAGGER_SETTINGS = {

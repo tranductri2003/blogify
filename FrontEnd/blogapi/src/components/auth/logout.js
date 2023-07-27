@@ -12,6 +12,8 @@ export default function SignUp() {
         localStorage.clear();
         axiosInstance.defaults.headers['Authorization'] = null;
         history.push('/login');
+        // Kích hoạt tái render cho thành phần Header sau khi đăng xuất thành công
+        window.dispatchEvent(new Event('storage'));
     });
     return <div>Logout</div>;
 }

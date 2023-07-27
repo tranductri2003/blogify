@@ -5,13 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import SearchBar from 'material-ui-search-bar';
-import { useHistory } from 'react-router-dom';
 import Icon from '@material-ui/core/Icon';
 import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
+import { useHistory } from 'react-router-dom';
+import axiosInstance from '../axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,39 +66,45 @@ const useStyles = makeStyles((theme) => ({
 const MEDIA_URL = "http://127.0.0.1:8000";
 function Header() {
     const classes = useStyles();
-    let history = useHistory();
     const [data, setData] = useState({ search: '' });
-    const [loggedIn, setLoggedIn] = useState(localStorage.getItem('access_token'));
-    const [username, setUsername] = useState(localStorage.getItem('user_name'));
-    const [avatarSrc, setAvatarSrc] = useState(MEDIA_URL + localStorage.getItem('avatar'));
-
+    const [isLoggedIn, setIsLoggedIn] = useState(Boolean(localStorage.getItem('access_token')));
+    const history = useHistory();
 
     useEffect(() => {
-        // Khi biến loggedIn thay đổi, kiểm tra nếu đã đăng nhập, lấy thông tin người dùng từ local storage
-        if (loggedIn) {
-            // Lấy thông tin người dùng từ local storage (hoặc từ API nếu bạn đã lưu thông tin này trong trạng thái state của ứng dụng)
-            const userName = localStorage.getItem('user_name');
-            const userAvatar = MEDIA_URL + localStorage.getItem('avatar');
+        // Lắng nghe sự kiện storage, khi có thay đổi trong localStorage, ta cập nhật lại trạng thái isLoggedIn
+        const handleStorageChange = () => {
+            setIsLoggedIn(Boolean(localStorage.getItem('access_token')));
+        };
+        window.addEventListener('storage', handleStorageChange);
 
-            // Cập nhật thông tin người dùng
-            setUsername(userName);
-            setAvatarSrc(userAvatar);
-        } else {
-            // Nếu không đăng nhập, đặt thông tin người dùng về giá trị mặc định
-            setUsername('');
-            setAvatarSrc('');
-        }
-    }, [loggedIn]);
-
-
-
+        // Hủy lắng nghe sự kiện storage khi component unmount
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []);
 
     const goSearch = (e) => {
         history.push({
             pathname: '/search/',
             search: '?search=' + data.search,
         });
-        window.location.reload();
+    };
+
+    const handleLogout = () => {
+        // Thực hiện đăng xuất
+        axiosInstance.post('user/logout/blacklist/', {
+            refresh_token: localStorage.getItem('refresh_token'),
+        })
+            .then((res) => {
+                localStorage.clear();
+                axiosInstance.defaults.headers['Authorization'] = null;
+                history.push('/login');
+                // Kích hoạt tái render cho thành phần Header sau khi đăng xuất thành công
+                window.dispatchEvent(new Event('storage'));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -171,7 +176,9 @@ function Header() {
                     />
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {/* Avatar của người dùng */}
-                        <Avatar alt={localStorage.getItem('user_name')} src={MEDIA_URL + localStorage.getItem('avatar')} />
+                        <NavLink to="/admin">
+                            <Avatar alt={localStorage.getItem('user_name')} src={MEDIA_URL + localStorage.getItem('avatar')} />
+                        </NavLink>
 
                         <div style={{ marginLeft: '10px' }}>
                             {/* Thêm thông tin tên người dùng nếu muốn */}

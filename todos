@@ -9,10 +9,20 @@
         ✔ BE: Add new Avatar atribute to user profile @done(23-07-24 23:22)
         ✔ BE: User API return all user's information @done(23-07-24 23:22)
 
+✔ BE: Update filter and Search for Post API @done(23-07-27 16:47)
+☐ FE: Update URL for Post API @started(23-07-27 16:47)
+
+
+
 ☐ -FE: Integrate React in to Django @started(23-07-26 09:48)
 ☐ -FE: User API @started(23-07-24 23:23)
         ✔ Update main screen @done(23-07-27 12:02)
         ☐ Update comment upon User API 
+
+☐ -BE: User API @started(23-07-27 15:11)
+        ☐ BE: CRUD API for user
+☐ -FE: User API
+        ☐ FE: view for user
 
 ☐ -BE: Post 
         ☐ Update permissions for each roles

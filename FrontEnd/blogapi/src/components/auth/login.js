@@ -74,6 +74,8 @@ export default function SignIn() {
                 history.push('/');
                 //console.log(res);
                 //console.log(res.data);
+                // Kích hoạt tái render cho thành phần Header sau khi đăng nhập thành công
+                window.dispatchEvent(new Event('storage'));
             });
     };
 
