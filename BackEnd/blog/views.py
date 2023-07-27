@@ -18,12 +18,12 @@ class PostList(generics.ListAPIView):
     filterset_fields = ['category__slug', 'author__user_name']
 
 
-class PostListByCategory(generics.ListAPIView):
-    serializer_class = PostSerializer
+# class PostListByCategory(generics.ListAPIView):
+#     serializer_class = PostSerializer
 
-    def get_queryset(self):
-        slug = self.kwargs['slug']
-        return Post.objects.filter(category__slug=slug)
+#     def get_queryset(self):
+#         slug = self.kwargs['slug']
+#         return Post.objects.filter(category__slug=slug)
 
 
 class PostDetail(generics.RetrieveAPIView):
@@ -59,7 +59,6 @@ class CreatePost(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, format=None):
-        print(request.data)
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -68,7 +67,7 @@ class CreatePost(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class AdminPostDetail(generics.RetrieveAPIView):
+class UserPostDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = PostSerializer
     queryset = Post.objects.all()

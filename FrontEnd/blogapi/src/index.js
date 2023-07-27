@@ -28,6 +28,7 @@ const routing = (
         <Route exact path="/admin/post/delete/:id" component={Delete} />
 
 
+
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />

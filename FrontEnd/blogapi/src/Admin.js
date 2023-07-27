@@ -11,13 +11,20 @@ function Admin() {
         posts: null,
     });
 
+    const queryParams = {
+        author__user_name: localStorage.getItem("user_name")
+    };
+    const url = axiosInstance.getUri({
+        url: "",
+        params: queryParams,
+    });
     useEffect(() => {
-        axiosInstance.get().then((res) => {
+        axiosInstance.get(url).then((res) => {
             const allPosts = res.data;
             setAppState({ loading: false, posts: allPosts });
             console.log(res.data);
         });
-    }, [setAppState]);
+    }, [setAppState, url]);
 
     return (
         <div className="App">

@@ -25,9 +25,6 @@ function App() {
     params: queryParams,
   });
   useEffect(() => {
-
-    console.log('URL API:', url); // In ra đường dẫn URL API
-
     axiosInstance.get(url).then((res) => {
       const allPosts = res.data;
       setAppState({ loading: false, posts: allPosts });
