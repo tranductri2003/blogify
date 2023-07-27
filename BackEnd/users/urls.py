@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserList, UserDetail, CustomUserCreate, BlacklistTokenUpdateView
+from .views import UserList,  UserDetail, CustomUserCreate, BlacklistTokenUpdateView
 
 app_name = 'users'
 

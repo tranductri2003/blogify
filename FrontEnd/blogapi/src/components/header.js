@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +11,8 @@ import SearchBar from 'material-ui-search-bar';
 import { useHistory } from 'react-router-dom';
 import Icon from '@material-ui/core/Icon';
 import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -62,10 +64,35 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const MEDIA_URL = "http://127.0.0.1:8000";
 function Header() {
     const classes = useStyles();
     let history = useHistory();
     const [data, setData] = useState({ search: '' });
+    const [loggedIn, setLoggedIn] = useState(localStorage.getItem('access_token'));
+    const [username, setUsername] = useState(localStorage.getItem('user_name'));
+    const [avatarSrc, setAvatarSrc] = useState(MEDIA_URL + localStorage.getItem('avatar'));
+
+
+    useEffect(() => {
+        // Khi biến loggedIn thay đổi, kiểm tra nếu đã đăng nhập, lấy thông tin người dùng từ local storage
+        if (loggedIn) {
+            // Lấy thông tin người dùng từ local storage (hoặc từ API nếu bạn đã lưu thông tin này trong trạng thái state của ứng dụng)
+            const userName = localStorage.getItem('user_name');
+            const userAvatar = MEDIA_URL + localStorage.getItem('avatar');
+
+            // Cập nhật thông tin người dùng
+            setUsername(userName);
+            setAvatarSrc(userAvatar);
+        } else {
+            // Nếu không đăng nhập, đặt thông tin người dùng về giá trị mặc định
+            setUsername('');
+            setAvatarSrc('');
+        }
+    }, [loggedIn]);
+
+
+
 
     const goSearch = (e) => {
         history.push({
@@ -142,7 +169,17 @@ function Header() {
                         onRequestSearch={() => goSearch(data.search)}
                         inputClassName={classes.searchInput}
                     />
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {/* Avatar của người dùng */}
+                        <Avatar alt={localStorage.getItem('user_name')} src={MEDIA_URL + localStorage.getItem('avatar')} />
 
+                        <div style={{ marginLeft: '10px' }}>
+                            {/* Thêm thông tin tên người dùng nếu muốn */}
+                            <Typography variant="subtitle1" style={{ fontFamily: 'cursive' }}>
+                                {localStorage.getItem('user_name')}
+                            </Typography>
+                        </div>
+                    </div>
                     <div>
                         {/* Nút "Register" */}
                         <Button
@@ -181,6 +218,10 @@ function Header() {
                         >
                             Logout
                         </Button>
+                        {/* Avatar của người dùng */}
+                        {/* {userAvatar && (
+                            <Avatar alt="User Avatar" src={userAvatar} className={classes.avatar} />
+                        )} */}
                     </div>
                 </Toolbar>
             </AppBar>

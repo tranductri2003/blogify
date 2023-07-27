@@ -34,9 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const imgLink =
-    "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
-
+const MEDIA_URL = "http://127.0.0.1:8000";
 export default function Post() {
     const { slug } = useParams();
     const classes = useStyles();
@@ -100,11 +98,12 @@ export default function Post() {
                             <Paper className={classes.comment} key={comment.id}>
                                 <Grid container wrap="nowrap" spacing={2}>
                                     <Grid item>
-                                        <Avatar alt="Remy Sharp" src={imgLink} />
+                                        <Avatar alt={comment.author.username} src={MEDIA_URL + comment.author.avatar} />
                                     </Grid>
                                     <Grid justifyContent="left" item xs zeroMinWidth>
+
                                         <Typography variant="h6" style={{ margin: 0, textAlign: "left" }}>
-                                            {comment.author}
+                                            {comment.author.user_name}
                                         </Typography>
                                         <Typography variant="body1" style={{ textAlign: "left" }}>
                                             {comment.content}

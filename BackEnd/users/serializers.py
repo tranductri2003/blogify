@@ -9,6 +9,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     user_name = serializers.CharField(required=True)
     password = serializers.CharField(min_length=8, write_only=True)
+    # avatar = serializers.SerializerMethodField()
 
     class Meta:
         model = NewUser
@@ -23,3 +24,9 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+    # def get_avatar(self, obj):
+    #     request = self.context.get('request')
+    #     if obj.avatar:
+    #         return request.build_absolute_uri(obj.avatar.url)
+    #     return None
