@@ -4,31 +4,36 @@ import Posts from './components/posts/posts';
 import PostLoadingComponent from './components/posts/postLoading';
 import axiosInstance from './axios';
 import { useParams } from 'react-router-dom';
+import queryString from 'query-string';
+
+
 function App() {
   const PostLoading = PostLoadingComponent(Posts);
   const [appState, setAppState] = useState({
     loading: true,
     posts: null,
   });
-  const { slug } = useParams();
-  console.log(slug);
+  // Lấy các tham số từ URL của FE
+  const params = queryString.parse(window.location.search);
+
+  const queryParams = {
+    category__slug: params.category,
+    author__user_name: params.author
+  };
+  const url = axiosInstance.getUri({
+    url: "",
+    params: queryParams,
+  });
   useEffect(() => {
-    if (slug) {
-      axiosInstance.get(`/category/${slug}/`).then((res) => {
-        const allPosts = res.data;
-        console.log(res.data);
-        setAppState({ loading: false, posts: allPosts });
-        console.log(res.data);
-      });
-    } else {
-      axiosInstance.get().then((res) => {
-        const allPosts = res.data;
-        console.log(res.data);
-        setAppState({ loading: false, posts: allPosts });
-        console.log(res.data);
-      });
-    }
-  }, [setAppState, slug]);
+
+    console.log('URL API:', url); // In ra đường dẫn URL API
+
+    axiosInstance.get(url).then((res) => {
+      const allPosts = res.data;
+      setAppState({ loading: false, posts: allPosts });
+      console.log(res.data);
+    });
+  }, [setAppState, url]);
 
   return (
     <div className="App">
