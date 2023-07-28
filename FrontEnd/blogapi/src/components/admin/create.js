@@ -89,7 +89,14 @@ export default function Create() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: localStorage.getItem('access_token')
+                    ? 'JWT ' + localStorage.getItem('access_token')
+                    : null,
+            }
+        };
         const URL = 'http://127.0.0.1:8000/api/admin/post/create/';
         let formData = new FormData();
         formData.append('title', postData.title);
@@ -104,10 +111,10 @@ export default function Create() {
                 console.log(res.data);
             })
             .catch((err) => console.log(err));
-        history.push({
-            pathname: '/admin/',
-        });
-        window.location.reload();
+        // history.push({
+        //     pathname: '/admin/',
+        // });
+        // window.location.reload();
     };
 
 

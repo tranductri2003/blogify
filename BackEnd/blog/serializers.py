@@ -16,6 +16,14 @@ class CommentSerializer(serializers.ModelSerializer):
         return CustomUserSerializer(obj.author).data
 
 
+class CreatePostSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Post
+        fields = ['category', 'id', 'title', 'image', 'slug',
+                  'author', 'excerpt', 'content', 'status', ]
+
+
 class PostSerializer(serializers.ModelSerializer):
     comments = serializers.SerializerMethodField()
     author = serializers.SerializerMethodField()
