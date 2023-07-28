@@ -12,6 +12,7 @@
 ✔ BE: Update filter and Search for Post API @done(23-07-27 16:47)
 ✔ FE: Update URL for Post API @started(23-07-27 16:47) @done(23-07-27 17:38) @lasted(51m20s)
 
+✔ BE: Add edited atribute to user model
 
 
 ☐ -FE: Integrate React in to Django @started(23-07-26 09:48)
@@ -50,7 +51,7 @@
 
 ☐ -BE: Fix custom password
 
-
+☐ Pagination
 ✔ Tạo thẻ debit VISA @done(23-07-25 10:43)
 ☐ Cập nhật tên miền
 ☐ Deploy AWS EC2 @started(23-07-26 09:48)

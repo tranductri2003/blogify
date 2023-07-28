@@ -9,6 +9,8 @@ import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'; // Import thẻ Link từ react-router-dom
 import { NavLink } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
+import { format } from 'date-fns';
+
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -34,6 +36,22 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         marginBottom: theme.spacing(2),
         fontFamily: 'cursive', // Thay đổi font chữ sang cursive
+    },
+    card: {
+        borderRadius: theme.spacing(2), // Góc bo tròn cho CardView
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', // Hiệu ứng shadow làm mềm mại CardView
+        overflow: 'hidden', // Đảm bảo nội dung không tràn ra ngoài CardView
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease', // Hiệu ứng smooth
+        '&:hover': {
+            transform: 'scale(1.05)', // Hiệu ứng zoom in khi hover
+            boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.2)', // Hiệu ứng shadow mạnh hơn khi hover
+            backgroundColor: theme.palette.grey[200], // Màu nền thay đổi khi hover
+        },
+    },
+    editedText: {
+        fontSize: '12px',
+        color: theme.palette.text.secondary,
+        textAlign: 'right', // Canh lề phải
     },
 }));
 const MEDIA_URL = "http://127.0.0.1:8000";
@@ -68,6 +86,14 @@ const Posts = (props) => {
                                                 {post.excerpt.substr(0, 40)}...
                                             </Typography>
                                         </div>
+                                        {/* Hiển thị dòng chữ "edited at" và thời điểm đã chỉnh sửa */}
+                                        <div className={classes.postText}>
+                                            <Typography className={classes.editedText}>
+                                                edited at{' '}
+                                                {format(new Date(post.edited), 'dd-MM-yyyy HH:mm (xxx)')}
+                                                ...
+                                            </Typography>
+                                        </div>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             {/* Avatar của tác giả */}
                                             <NavLink to={`/profile/${post.author.user_name}`}>
@@ -80,6 +106,7 @@ const Posts = (props) => {
                                                 </Typography>
                                             </div>
                                         </div>
+
                                     </CardContent>
                                 </Card>
                             </Grid>

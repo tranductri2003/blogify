@@ -21,7 +21,7 @@ class CreatePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['category', 'id', 'title', 'image', 'slug',
-                  'author', 'excerpt', 'content', 'status', ]
+                  'author', 'excerpt', 'content', 'status', 'edited']
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -31,7 +31,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['category', 'id', 'title', 'image', 'slug',
-                  'author', 'excerpt', 'content', 'status', 'comments']
+                  'author', 'excerpt', 'content', 'status', 'comments', 'edited']
 
     def get_comments(self, obj):
         comments = Comment.objects.filter(post=obj)

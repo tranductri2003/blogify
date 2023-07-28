@@ -21,3 +21,4 @@ urllib3
 drf-yasg
 django-autoslug
 django-webpack-loader
+pytz

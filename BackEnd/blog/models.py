@@ -39,6 +39,9 @@ class Post(models.Model):
     content = models.TextField()
     slug = models.SlugField(max_length=250, unique_for_date='published')
     published = models.DateTimeField(default=timezone.now)
+    # Thêm trường edited để lưu thời điểm chỉnh sửa gần nhất
+    # Thêm trường edited để lưu thời điểm chỉnh sửa gần nhất
+    edited = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blog_posts')
     status = models.CharField(
@@ -51,6 +54,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    # Override phương thức save để cập nhật thời điểm chỉnh sửa
+
+    def save(self, *args, **kwargs):
+        self.edited = timezone.now()
+        super(Post, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):
