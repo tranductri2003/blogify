@@ -3,7 +3,6 @@ import './App.css';
 import Posts from './components/posts/posts';
 import PostLoadingComponent from './components/posts/postLoading';
 import axiosInstance from './axios';
-import { useParams } from 'react-router-dom';
 import queryString from 'query-string';
 
 

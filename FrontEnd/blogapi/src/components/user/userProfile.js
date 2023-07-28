@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     newPostButton: {
         position: 'fixed',
         top: theme.spacing(20), // Cách header 20 spacing (có thể điều chỉnh tùy ý)
-        right: theme.spacing(30), // Cách lề phải 2 spacing (có thể điều chỉnh tùy ý)
+        right: theme.spacing(20), // Cách lề phải 2 spacing (có thể điều chỉnh tùy ý)
         borderRadius: '50%',
         zIndex: 999,
         width: '80px',

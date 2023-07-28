@@ -32,9 +32,14 @@ function User() {
     }, [setAppState, url]);
 
     return (
+
         <div className="App">
-            <h1>Latest Posts</h1>
-            <PostLoading isLoading={appState.loading} posts={appState.posts} />
+            <div style={{ fontFamily: 'cursive', fontSize: '32px', fontWeight: 'bold', marginTop: '30px', marginBottom: '30px' }}>
+                <span role="img" aria-label="Latest Posts">📝</span> Latest Posts
+            </div>
+            <div>
+                <PostLoading isLoading={appState.loading} posts={appState.posts} />
+            </div>
         </div>
     );
 }
