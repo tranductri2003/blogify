@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../axios';
 import { useHistory, useParams } from 'react-router-dom';
 //MaterialUI
@@ -23,7 +22,7 @@ export default function Create() {
             })
             .then(function () {
                 history.push({
-                    pathname: '/admin/',
+                    pathname: `/${localStorage.getItem('user_name')}/`,
                 });
                 window.location.reload();
             });

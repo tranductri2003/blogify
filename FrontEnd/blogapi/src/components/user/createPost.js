@@ -10,8 +10,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -111,10 +109,10 @@ export default function Create() {
                 console.log(res.data);
             })
             .catch((err) => console.log(err));
-        // history.push({
-        //     pathname: '/admin/',
-        // });
-        // window.location.reload();
+        history.push({
+            pathname: `/${localStorage.getItem('user_name')}/`,
+        });
+        window.location.reload();
     };
 
 

@@ -15,12 +15,20 @@
 
 
 ☐ -FE: Integrate React in to Django @started(23-07-26 09:48)
-☐ -FE: User API @started(23-07-24 23:23)
+✔ -FE: User API @started(23-07-24 23:23) @done(23-07-28 10:36) @lasted(3d11h13m22s)
         ✔ Update main screen @done(23-07-27 12:02)
-        ☐ Update comment upon User API 
+        ✔ Update comment upon User API @done(23-07-28 10:35)
 
-☐ -BE: User API @started(23-07-27 17:38)
+☐ -BE: User API @started(23-07-28 10:36)
+        ☐ BE: Update URL for User API
         ☐ BE: CRUD API for user
+☐ -FE: User API @started(23-07-28 10:36)
+        ✔ FE: Update URL for User components @done(23-07-28 11:44)
+        ☐ FE: CRUD API for user
+
+
+☐ -BE: Search User API
+☐ -FE: Search User UI
 ☐ -FE: User API
         ☐ FE: view for user personal profile
 

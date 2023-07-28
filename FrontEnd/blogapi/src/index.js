@@ -11,10 +11,13 @@ import Login from './components/auth/login';
 import Logout from './components/auth/logout';
 import Single from './components/posts/single';
 import Search from './components/posts/search';
-import Admin from './Admin';
-import Create from './components/admin/create';
-import Edit from './components/admin/edit';
-import Delete from './components/admin/delete';
+import User from './User';
+import Create from './components/user/createPost';
+import Edit from './components/user/editPost';
+import Delete from './components/user/deletePost';
+
+
+const userName = localStorage.getItem('user_name');
 
 const routing = (
   <Router>
@@ -22,12 +25,10 @@ const routing = (
       <Header />
       <Switch>
         <Route exact path="/" component={App} />
-        <Route exact path="/admin" component={Admin} />
-        <Route exact path="/admin/post/create" component={Create} />
-        <Route exact path="/admin/post/edit/:id" component={Edit} />
-        <Route exact path="/admin/post/delete/:id" component={Delete} />
-
-
+        <Route exact path={`/${userName}`} component={User} />
+        <Route exact path={`/${userName}/post/create`} component={Create} />
+        <Route exact path={`/${userName}/post/edit/:id`} component={Edit} />
+        <Route exact path={`/${userName}/post/delete/:id`} component={Delete} />
 
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />

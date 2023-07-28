@@ -10,7 +10,6 @@ import SearchBar from 'material-ui-search-bar';
 import Icon from '@material-ui/core/Icon';
 import Avatar from '@material-ui/core/Avatar';
 import { useHistory } from 'react-router-dom';
-import axiosInstance from '../axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MEDIA_URL = "http://127.0.0.1:8000";
+
 function Header() {
     const classes = useStyles();
     const [data, setData] = useState({ search: '' });
@@ -90,22 +90,7 @@ function Header() {
         });
     };
 
-    const handleLogout = () => {
-        // Thực hiện đăng xuất
-        axiosInstance.post('user/logout/blacklist/', {
-            refresh_token: localStorage.getItem('refresh_token'),
-        })
-            .then((res) => {
-                localStorage.clear();
-                axiosInstance.defaults.headers['Authorization'] = null;
-                history.push('/login');
-                // Kích hoạt tái render cho thành phần Header sau khi đăng xuất thành công
-                window.dispatchEvent(new Event('storage'));
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
+
 
     return (
         <React.Fragment>
@@ -176,8 +161,8 @@ function Header() {
                     />
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {/* Avatar của người dùng */}
-                        <NavLink to="/admin">
-                            <Avatar alt={localStorage.getItem('user_name')} src={MEDIA_URL + localStorage.getItem('avatar')} />
+                        <NavLink to={`/${localStorage.getItem('user_name')}`}>
+                            <Avatar alt={localStorage.getItem('user_name')} src={`${MEDIA_URL}${localStorage.getItem('avatar')}`} />
                         </NavLink>
 
                         <div style={{ marginLeft: '10px' }}>

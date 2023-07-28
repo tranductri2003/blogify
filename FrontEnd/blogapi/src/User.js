@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Posts from './components/admin/posts';
+import Posts from './components/user/posts';
 import PostLoadingComponent from './components/posts/postLoading';
 import axiosInstance from './axios';
 
