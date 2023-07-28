@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.grey[200], // Màu nền thay đổi khi hover
         },
     },
+
     editedText: {
         fontSize: '12px',
         color: theme.palette.text.secondary,
@@ -63,7 +64,7 @@ const Posts = (props) => {
     if (!posts || posts.length === 0) return <p>Can not find any posts, sorry</p>;
     return (
         <React.Fragment>
-            <Container maxWidth="md" component="main">
+            <Container maxWidth="lg" component="main">
                 <Grid container spacing={5} alignItems="flex-end">
                     {posts.map((post) => {
                         return (
