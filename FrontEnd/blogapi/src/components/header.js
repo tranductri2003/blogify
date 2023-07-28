@@ -161,7 +161,7 @@ function Header() {
                     />
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {/* Avatar của người dùng */}
-                        <NavLink to={`/${localStorage.getItem('user_name')}`}>
+                        <NavLink to={`/profile/${localStorage.getItem('user_name')}`}>
                             <Avatar alt={localStorage.getItem('user_name')} src={`${MEDIA_URL}${localStorage.getItem('avatar')}`} />
                         </NavLink>
 

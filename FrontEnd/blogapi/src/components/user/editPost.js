@@ -72,7 +72,7 @@ export default function Create() {
             content: formData.content,
         });
         history.push({
-            pathname: `/${localStorage.getItem('user_name')}/`,
+            pathname: `/profile/${localStorage.getItem('user_name')}/`,
         });
         window.location.reload();
     };

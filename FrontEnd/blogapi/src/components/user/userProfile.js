@@ -43,6 +43,17 @@ const useStyles = makeStyles((theme) => ({
 const Posts = (props) => {
     const { posts } = props;
     const classes = useStyles();
+
+    if (!posts || posts.length === 0) return <p>Can not find any posts, sorry</p>;
+
+    const user_name = localStorage.getItem('user_name');
+
+    const isAuthor = (post) => {
+        return post.author.user_name === user_name;
+    };
+
+
+
     if (!posts || posts.length === 0) return <p>Can not find any posts, sorry</p>;
     return (
         <React.Fragment>
@@ -78,20 +89,24 @@ const Posts = (props) => {
                                             </TableCell>
 
                                             <TableCell align="left">
-                                                <Link
-                                                    color="textPrimary"
-                                                    href={`/${localStorage.getItem('user_name')}/post/edit/` + post.id}
-                                                    className={classes.link}
-                                                >
-                                                    <EditIcon></EditIcon>
-                                                </Link>
-                                                <Link
-                                                    color="textPrimary"
-                                                    href={`/${localStorage.getItem('user_name')}/post/delete/` + post.id}
-                                                    className={classes.link}
-                                                >
-                                                    <DeleteForeverIcon></DeleteForeverIcon>
-                                                </Link>
+                                                {isAuthor(post) && (
+                                                    <>
+                                                        <Link
+                                                            color="textPrimary"
+                                                            href={`/profile/${user_name}/post/edit/${post.id}`}
+                                                            className={classes.link}
+                                                        >
+                                                            <EditIcon />
+                                                        </Link>
+                                                        <Link
+                                                            color="textPrimary"
+                                                            href={`/profile/${user_name}/post/delete/${post.id}`}
+                                                            className={classes.link}
+                                                        >
+                                                            <DeleteForeverIcon />
+                                                        </Link>
+                                                    </>
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -99,7 +114,7 @@ const Posts = (props) => {
                                 <TableRow>
                                     <TableCell colSpan={4} align="right">
                                         <Button
-                                            href={`/${localStorage.getItem('user_name')}/post/create`}
+                                            href={`/profile/${localStorage.getItem('user_name')}/post/create`}
                                             variant="contained"
                                             color="primary"
                                         >

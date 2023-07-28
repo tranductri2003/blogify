@@ -17,7 +17,6 @@ import Edit from './components/user/editPost';
 import Delete from './components/user/deletePost';
 
 
-const userName = localStorage.getItem('user_name');
 
 const routing = (
   <Router>
@@ -25,10 +24,10 @@ const routing = (
       <Header />
       <Switch>
         <Route exact path="/" component={App} />
-        <Route exact path={`/${userName}`} component={User} />
-        <Route exact path={`/${userName}/post/create`} component={Create} />
-        <Route exact path={`/${userName}/post/edit/:id`} component={Edit} />
-        <Route exact path={`/${userName}/post/delete/:id`} component={Delete} />
+        <Route exact path={`/profile/:userName`} component={User} />
+        <Route exact path={`/profile/:userName/post/create`} component={Create} />
+        <Route exact path={`/profile/:userName/post/edit/:id`} component={Edit} />
+        <Route exact path={`/profile/:userName/post/delete/:id`} component={Delete} />
 
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />

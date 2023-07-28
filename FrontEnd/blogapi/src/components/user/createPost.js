@@ -103,6 +103,7 @@ export default function Create() {
         formData.append('excerpt', postData.excerpt);
         formData.append('content', postData.content);
         formData.append('image', postimage.image[0]);
+
         axiosInstance
             .post(URL, formData, config)
             .then((res) => {
@@ -110,7 +111,7 @@ export default function Create() {
             })
             .catch((err) => console.log(err));
         history.push({
-            pathname: `/${localStorage.getItem('user_name')}/`,
+            pathname: `/profile/${localStorage.getItem('user_name')}/`,
         });
         window.location.reload();
     };
