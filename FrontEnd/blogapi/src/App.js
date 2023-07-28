@@ -24,6 +24,7 @@ function App() {
     url: "",
     params: queryParams,
   });
+  console.log(url);
   useEffect(() => {
     axiosInstance.get(url).then((res) => {
       const allPosts = res.data;

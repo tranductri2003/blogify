@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'; // Import thẻ Link từ react-router-dom
+import { NavLink } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
 }));
+const MEDIA_URL = "http://127.0.0.1:8000";
 
 const Posts = (props) => {
     const { posts } = props;
@@ -64,6 +67,18 @@ const Posts = (props) => {
                                             <Typography color="textSecondary">
                                                 {post.excerpt.substr(0, 40)}...
                                             </Typography>
+                                        </div>
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                                            {/* Avatar của tác giả */}
+                                            <NavLink to={`/profile/${post.author.user_name}`}>
+                                                <Avatar alt={post.author.user_name} src={`${MEDIA_URL}${post.author.avatar}`} />
+                                            </NavLink>
+
+                                            <div style={{ marginLeft: '10px' }}>
+                                                <Typography variant="subtitle1" style={{ fontFamily: 'cursive' }}>
+                                                    {post.author.user_name}
+                                                </Typography>
+                                            </div>
                                         </div>
                                     </CardContent>
                                 </Card>
