@@ -21,6 +21,7 @@ import { Link } from 'react-router-dom'; // Chỉ import thẻ Link duy nhất t
 import Avatar from '@material-ui/core/Avatar';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
+import Profile from './Profile'; // Use the correct relative path here
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const MEDIA_URL = "http://127.0.0.1:8000";
 
-const Posts = (props) => {
+const UserSite = (props) => {
     const { userName } = useParams();
     const { posts } = props;
     const classes = useStyles();
@@ -102,9 +103,21 @@ const Posts = (props) => {
         return userName === user_name;
     };
     if (!posts || posts.length === 0) return <p>Can not find any posts, sorry</p>;
-
+    // Xử lý dữ liệu và lấy thông tin của người dùng, ví dụ:
+    const userInfo = {
+        user_name: userName,
+        avatar: MEDIA_URL + localStorage.getItem('avatar'),
+        friendsCount: 22,
+        photosCount: 10,
+        commentsCount: 89,
+        // Các thông tin khác của người dùng
+    };
     return (
         <React.Fragment>
+            <Profile userInfo={userInfo} />
+            <div style={{ fontFamily: 'cursive', fontSize: '32px', fontWeight: 'bold', marginTop: '30px', marginBottom: '30px' }}>
+                <span role="img" aria-label="Latest Posts">📝</span> Latest Posts
+            </div>
             <Container maxWidth="lg" component="main">
                 {isAuthorProfile() && (
                     <>
@@ -191,4 +204,4 @@ const Posts = (props) => {
     );
 };
 
-export default Posts;
+export default UserSite;

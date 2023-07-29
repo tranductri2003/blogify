@@ -22,3 +22,4 @@ drf-yasg
 django-autoslug
 django-webpack-loader
 pytz
+django-filter

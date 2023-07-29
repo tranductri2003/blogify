@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Posts from './components/user/userProfile';
+import UserSite from './components/user/userSite';
 import PostLoadingComponent from './components/posts/postLoading';
 import axiosInstance from './axios';
 import { useParams } from 'react-router-dom';
 
 
 function User() {
-    const PostLoading = PostLoadingComponent(Posts);
+    const PostLoading = PostLoadingComponent(UserSite);
     const [appState, setAppState] = useState({
         loading: true,
         posts: null,
@@ -34,9 +34,6 @@ function User() {
     return (
 
         <div className="App">
-            <div style={{ fontFamily: 'cursive', fontSize: '32px', fontWeight: 'bold', marginTop: '30px', marginBottom: '30px' }}>
-                <span role="img" aria-label="Latest Posts">📝</span> Latest Posts
-            </div>
             <div>
                 <PostLoading isLoading={appState.loading} posts={appState.posts} />
             </div>
