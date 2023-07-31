@@ -20,6 +20,16 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('id', 'content', 'author', 'post', 'created_at')
 
 
+@admin.register(models.Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'author', 'post', 'created_at')
+
+
+@admin.register(models.View)
+class ViewAdmin(admin.ModelAdmin):
+    list_display = ('id', 'author', 'post', 'created_at')
+
+
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'slug')

@@ -13,7 +13,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NewUser
-        fields = ('email', 'user_name', 'first_name', 'avatar', 'password')
+        fields = ('email', 'user_name', 'first_name', 'avatar',
+                  'password', 'num_post', 'num_view', 'num_like')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -24,9 +25,3 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
-
-    # def get_avatar(self, obj):
-    #     request = self.context.get('request')
-    #     if obj.avatar:
-    #         return request.build_absolute_uri(obj.avatar.url)
-    #     return None

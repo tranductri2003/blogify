@@ -15,7 +15,9 @@ class Profile extends React.Component {
     render() {
         // Destructure userInfo from props and provide a default value to prevent errors
         const { userInfo } = this.props;
-
+        const isAuthorProfile = () => {
+            return localStorage.getItem('user_name') === userInfo.user_name;
+        };
         return (
             <>
                 <main className="profile-page" ref="main">
@@ -55,24 +57,29 @@ class Profile extends React.Component {
                                             lg="4"
                                         >
                                             <div className="card-profile-actions py-4 mt-lg-0">
-                                                <Button
-                                                    className="mr-4"
-                                                    color="info"
-                                                    href="#pablo"
-                                                    onClick={(e) => e.preventDefault()}
-                                                    size="sm"
-                                                >
-                                                    Add New Post
-                                                </Button>
-                                                <Button
-                                                    className="float-right"
-                                                    color="default"
-                                                    href="#pablo"
-                                                    onClick={(e) => e.preventDefault()}
-                                                    size="sm"
-                                                >
-                                                    Update Profile
-                                                </Button>
+
+                                                {isAuthorProfile() && (
+                                                    <>
+                                                        <Button
+                                                            className="mr-4"
+                                                            color="info"
+                                                            href="#pablo"
+                                                            onClick={(e) => e.preventDefault()}
+                                                            size="sm"
+                                                        >
+                                                            Add New Post
+                                                        </Button>
+                                                        <Button
+                                                            className="float-right"
+                                                            color="default"
+                                                            href="#pablo"
+                                                            onClick={(e) => e.preventDefault()}
+                                                            size="sm"
+                                                        >
+                                                            Update Profile
+                                                        </Button>
+                                                    </>
+                                                )}
                                             </div>
                                         </Col>
                                         <Col className="order-lg-1" lg="4">
@@ -80,6 +87,10 @@ class Profile extends React.Component {
                                                 <div>
                                                     <span className="heading">22</span>
                                                     <span className="description">Posts</span>
+                                                </div>
+                                                <div>
+                                                    <span className="heading">22</span>
+                                                    <span className="description">Views</span>
                                                 </div>
                                                 <div>
                                                     <span className="heading">10</span>

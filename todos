@@ -20,7 +20,7 @@
         ✔ Update main screen @done(23-07-27 12:02)
         ✔ Update comment upon User API @done(23-07-28 10:35)
 
-☐ -BE: Update User API and Serializers @started(23-07-31 09:57)
+✔ -BE: Update User/Blog Models and Serializers @started(23-07-31 09:57) @done(23-07-31 10:31) @lasted(34m7s)
 ☐ -FE: Update Profile UI @started(23-07-31 09:13)
 ☐ -BE: User API @started(23-07-28 10:36)
         ☐ BE: Update URL for User API
