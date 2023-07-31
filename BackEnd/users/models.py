@@ -48,9 +48,10 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     start_date = models.DateTimeField(default=timezone.now)
     about = models.TextField(_(
         'about'), max_length=500, blank=True)
-    # num_post = models.IntegerField(default=0)
-    # num_like = models.IntegerField(default=0)
-    # num_comment = models.IntegerField(default=0)
+    num_post = models.IntegerField(default=0)   # Total posts of that user
+    num_view = models.IntegerField(default=0)  # Total views of that user
+    num_like = models.IntegerField(default=0)  # Total likes of that user
+    num_comment = models.IntegerField(default=0)  # Total comments of that user
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
 

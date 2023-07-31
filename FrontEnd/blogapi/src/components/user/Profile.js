@@ -13,7 +13,8 @@ class Profile extends React.Component {
         this.refs.main.scrollTop = 0;
     }
     render() {
-        const { user_name, avatar, friendsCount, photosCount, commentsCount } = this.props.userInfo;
+        // Destructure userInfo from props and provide a default value to prevent errors
+        const { userInfo } = this.props;
 
         return (
             <>
@@ -44,7 +45,7 @@ class Profile extends React.Component {
                                                     <img
                                                         alt="..."
                                                         className="profile-avatar rounded-circle" // Thêm lớp CSS mới tạo hình tròn
-                                                        src={avatar}
+                                                        src={userInfo.avatar}
                                                     />
                                                 </a>
                                             </div>
@@ -93,7 +94,7 @@ class Profile extends React.Component {
                                     </Row>
                                     <div className="text-center mt-5">
                                         <h3>
-                                            {user_name}{" "}
+                                            {userInfo.user_name}{" "}
                                             <span className="font-weight-light">, 27</span>
                                         </h3>
                                         <div className="h6 font-weight-300">

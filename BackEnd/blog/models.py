@@ -42,6 +42,9 @@ class Post(models.Model):
     # Thêm trường edited để lưu thời điểm chỉnh sửa gần nhất
     # Thêm trường edited để lưu thời điểm chỉnh sửa gần nhất
     edited = models.DateTimeField(auto_now=True)
+    num_view = models.IntegerField(default=0)  # Total views of that post
+    num_like = models.IntegerField(default=0)  # Total likes of that post
+    num_comment = models.IntegerField(default=0)  # Total comments of that post
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='blog_posts')
     status = models.CharField(

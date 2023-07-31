@@ -14,12 +14,16 @@ class UserAdminConfig(UserAdmin):
 
     ordering = ('-start_date',)
     list_display = ('email', 'id', 'user_name', 'first_name',
-                    'is_active', 'is_staff')
+                    'is_active', 'is_staff', 'num_post',
+                    'num_view', 'num_like',)
 
     fieldsets = (
-        (None, {'fields': ('email', 'user_name', 'first_name', 'avatar',)}),
+        (None, {'fields': ('email', 'user_name',
+         'first_name', 'avatar', 'start_date')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
         ('Personal', {'fields': ('about',)}),
+        ('Statistics', {'fields': ('num_post',
+         'num_view', 'num_like', 'num_comment',)}),
     )
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 20, 'cols': 60})},
