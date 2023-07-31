@@ -5,39 +5,62 @@ import PostLoadingComponent from './components/posts/postLoading';
 import axiosInstance from './axios';
 import { useParams } from 'react-router-dom';
 
-
 function User() {
     const PostLoading = PostLoadingComponent(UserSite);
-    const [appState, setAppState] = useState({
+    const [userData, setUserData] = useState({
         loading: true,
+        user: null,
         posts: null,
     });
+
     const { userName } = useParams();
 
-    const queryParams = {
-        author__user_name: userName,
-    };
-
-    const url = axiosInstance.getUri({
-        url: "",
-        params: queryParams,
-    });
-
+    // Gọi API để lấy thông tin người dùng
     useEffect(() => {
-        axiosInstance.get(url).then((res) => {
-            const allPosts = res.data;
-            setAppState({ loading: false, posts: allPosts });
-            console.log(res.data);
-        });
-    }, [setAppState, url]);
+        axiosInstance.get(`user/${userName}/`)
+            .then((res) => {
+                const user = res.data;
+                setUserData((prevState) => ({ ...prevState, user }));
+            })
+            .catch((error) => {
+                console.error('Error fetching user data:', error);
+                setUserData((prevState) => ({ ...prevState, loading: false }));
+            });
+    }, [userName]);
 
-    return (
+    // Gọi API để lấy danh sách các bài đăng của người dùng
+    useEffect(() => {
+        const queryParams = {
+            author__user_name: userName,
+        };
+        axiosInstance.get('post/', { params: queryParams })
+            .then((res) => {
+                const posts = res.data;
+                setUserData((prevState) => ({ ...prevState, loading: false, posts }));
+            })
+            .catch((error) => {
+                console.error('Error fetching user posts:', error);
+                setUserData((prevState) => ({ ...prevState, loading: false }));
+            });
+    }, [userName]);
 
-        <div className="App">
-            <div>
-                <PostLoading isLoading={appState.loading} posts={appState.posts} />
+    // Kiểm tra xem cả hai API request đã thành công và có dữ liệu trả về
+    if (userData.loading) {
+        return (
+            <div className="App">
+                <div>
+                    <PostLoading isLoading={true} />
+                </div>
             </div>
+        );
+    }
+
+    // Khi cả hai request thành công và có dữ liệu trả về, hiển thị component UserSite
+    return (
+        <div className="App">
+            <UserSite user={userData.user} posts={userData.posts} />
         </div>
     );
 }
+
 export default User;

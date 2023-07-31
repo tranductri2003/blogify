@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from blog.models import Post, Category
+from users.models import NewUser
 from .serializers import PostSerializer, CommentSerializer, CreatePostSerializer
 from rest_framework import viewsets, filters, generics, permissions
 from rest_framework.response import Response
@@ -62,6 +63,18 @@ class CreatePost(APIView):
         serializer = CreatePostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+
+            # Sau khi đã lưu post thành công, cập nhật num_post của user
+            # Đảm bảo bạn nhận được user_id từ request
+            # user_id = request.data.get('user_id')
+            # if user_id:
+            #     try:
+            #         user = NewUser.objects.get(id=user_id)
+            #         user.num_post += 1
+            #         user.save()
+            #     except NewUser.DoesNotExist:
+            #         pass
+
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

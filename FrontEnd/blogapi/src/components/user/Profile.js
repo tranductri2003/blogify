@@ -6,6 +6,7 @@ import { Button, Card, Container, Row, Col } from "reactstrap";
 
 
 class Profile extends React.Component {
+
     componentDidMount() {
         document.documentElement.scrollTop = 0;
         document.scrollingElement.scrollTop = 0;

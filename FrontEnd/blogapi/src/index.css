@@ -652,6 +652,16 @@ pre code {
   }
 }
 
+/* Trong file CSS hoặc có thể sử dụng inline styles */
+.error-message {
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
 .profile-avatar {
   width: 150px;
   /* Đảm bảo rằng chiều cao và chiều rộng của avatar bằng nhau */

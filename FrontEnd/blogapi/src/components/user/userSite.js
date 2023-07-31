@@ -20,7 +20,6 @@ import { Link } from 'react-router-dom'; // Chỉ import thẻ Link duy nhất t
 
 import Avatar from '@material-ui/core/Avatar';
 import { format } from 'date-fns';
-import { useParams } from 'react-router-dom';
 import Profile from './Profile'; // Use the correct relative path here
 
 const useStyles = makeStyles((theme) => ({
@@ -86,35 +85,36 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-const MEDIA_URL = "http://127.0.0.1:8000";
 
 const UserSite = (props) => {
-    const { userName } = useParams();
     const { posts } = props;
+    const { user } = props;
     const classes = useStyles();
 
-    if (!posts || posts.length === 0) return <p>Can not find any posts, sorry</p>;
+    if (!user) {
+        return (
+            <div className="error-message">
+                <p>This profile doesn't exist, sorry</p>
+            </div>
+        );
+    }
 
-    const user_name = localStorage.getItem('user_name');
-    const isAuthorPost = (post) => {
-        return post.author.user_name === user_name;
-    };
     const isAuthorProfile = () => {
-        return userName === user_name;
+        return localStorage.getItem('user_name') === user.user_name;
     };
-    if (!posts || posts.length === 0) return <p>Can not find any posts, sorry</p>;
+
     // Xử lý dữ liệu và lấy thông tin của người dùng, ví dụ:
-    const userInfo = {
-        user_name: userName,
-        avatar: MEDIA_URL + localStorage.getItem('avatar'),
-        friendsCount: 22,
-        photosCount: 10,
-        commentsCount: 89,
-        // Các thông tin khác của người dùng
-    };
+    // const userInfo = {
+    //     email: user.email,
+    //     user_name: user.user_name,
+    //     avatar: user.avatar,
+    //     firstName: user.first_name,
+    //     about: user.about,
+    //     // Các thông tin khác của người dùng
+    // };
     return (
         <React.Fragment>
-            <Profile userInfo={userInfo} />
+            <Profile userInfo={user} />
             <div style={{ fontFamily: 'cursive', fontSize: '32px', fontWeight: 'bold', marginTop: '30px', marginBottom: '30px' }}>
                 <span role="img" aria-label="Latest Posts">📝</span> Latest Posts
             </div>
@@ -124,7 +124,7 @@ const UserSite = (props) => {
                         {/* Thêm nút "New Post" ở đây */}
                         <Button
                             className={classes.newPostButton}
-                            href={`/profile/${localStorage.getItem('user_name')}/post/create`}
+                            href={`/profile/${user.user_name}/post/create`}
                             variant="contained"
                             color="primary"
                         >
@@ -165,7 +165,7 @@ const UserSite = (props) => {
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             {/* Avatar của tác giả */}
                                             <Link to={`/profile/${post.author.user_name}`}>
-                                                <Avatar alt={post.author.user_name} src={`${MEDIA_URL}${post.author.avatar}`} />
+                                                <Avatar alt={user.user_name} src={user.avatar} />
                                             </Link>
 
                                             <div style={{ marginLeft: '10px' }}>
@@ -173,18 +173,18 @@ const UserSite = (props) => {
                                                     {post.author.user_name}
                                                 </Typography>
                                             </div>
-                                            {isAuthorPost(post) && (
+                                            {isAuthorProfile() && (
                                                 <>
                                                     <Link
                                                         color="textPrimary"
-                                                        to={`/profile/${user_name}/post/edit/${post.id}`}
+                                                        to={`/profile/${user.user_name}/post/edit/${post.id}`}
                                                         className={classes.link}
                                                     >
                                                         <EditIcon />
                                                     </Link>
                                                     <Link
                                                         color="textPrimary"
-                                                        to={`/profile/${user_name}/post/delete/${post.id}`}
+                                                        to={`/profile/${user.user_name}/post/delete/${post.id}`}
                                                         className={classes.link}
                                                     >
                                                         <DeleteForeverIcon />
