@@ -15,7 +15,7 @@ class UserAdminConfig(UserAdmin):
     ordering = ('-start_date',)
     list_display = ('email', 'id', 'user_name', 'first_name',
                     'is_active', 'is_staff', 'num_post',
-                    'num_view', 'num_like',)
+                    'num_view', 'num_like', 'num_comment')
 
     fieldsets = (
         (None, {'fields': ('email', 'user_name',

@@ -42,6 +42,10 @@ class LikeAPIView(APIView):
 
             like = Like.objects.create(post=post, author=user)
             serializer = LikeSerializer(like)
+            post.author.num_like += 1
+            post.num_like += 1
+            post.save()
+            post.author.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Post.DoesNotExist:
             return Response({"detail": "Bài viết không tồn tại."}, status=status.HTTP_404_NOT_FOUND)
@@ -58,6 +62,10 @@ class CommentAPIView(APIView):
             comment = Comment.objects.create(
                 post=post, author=author, content=content)
             serializer = CommentSerializer(comment)
+            post.num_comment += 1
+            post.author.num_comment += 1
+            post.save()
+            post.author.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Post.DoesNotExist:
             return Response({"detail": "Bài viết không tồn tại."}, status=status.HTTP_404_NOT_FOUND)
@@ -71,6 +79,10 @@ class ViewAPIView(APIView):
             user = request.user
             view = View.objects.create(post=post, author=user)
             serializer = ViewSerializer(view)
+            post.num_view += 1
+            post.author.num_view += 1
+            post.save()
+            post.author.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Post.DoesNotExist:
             return Response({"detail": "Bài viết không tồn tại."}, status=status.HTTP_404_NOT_FOUND)
@@ -141,6 +153,7 @@ class CreatePost(APIView):
 
             author.num_post += 1
             author.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
             # # Gọi API cập nhật số lượng bài viết của tác giả
             # author_update_url = f"http://127.0.0.1:8000/api/user/{author}/updatenumpost/1/"

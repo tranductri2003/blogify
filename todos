@@ -22,7 +22,7 @@
 
 ✔ -BE: Update User/Blog Models and Serializers @started(23-07-31 09:57) @done(23-07-31 10:31) @lasted(34m7s)
 ☐ -FE: Update UI for CardView: likes, comments, views @started(23-07-31 10:32)
-☐ -BE: Update User/Blog API, Model, Views and URL @started(23-07-31 10:32)
+✔ -BE: Update likes, comments, views API, Model, Views and URL @done(23-08-01 11:57)
 
 ☐ -FE: Update Profile UI
 ☐ -BE: User API 
