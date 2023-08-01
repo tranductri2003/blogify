@@ -176,7 +176,26 @@ export default function Post() {
                     {/* ... (your existing code) */}
                 </Grid>
             </div>
-
+            <Grid item xs={12} sm={6} className={classes.viewLikeComment}>
+                <IconButton color="default" aria-label="view">
+                    <VisibilityIcon className={classes.viewLikeCommentIcon} />
+                </IconButton>
+                <Typography variant="body1">
+                    {data.post.num_view} Views
+                </Typography>
+                <IconButton color="primary" aria-label="like">
+                    <FavoriteIcon className={classes.viewLikeCommentIcon} />
+                </IconButton>
+                <Typography variant="body1">
+                    {data.post.num_like} Likes
+                </Typography>
+                <IconButton color="secondary" aria-label="comment">
+                    <CommentIcon className={classes.viewLikeCommentIcon} />
+                </IconButton>
+                <Typography variant="body1">
+                    {data.post.comments ? data.post.comments.length : 0} Comments
+                </Typography>
+            </Grid>
             {/* Khu vực comment */}
             <div className={classes.commentSection}>
                 <Typography variant="h5" gutterBottom>
@@ -250,6 +269,6 @@ export default function Post() {
                         </Paper>
                     ))}
             </div>
-        </Container>
+        </Container >
     );
 }
