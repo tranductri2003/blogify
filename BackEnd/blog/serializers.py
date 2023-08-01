@@ -46,6 +46,24 @@ class CreatePostSerializer(serializers.ModelSerializer):
                   'author', 'excerpt', 'content', 'status', 'edited', ]
 
 
+# class UpdateViewSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Post
+#         fields = ['num_view']
+
+
+# class UpdateLikeSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Post
+#         fields = ['num_like']
+
+
+# class UpdateCommentSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Post
+#         fields = ['num_comment']
+
+
 class PostSerializer(serializers.ModelSerializer):
     comments = serializers.SerializerMethodField()
     likes = serializers.SerializerMethodField()

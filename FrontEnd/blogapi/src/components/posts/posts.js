@@ -10,7 +10,9 @@ import { Link } from 'react-router-dom'; // Import thẻ Link từ react-router-
 import { NavLink } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import { format } from 'date-fns';
-
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import CommentIcon from '@material-ui/icons/Comment';
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -54,6 +56,24 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
         textAlign: 'right', // Canh lề phải
     },
+    statsContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        opacity: 0.7, // Điều chỉnh mức độ mờ, giá trị từ 0 đến 1
+    },
+    statsItem: {
+        display: 'flex',
+        alignItems: 'center',
+        marginRight: theme.spacing(2),
+        transition: 'opacity 0.3s ease', // Hiệu ứng mờ khi hover
+        opacity: 0.7, // Mức độ mờ ban đầu
+        '&:hover': {
+            opacity: 1, // Hiển thị thông tin rõ hơn khi hover
+        },
+        color: theme.palette.primary.main, // Đổi màu chữ cho các thông tin này
+        fontSize: '14px', // Đổi kích thước chữ cho các thông tin này
+    },
 }));
 const MEDIA_URL = "http://127.0.0.1:8000";
 
@@ -79,6 +99,7 @@ const Posts = (props) => {
                                         />
                                     </Link>
                                     <CardContent className={classes.cardContent}>
+
                                         <Typography gutterBottom variant="h6" component="h2" className={classes.postTitle}>
                                             {post.title.substr(0, 50)}...
                                         </Typography>
@@ -94,6 +115,27 @@ const Posts = (props) => {
                                                 {format(new Date(post.edited), 'dd-MM-yyyy HH:mm (xxx)')}
                                                 ...
                                             </Typography>
+                                        </div>
+                                        {/* Hiển thị số lượng views, likes và comments */}
+                                        <div className={classes.statsContainer}>
+                                            <div className={classes.statsItem}>
+                                                <VisibilityIcon />
+                                                <Typography color="textSecondary">
+                                                    {post.num_view}
+                                                </Typography>
+                                            </div>
+                                            <div className={classes.statsItem}>
+                                                <ThumbUpIcon />
+                                                <Typography color="textSecondary">
+                                                    {post.num_like}
+                                                </Typography>
+                                            </div>
+                                            <div className={classes.statsItem}>
+                                                <CommentIcon />
+                                                <Typography color="textSecondary">
+                                                    {post.num_comment}
+                                                </Typography>
+                                            </div>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             {/* Avatar của tác giả */}

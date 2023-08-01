@@ -88,6 +88,7 @@ function Header() {
             pathname: '/search/',
             search: '?search=' + data.search,
         });
+        window.location.reload();
     };
 
 

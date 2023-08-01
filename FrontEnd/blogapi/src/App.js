@@ -20,9 +20,13 @@ function App() {
     author__user_name: params.author
   };
   const url = axiosInstance.getUri({
-    url: "",
+    url: "post/",
     params: queryParams,
   });
+  //   const queryParams = {
+  //     author__user_name: userName,
+  // };
+  axiosInstance.get('post/', { params: queryParams })
   console.log(url);
   useEffect(() => {
     axiosInstance.get(url).then((res) => {

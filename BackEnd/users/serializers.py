@@ -25,3 +25,27 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+# class UpdateNumPostSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = NewUser
+#         fields = ['num_post']
+
+
+# class UpdateViewSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = NewUser
+#         fields = ['num_view']
+
+
+# class UpdateLikeSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = NewUser
+#         fields = ['num_like']
+
+
+# class UpdateCommentSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = NewUser
+#         fields = ['num_comment']
