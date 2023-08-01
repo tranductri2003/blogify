@@ -48,6 +48,10 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     start_date = models.DateTimeField(default=timezone.now)
     about = models.TextField(_(
         'about'), max_length=500, blank=True)
+    country = models.CharField(max_length=100, default='Viet Nam')
+    occupation = models.CharField(
+        max_length=100, default='Student at Danang University Of Science And Technology')
+    age = models.IntegerField(default=20)
     num_post = models.IntegerField(default=0)   # Total posts of that user
     num_view = models.IntegerField(default=0)  # Total views of that user
     num_like = models.IntegerField(default=0)  # Total likes of that user

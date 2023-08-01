@@ -28,6 +28,11 @@ class PostDetail(generics.RetrieveAPIView):
     def get_object(self):
         item = self.kwargs.get('slug')
         post = get_object_or_404(Post, slug=item)
+        view = View.objects.create(post=post, author=self.request.user)
+        post.num_view += 1
+        post.author.num_view += 1
+        post.save()
+        post.author.save()
         return post
 
 
