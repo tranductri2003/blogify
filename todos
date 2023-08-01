@@ -24,7 +24,7 @@
 ☐ -FE: Update UI for CardView: likes, comments, views @started(23-07-31 10:32)
 ✔ -BE: Update likes, comments, views API, Model, Views and URL @done(23-08-01 11:57)
 
-☐ -FE: Update Profile UI
+✔ -FE: Update Profile UI @done(23-08-01 18:13)
 ☐ -BE: User API 
         ☐ BE: Update URL for User API
         ☐ BE: CRUD API for user
