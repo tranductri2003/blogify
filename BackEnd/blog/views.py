@@ -15,10 +15,14 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class CustomPageNumberPagination(PageNumberPagination):
-    page_size = 5  # Số lượng bài viết trên mỗi trang
-    # Tùy chọn: cho phép yêu cầu số lượng bài viết trên mỗi trang
+    page_size = 3
     page_size_query_param = 'page_size'
-    max_page_size = 100  # Giới hạn số lượng bài viết trên mỗi trang
+    max_page_size = 100
+
+    def get_paginated_response(self, data):
+        res = super().get_paginated_response(data)
+        res.data['page_size'] = 3
+        return res
 
 
 class PostList(generics.ListAPIView):
@@ -27,7 +31,6 @@ class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category__slug', 'author__user_name']
-
     # Thêm trình xử lý phân trang vào view
     pagination_class = CustomPageNumberPagination
 
