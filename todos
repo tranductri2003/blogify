@@ -31,7 +31,7 @@
 ☐ -FE: User API
         ✔ FE: Update URL for User components @done(23-07-28 11:44)
         ✔ FE: Update main screen UI upon userAPI @done(23-07-28 15:25)
-        ☐ FE: Update personal site UI
+        ✔ FE: Update personal site UI @done(23-08-02 17:19)
         ☐ FE: CRUD API for user
 
 ✔ Pagination: @done(23-08-02 16:36)
