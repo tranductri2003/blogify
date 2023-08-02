@@ -13,9 +13,11 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CommentIcon from '@material-ui/icons/Comment';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import TextField from '@material-ui/core/TextField'; // Import TextField from @material-ui/core
-import Button from '@material-ui/core/Button'; // Import Button from @material-ui/core
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { Row, Col } from "reactstrap";
+
+
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
@@ -97,6 +99,26 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'cursive',
         // ... (other styles for postContent)
     },
+    profileStatsContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: theme.spacing(2),
+    },
+    profileStatItem: {
+        textAlign: 'center',
+        marginRight: theme.spacing(4),
+    },
+    profileStatHeading: {
+        fontWeight: 'bold',
+        fontFamily: 'cursive',
+        color: theme.palette.primary.dark,
+        fontSize: '1.5rem',
+    },
+    profileStatDescription: {
+        fontFamily: 'cursive',
+        color: theme.palette.secondary.dark,
+    },
+
 }));
 
 const MEDIA_URL = "http://127.0.0.1:8000";
@@ -232,18 +254,6 @@ export default function Post() {
                         >
                             Edited at {data.post.edited}
                         </Typography>
-                        {/* <Grid container alignItems="center">
-                            <Grid item>
-                                <IconButton color="primary" aria-label="like" onClick={handleLikePost}>
-                                    <FavoriteIcon />
-                                </IconButton>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="body1">
-                                    {data.post.num_like} Likes
-                                </Typography>
-                            </Grid>
-                        </Grid> */}
                         <div className={classes.viewLikeComment}>
                             <IconButton color="default" aria-label="view">
                                 <VisibilityIcon className={classes.viewLikeCommentIcon} />
@@ -251,7 +261,7 @@ export default function Post() {
                             <Typography variant="body1">
                                 {data.post.num_view} Views
                             </Typography>
-                            <IconButton color="primary" aria-label="like">
+                            <IconButton color="primary" aria-label="like" onClick={handleLikePost}>
                                 <FavoriteIcon className={classes.viewLikeCommentIcon} />
                             </IconButton>
                             <Typography variant="body1">
@@ -268,38 +278,72 @@ export default function Post() {
                 </Grid>
 
                 {/* Phía bên phải (1/3) */}
-
-                {/* <Profile userInfo={data.post.author} /> */}
                 <Grid item xs={12} sm={4}>
-                    <div className="card-profile-image">{data.post.author &&
-                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                            <img
-                                alt="..."
-                                className="profile-avatar rounded-circle" // Thêm lớp CSS mới tạo hình tròn
-                                src={MEDIA_URL + data.post.author.avatar}
-                            />
-                        </a>}
-                        <Col className="order-lg-1" lg="4">
-                            {data.post.author &&
-                                <div className="card-profile-stats d-flex justify-content-center">
+                    <div className="card-profile-image">
+                        {data.post.author && (
+                            <Grid container alignItems="center" spacing={2}>
+                                {/* Hiển thị Avatar */}
+                                <Grid item>
+                                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                        <img
+                                            alt="..."
+                                            className="profile-avatar rounded-circle"
+                                            src={MEDIA_URL + data.post.author.avatar}
+                                        />
+                                    </a>
+                                </Grid>
+                                {/* Hiển thị About */}
+                                <Grid item>
                                     <div>
-                                        <span className="heading">{data.post.author.num_post}</span>
-                                        <span className="description">Posts</span>
+                                        <Typography variant="h6" className={classes.postContent}>
+                                            {data.post.author.user_name}
+                                        </Typography>
                                     </div>
                                     <div>
-                                        <span className="heading">{data.post.author.num_view}</span>
-                                        <span className="description">Views</span>
+                                        <Typography variant="h6" className={classes.postExcerpt}>
+                                            {data.post.author.about}
+                                        </Typography>
                                     </div>
-                                    <div>
-                                        <span className="heading">{data.post.author.num_like}</span>
-                                        <span className="description">Likes</span>
-                                    </div>
-                                    <div>
-                                        <span className="heading">{data.post.author.num_comment}</span>
-                                        <span className="description">Comments</span>
-                                    </div>
-                                </div>}
-                        </Col>
+                                </Grid>
+                            </Grid>
+                        )}
+                        {data.post.author && (
+                            <div className={classes.profileStatsContainer}>
+                                <div className={classes.profileStatItem}>
+                                    <Typography variant="h4" className={classes.profileStatHeading}>
+                                        {data.post.author.num_post}
+                                    </Typography>
+                                    <Typography variant="body1" className={classes.profileStatDescription}>
+                                        Posts
+                                    </Typography>
+                                </div>
+                                <div className={classes.profileStatItem}>
+                                    <Typography variant="h4" className={classes.profileStatHeading}>
+                                        {data.post.author.num_view}
+                                    </Typography>
+                                    <Typography variant="body1" className={classes.profileStatDescription}>
+                                        Views
+                                    </Typography>
+                                </div>
+                                <div className={classes.profileStatItem}>
+                                    <Typography variant="h4" className={classes.profileStatHeading}>
+                                        {data.post.author.num_like}
+                                    </Typography>
+                                    <Typography variant="body1" className={classes.profileStatDescription}>
+                                        Likes
+                                    </Typography>
+                                </div>
+                                <div className={classes.profileStatItem}>
+                                    <Typography variant="h4" className={classes.profileStatHeading}>
+                                        {data.post.author.num_comment}
+                                    </Typography>
+                                    <Typography variant="body1" className={classes.profileStatDescription}>
+                                        Comments
+                                    </Typography>
+                                </div>
+
+                            </div>
+                        )}
                     </div>
                     <div className={classes.commentSection}>
                         <Typography variant="h5" gutterBottom>
@@ -313,7 +357,7 @@ export default function Post() {
                                         <Avatar
                                             alt={localStorage.getItem('user_name')}
                                             src={MEDIA_URL + localStorage.getItem('avatar')}
-                                            className={classes.authorAvatar}
+                                            className={classes.commentAvatar}
                                         />
                                         <Typography variant="body1">
                                             {localStorage.getItem('user_name')}
@@ -330,7 +374,7 @@ export default function Post() {
                                     value={data.newComment}
                                     onChange={handleCommentChange}
                                     placeholder="Write a comment..."
-                                    className={classes.commentInput} // Apply the custom class for comment input
+                                    className={classes.commentInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={12}>
@@ -339,7 +383,7 @@ export default function Post() {
                                     color="primary"
                                     fullWidth
                                     onClick={handleAddComment}
-                                    className={classes.commentButton} // Apply the custom class for comment button
+                                    className={classes.commentButton}
                                 >
                                     Add Comment
                                 </Button>
