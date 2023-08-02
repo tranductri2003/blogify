@@ -131,7 +131,7 @@ function Header() {
                             noWrap
                             className={classes.logo}
                             component={NavLink}
-                            to="/?category=buoc-qua-mau-xanh-hi-vong"
+                            to="/?category=buoc-qua-mau-xanh-hi-vong&page=1"
                         >
                             Lê Quý Đôn
                         </Typography>
@@ -147,7 +147,7 @@ function Header() {
                             noWrap
                             className={classes.logo}
                             component={NavLink}
-                            to="/?category=nang-bach-khoa"
+                            to="/?category=nang-bach-khoa&page=1"
                         >
                             Bách khoa
                         </Typography>

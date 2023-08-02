@@ -11,6 +11,14 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django_filters.rest_framework import DjangoFilterBackend
 import requests
 # Display Posts
+from rest_framework.pagination import PageNumberPagination
+
+
+class CustomPageNumberPagination(PageNumberPagination):
+    page_size = 5  # Số lượng bài viết trên mỗi trang
+    # Tùy chọn: cho phép yêu cầu số lượng bài viết trên mỗi trang
+    page_size_query_param = 'page_size'
+    max_page_size = 100  # Giới hạn số lượng bài viết trên mỗi trang
 
 
 class PostList(generics.ListAPIView):
@@ -19,6 +27,9 @@ class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category__slug', 'author__user_name']
+
+    # Thêm trình xử lý phân trang vào view
+    pagination_class = CustomPageNumberPagination
 
 
 class PostDetail(generics.RetrieveAPIView):

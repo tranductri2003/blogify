@@ -15,6 +15,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import TextField from '@material-ui/core/TextField'; // Import TextField from @material-ui/core
 import Button from '@material-ui/core/Button'; // Import Button from @material-ui/core
+import { Row, Col } from "reactstrap";
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
@@ -278,6 +279,27 @@ export default function Post() {
                                 src={MEDIA_URL + data.post.author.avatar}
                             />
                         </a>}
+                        <Col className="order-lg-1" lg="4">
+                            {data.post.author &&
+                                <div className="card-profile-stats d-flex justify-content-center">
+                                    <div>
+                                        <span className="heading">{data.post.author.num_post}</span>
+                                        <span className="description">Posts</span>
+                                    </div>
+                                    <div>
+                                        <span className="heading">{data.post.author.num_view}</span>
+                                        <span className="description">Views</span>
+                                    </div>
+                                    <div>
+                                        <span className="heading">{data.post.author.num_like}</span>
+                                        <span className="description">Likes</span>
+                                    </div>
+                                    <div>
+                                        <span className="heading">{data.post.author.num_comment}</span>
+                                        <span className="description">Comments</span>
+                                    </div>
+                                </div>}
+                        </Col>
                     </div>
                     <div className={classes.commentSection}>
                         <Typography variant="h5" gutterBottom>
