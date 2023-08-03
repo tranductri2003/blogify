@@ -10,6 +10,7 @@ urlpatterns = [
     path('register/', CustomUserCreate.as_view(), name="create_user"),
     path('logout/blacklist/', BlacklistTokenUpdateView.as_view(),
          name='blacklist'),
+    path('')
     # path('<str:user_name>/updateview/<int:num>/',
     #      UpdateView.as_view(), name='updateuserview'),
     # path('<str:user_name>/updatelike/<int:num>/',
