@@ -40,7 +40,7 @@ export default function Create() {
     const [formData, updateFormData] = useState(initialFormData);
 
     useEffect(() => {
-        axiosInstance.get('admin/post/edit/postdetail/' + id + '/').then((res) => {
+        axiosInstance.get('post/edit/postdetail/' + id + '/').then((res) => {
             updateFormData({
                 ...formData,
                 ['title']: res.data.title,
@@ -64,7 +64,7 @@ export default function Create() {
         e.preventDefault();
         console.log(formData);
 
-        axiosInstance.put(`admin/post/edit/` + id + '/', {
+        axiosInstance.put(`post/edit/` + id + '/', {
             title: formData.title,
             slug: formData.slug,
             author: 1,

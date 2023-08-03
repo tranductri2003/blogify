@@ -155,7 +155,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     "POST",
 #     "PUT",
 # )
-
+# CSRF_ALLOW_ORIGIN = ['http://localhost:8000']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

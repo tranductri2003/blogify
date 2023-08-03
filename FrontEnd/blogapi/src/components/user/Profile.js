@@ -63,8 +63,7 @@ class Profile extends React.Component {
                                                         <Button
                                                             className="mr-4"
                                                             color="info"
-                                                            href="#pablo"
-                                                            onClick={(e) => e.preventDefault()}
+                                                            href={`/profile/${userInfo.user_name}/post/create`}
                                                             size="sm"
                                                         >
                                                             Add New Post

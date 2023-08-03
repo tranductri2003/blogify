@@ -5,9 +5,12 @@ from django.urls import path
 app_name = 'blog'
 
 urlpatterns = [
-    # path('', PostList.as_view(), name='listpost'),
-    path('post/', PostList.as_view(), name='listpost'),
-    path('post/<str:slug>/', PostDetail.as_view(), name='detailpost'),
+    path('post/create/', CreatePost.as_view(), name='createpost'),
+    path('post/edit/postdetail/<int:pk>/',
+         UserPostDetail.as_view(), name='admindetailpost'),
+    path('post/edit/<int:pk>/', EditPost.as_view(), name='editpost'),
+    path('post/delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
+
     # path('post/<str:slug>/updateview/<int:num>/',
     #      UpdateView.as_view(), name='updatepostview'),
     # path('post/<str:slug>/updatelike/<int:num>/',
@@ -20,14 +23,11 @@ urlpatterns = [
     path('post/view/create/<str:slug>', ViewAPIView.as_view(), name='viewpost'),
 
 
-
+    # path('', PostList.as_view(), name='listpost'),
+    path('post/', PostList.as_view(), name='listpost'),
+    path('post/<str:slug>/', PostDetail.as_view(), name='detailpost'),
 
 
     path('search/', PostListDetailfilter.as_view(), name='searchpost'),
-    # Post Admin URLs
-    path('admin/post/create/', CreatePost.as_view(), name='createpost'),
-    path('admin/post/edit/postdetail/<int:pk>/',
-         UserPostDetail.as_view(), name='admindetailpost'),
-    path('admin/post/edit/<int:pk>/', EditPost.as_view(), name='editpost'),
-    path('admin/post/delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
+
 ]

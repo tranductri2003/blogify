@@ -95,7 +95,7 @@ export default function Create() {
                     : null,
             }
         };
-        const URL = 'http://127.0.0.1:8000/api/admin/post/create/';
+        const URL = 'http://127.0.0.1:8000/api/post/create/';
         let formData = new FormData();
         formData.append('title', postData.title);
         formData.append('slug', postData.slug);

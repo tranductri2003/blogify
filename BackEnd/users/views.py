@@ -103,3 +103,8 @@ class BlacklistTokenUpdateView(APIView):
 #         user.save()
 #         # serializer = UpdateNumPostSerializer(user)
 #         return Response({"success": "Number of posts updated successfully"}, status=status.HTTP_200_OK)
+
+class EditUser(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = CustomUserSerializer
+    queryset = NewUser.objects.all()

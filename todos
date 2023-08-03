@@ -13,7 +13,7 @@
 ✔ FE: Update URL for Post API @started(23-07-27 16:47) @done(23-07-27 17:38) @lasted(51m20s)
 
 ✔ BE: Add edited atribute to user model
-
+✔ BE: Update URL 
 
 ☐ -FE: Integrate React in to Django
 ✔ -FE: User API @started(23-07-24 23:23) @done(23-07-28 10:36) @lasted(3d11h13m22s)
