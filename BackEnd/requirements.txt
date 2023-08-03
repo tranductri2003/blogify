@@ -23,3 +23,4 @@ django-autoslug
 django-webpack-loader
 pytz
 django-filter
+channels
