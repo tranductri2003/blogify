@@ -60,7 +60,7 @@ urlpatterns = [
     #path('', include('blog.urls', namespace='blog')),
 
     #Chat Management
-    path('chat/', include('chat.urls', namespace='chat')),
+    path('api/chat/', include('chat.urls', namespace='chat')),
 
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0),
          name='schema-json'),

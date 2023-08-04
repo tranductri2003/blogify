@@ -10,9 +10,6 @@
   <div class="container">
     <div class="alert alert-info d-flex justify-content-between" role="alert">
         <h5>Available Public Rooms</h5>
-        <a href="/accounts/logout/">
-          <button type="button" class="btn btn-light">Click to Log Out</button>
-        </a>
       </div>
       
       
@@ -25,7 +22,7 @@
                     <div class="card-block">
                         <h3 class="card-title">{{room.name}}</h3>
                         <p class="card-text">It is Public group for this Project.</p>
-                        <a href="/chat/{{room.slug}}" class="btn btn-outline-secondary">Go to Room</a>
+                        <a href="{{room.slug}}" class="btn btn-outline-secondary">Go to Room</a>
                     </div>
                 </div>
             </div>
@@ -38,18 +35,6 @@
             No Rooms Available!
     {% endif %}
 </div>
-
-
-
-{% else %}
-<div class="container">
-    <div class="alert alert-info d-flex justify-content-between" role="alert">
-        <h5>You are not logged in</h5>
-        <a href="/accounts/logout/">
-          <button type="button" class="btn btn-light"><a href="{% url 'login' %}">Log In</a></button>
-        </a>
-      </div>
-</div>  
 {% endif %}
 
 <br/>

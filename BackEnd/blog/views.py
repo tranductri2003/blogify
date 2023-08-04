@@ -9,7 +9,6 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 from django_filters.rest_framework import DjangoFilterBackend
-import requests
 # Display Posts
 from rest_framework.pagination import PageNumberPagination
 
