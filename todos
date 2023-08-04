@@ -28,6 +28,7 @@
 ✔ -FE: Update Profile UI @done(23-08-01 18:13)
 
 ✔ BE: Simple Chat using Channels in Django 
+✔ Add group Field in User.admin @done(23-08-04 10:36)
 ☐ -BE: User API 
         ☐ BE: Update URL for User API
         ☐ BE: CRUD API for user
