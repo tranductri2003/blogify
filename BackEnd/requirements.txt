@@ -24,3 +24,5 @@ django-webpack-loader
 pytz
 django-filter
 channels
+daphne
+channels

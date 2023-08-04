@@ -15,6 +15,7 @@
 ✔ BE: Add edited atribute to user model
 ✔ BE: Update URL 
 
+
 ☐ -FE: Integrate React in to Django
 ✔ -FE: User API @started(23-07-24 23:23) @done(23-07-28 10:36) @lasted(3d11h13m22s)
         ✔ Update main screen @done(23-07-27 12:02)
@@ -25,6 +26,8 @@
 ✔ -BE: Update likes, comments, views API, Model, Views and URL @done(23-08-01 11:57)
 
 ✔ -FE: Update Profile UI @done(23-08-01 18:13)
+
+✔ BE: Simple Chat using Channels in Django 
 ☐ -BE: User API 
         ☐ BE: Update URL for User API
         ☐ BE: CRUD API for user

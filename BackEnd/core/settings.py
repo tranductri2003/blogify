@@ -35,6 +35,8 @@ USE_TZ = True
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
+    "channels",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,7 +50,17 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
     'django_filters',
+    'chat',
 ]
+
+ASGI_APPLICATION = 'chat.asgi.application' 
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+CHANNELS_WS_KEEPALIVE_INTERVAL = 300  # Thời gian timeout tính bằng giây, tùy chỉnh theo ý muốn
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

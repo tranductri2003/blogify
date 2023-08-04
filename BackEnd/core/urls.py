@@ -59,6 +59,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #path('', include('blog.urls', namespace='blog')),
 
+    #Chat Management
+    path('chat/', include('chat.urls', namespace='chat')),
 
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0),
          name='schema-json'),
