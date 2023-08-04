@@ -15,3 +15,5 @@ npm i --save material-ui-search-bar
 
 npm install date-fns
 npm install @mui/material @emotion/react @emotion/styled
+npm install --save --legacy-peer-deps @material-ui/core
+npm install websocket

@@ -152,7 +152,6 @@ function Header() {
                             Bách khoa
                         </Typography>
                     </div>
-
                     {/* Ô tìm kiếm */}
                     <SearchBar
                         value={data.search}
