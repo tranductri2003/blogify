@@ -29,14 +29,14 @@
 
 ✔ BE: Simple Chat using Channels in Django 
 ✔ Add group Field in User.admin @done(23-08-04 10:36)
-☐ -BE: User API 
-        ☐ BE: Update URL for User API
-        ☐ BE: CRUD API for user
-☐ -FE: User API
+✔ -BE: User API @done(23-08-09 09:12)
+        ✔ BE: Update URL for User API @done(23-08-09 09:12)
+        ✔ BE: CRUD API for user @done(23-08-09 09:12)
+✔ -FE: User API @done(23-08-09 09:12)
         ✔ FE: Update URL for User components @done(23-07-28 11:44)
         ✔ FE: Update main screen UI upon userAPI @done(23-07-28 15:25)
         ✔ FE: Update personal site UI @done(23-08-02 17:19)
-        ☐ FE: CRUD API for user
+        ✔ FE: CRUD API for user @done(23-08-09 09:12)
 
 ✔ Pagination: @done(23-08-02 16:36)
         ✔ FE: Update main page and usersite UI @done(23-08-02 16:36)
@@ -50,17 +50,17 @@
 ☐ -BE: Post 
         ☐ Update permissions for each roles
 
-☐ -FE: Post 
-        ☐ Update full CRUD in a single post
+✔ -FE: Post @done(23-08-09 09:12)
+        ✔ Update full CRUD in a single post @done(23-08-09 09:12)
 
 
-☐ -BE: Post API
-        ☐ BE: Add new vote attribute to Post model
-☐ -FE: Post API
-        ☐ BE: Update UI for vote
+✔ -BE: Post API @done(23-08-09 09:13)
+        ✔ BE: Add new vote attribute to Post model @done(23-08-09 09:13)
+✔ -FE: Post API @done(23-08-09 09:13)
+        ✔ BE: Update UI for vote @done(23-08-09 09:13)
          
-☐ -FE: Post API
-        ☐ Update single post UI
+✔ -FE: Post API @done(23-08-09 09:13)
+        ✔ Update single post UI @done(23-08-09 09:13)
 
 ☐ -BE: Fix custom password
 
