@@ -3,7 +3,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import CustomUserSerializer
+from .serializers import CustomUserSerializer, CustomUserEditSerializer
 # from .serializers import UpdateViewSerializer, UpdateCommentSerializer, UpdateLikeSerializer, UpdateNumPostSerializer
 from rest_framework import viewsets, filters, generics, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -37,6 +37,11 @@ class UserDetail(generics.RetrieveAPIView):
         item = self.kwargs.get('user_name')
         user = get_object_or_404(NewUser, user_name=item)
         return user
+
+class EditUser(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = CustomUserSerializer
+    queryset = NewUser.objects.all()
 
 
 class BlacklistTokenUpdateView(APIView):
@@ -106,5 +111,6 @@ class BlacklistTokenUpdateView(APIView):
 
 class EditUser(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = CustomUserSerializer
+    serializer_class = CustomUserEditSerializer
     queryset = NewUser.objects.all()
+    lookup_field = "user_name"

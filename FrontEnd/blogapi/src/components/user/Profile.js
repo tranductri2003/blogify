@@ -71,8 +71,7 @@ class Profile extends React.Component {
                                                         <Button
                                                             className="float-right"
                                                             color="default"
-                                                            href="#pablo"
-                                                            onClick={(e) => e.preventDefault()}
+                                                            href={`/profile/${userInfo.user_name}/edit`}
                                                             size="sm"
                                                         >
                                                             Update Profile

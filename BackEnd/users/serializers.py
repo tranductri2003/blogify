@@ -24,13 +24,17 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+class CustomUserEditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewUser
+        fields = ['avatar', 'first_name', 'about', 'country', 'occupation', 'age']
 
 class CustomUserChatSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(required=True)
 
     class Meta:
         model = NewUser
-        fields = ('id', 'user_name', 'avatar')
+        fields = ['id', 'user_name', 'avatar']
 
 
 # class UpdateNumPostSerializer(serializers.ModelSerializer):

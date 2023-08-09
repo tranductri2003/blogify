@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import UserList,  UserDetail, CustomUserCreate, BlacklistTokenUpdateView
+from .views import UserList,  UserDetail, CustomUserCreate, BlacklistTokenUpdateView, EditUser
 # from .views import UpdateLike, UpdateView, UpdateComment, UpdateNumPost
 
 app_name = 'users'
 
 urlpatterns = [
+    path('edit/<str:user_name>/', EditUser.as_view(), name='edituser'),
     path('', UserList.as_view(), name='listusers'),
     path('<str:user_name>/', UserDetail.as_view(), name='detailuser'),
     path('register/', CustomUserCreate.as_view(), name="create_user"),

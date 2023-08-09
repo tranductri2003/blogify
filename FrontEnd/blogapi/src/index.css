@@ -25369,3 +25369,47 @@ td.rdtYear:hover {
 
 
 /*# sourceMappingURL=argon-design-system-react.css.map */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.hall {
+  text-align: center;
+  padding: 50px;
+}
+
+.room-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.room-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.room-card:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-3px);
+}
+
+.room-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.room-id {
+  font-size: 14px;
+  color: #777;
+}

@@ -10,11 +10,14 @@ class RoomSerializer(serializers.ModelSerializer):
         model = Room
         fields = '__all__'
 class MessageSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField()
+    user_name = serializers.SerializerMethodField()
+    message = serializers.SerializerMethodField()  # Thêm trường message ở đây
+
     class Meta:
         model = Message
-        fields = ('id', 'content', 'created_on', 'user', 'room')
-    def get_user(self, obj):
-        # return {'user_name': obj.user.user_name, 'avatar': obj.user.user_name}
-        return CustomUserChatSerializer(obj.user).data
-
+        fields = ('message', 'user_name')
+    def get_user_name(self, obj):
+        return obj.user.user_name
+        # return CustomUserChatSerializer(obj.user).data
+    def get_message(self, obj):  # Định nghĩa hàm get_message để trả về nội dung content
+        return obj.content

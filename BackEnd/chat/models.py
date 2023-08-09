@@ -5,7 +5,7 @@ from django.conf import settings
 class Room(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=100)
-
+    description = models.TextField(default="For those who love writing")
 
     def __str__(self):
         return "Room : "+ self.name + " | Id : " + self.slug

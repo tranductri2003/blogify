@@ -152,6 +152,22 @@ function Header() {
                             Bách khoa
                         </Typography>
                     </div>
+                    <div className={classes.toolbarTitle}>
+                        {/* Thêm logo */}
+                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#A7ECEE', marginRight: '10px' }}>
+                            <Icon className="fas fa-blog" />
+                        </Avatar>
+                        <Typography
+                            variant="h6"
+                            color="textPrimary"
+                            noWrap
+                            className={classes.logo}
+                            component={NavLink}
+                            to="/hall"
+                        >
+                            Chat
+                        </Typography>
+                    </div>
                     {/* Ô tìm kiếm */}
                     <SearchBar
                         value={data.search}
