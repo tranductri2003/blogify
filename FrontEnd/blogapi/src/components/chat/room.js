@@ -98,7 +98,13 @@ class ChatApp extends Component {
             room_name: this.props.room_slug || "nang-bach-khoa",
             room_title: this.props.room_title || "Nẵng Bách Khoa",
         };
-        this.client = new W3CWebSocket("ws://127.0.0.1:8000/ws/" + this.state.room_name + "/");
+        /* This line of code is creating a new instance of the `W3CWebSocket` class and initializing it
+        with the WebSocket URL. The URL is constructed using the room name from the component's
+        state. The WebSocket URL is used to establish a connection between the client and the server
+        for real-time communication. */
+        // this.client = new W3CWebSocket("ws://127.0.0.1:8000/ws/" + this.state.room_name + "/");
+        this.client = new W3CWebSocket(process.env.REACT_APP_WEBSOCKET_URL + this.state.room_name + "/");
+
     }
     onButtonClicked = (e) => {
         this.client.send(
@@ -156,7 +162,7 @@ class ChatApp extends Component {
                             <span role="img" aria-label="Chat Icon">
                                 💬
                             </span>{" "}
-                            Chat Room: {this.state.room_title}
+                            Chat Room: {this.state.room_name}
                         </Typography>
                     </div>
                     <div className={classes.chatBoxContainer} id="chatbox-container">

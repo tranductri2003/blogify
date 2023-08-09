@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '14px', // Đổi kích thước chữ cho các thông tin này
     },
 }));
-const MEDIA_URL = "http://127.0.0.1:8000";
+const MEDIA_URL = process.env.REACT_APP_MEDIA_URL;;
 const Search = () => {
     const classes = useStyles();
     const search = 'search';
