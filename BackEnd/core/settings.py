@@ -250,7 +250,7 @@ SIMPLE_JWT = {
 }
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 """
 AllowAny
 The AllowAny permission class will allow unrestricted access, regardless of if the request was authenticated or unauthenticated.

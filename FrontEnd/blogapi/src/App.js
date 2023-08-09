@@ -87,7 +87,6 @@ function App() {
     window.location.href = newUrl;
 
   };
-
   const handlePageNumber = (pageNumber) => {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set('page', pageNumber);
