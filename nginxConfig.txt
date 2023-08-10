@@ -15,17 +15,22 @@ programs:gunicorn
 
 Sample django.conf:
 
-server{
+server {
+    listen 80;
+    server_name 13.215.177.200;
 
-	listen 80;
-	server_name 18.141.223.16;
+    # Cấu hình cho các tệp static
+    location /static/ {
+        alias /home/ubuntu/DRF-Blog_Django/BackEnd/static/;
+    }
 
-	
-	location / {
+    # Cấu hình cho các tệp media
+    location /media/ {
+        alias /home/ubuntu/DRF-Blog_Django/BackEnd/media/;
+    }
 
-		include proxy_params;
-		proxy_pass http://unix:/home/ubuntu/DRF-Blog_Django/BackEnd/app.sock;
-
-	}
-
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/DRF-Blog_Django/BackEnd/app.sock;
+    }
 }
