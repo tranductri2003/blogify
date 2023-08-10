@@ -108,12 +108,12 @@ export default function Create() {
             .post(URL, formData, config)
             .then((res) => {
                 console.log(res.data);
+                history.push({
+                    pathname: `/profile/${localStorage.getItem('user_name')}/`,
+                });
+                window.location.reload();
             })
             .catch((err) => console.log(err));
-        history.push({
-            pathname: `/profile/${localStorage.getItem('user_name')}/`,
-        });
-        window.location.reload();
     };
 
 

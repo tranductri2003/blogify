@@ -70,11 +70,13 @@ export default function Create() {
             country: formData.country,
             occupation: formData.occupation,
             age: formData.age,
-        });
-        history.push({
-            pathname: `/profile/${localStorage.getItem('user_name')}/`,
-        });
-        window.location.reload();
+        })
+            .then(function () {
+                history.push({
+                    pathname: `/profile/${localStorage.getItem('user_name')}/`,
+                });
+                window.location.reload();
+            });
     };
 
     const classes = useStyles();

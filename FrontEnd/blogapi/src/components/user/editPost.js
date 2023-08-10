@@ -70,11 +70,14 @@ export default function Create() {
             author: 1,
             excerpt: formData.excerpt,
             content: formData.content,
-        });
-        history.push({
-            pathname: `/profile/${localStorage.getItem('user_name')}/`,
-        });
-        window.location.reload();
+        })
+            .then(function () {
+
+                history.push({
+                    pathname: `/profile/${localStorage.getItem('user_name')}/`,
+                });
+                window.location.reload();
+            });
     };
 
     const classes = useStyles();
