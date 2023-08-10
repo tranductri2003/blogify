@@ -1,0 +1,31 @@
+Sample gunicorn.conf:
+
+[program:gunicorn]
+directory=/home/ubuntu/DRF-Blog_Django/BackEnd
+command=/home/ubuntu/env/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/DRF-Blog_Django/BackEnd/app.sock core.wsgi:application  
+startsecs=0
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/gunicorn/gunicorn.err.log
+stdout_logfile=/var/log/gunicorn/gunicorn.out.log
+
+[group:guni]
+programs:gunicorn
+
+
+Sample django.conf:
+
+server{
+
+	listen 80;
+	server_name 18.141.223.16;
+
+	
+	location / {
+
+		include proxy_params;
+		proxy_pass http://unix:/home/ubuntu/DRF-Blog_Django/BackEnd/app.sock;
+
+	}
+
+}
