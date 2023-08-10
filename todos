@@ -44,8 +44,7 @@
 
 ☐ -BE: Search User API
 ☐ -FE: Search User UI
-☐ -FE: User API
-        ☐ FE: view for user personal profile
+
 
 ☐ -BE: Post 
         ☐ Update permissions for each roles
@@ -67,4 +66,4 @@
 
 ✔ Tạo thẻ debit VISA @done(23-07-25 10:43)
 ☐ Cập nhật tên miền
-☐ Deploy AWS EC2 @started(23-07-26 09:48)
+✔ Deploy AWS EC2 BE @started(23-07-26 09:48) @done(23-08-11 00:00) @lasted(2w1d14h12m39s)
