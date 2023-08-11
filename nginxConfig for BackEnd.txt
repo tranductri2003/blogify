@@ -1,3 +1,14 @@
+https://www.youtube.com/watch?v=7O1H9kr1CsA
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y nginx
+pip install gunicorn
+sudo apt-get install supervisor
+cd /etc/supervisor/conf.d/
+sudo touch gunicorn.conf
+sudo nano gunicorn.conf
+
 Sample gunicorn.conf:
 
 [program:gunicorn]
@@ -13,11 +24,23 @@ stdout_logfile=/var/log/gunicorn/gunicorn.out.log
 programs:gunicorn
 
 
+sudo mkdir /var/log/gunicorn
+sudo supervisorctl update
+sudo supervisorctl status
+cd ..
+cd ..
+cd nginx
+sudo nano nginx.conf (change to root)
+cd sites-available
+sudo touch django.conf
+sudo nano django.conf
+
+
 Sample django.conf:
 
 server {
     listen 80;
-    server_name 13.215.177.200;
+    server_name 3.0.98.79;
 
     # Cấu hình cho các tệp static
     location /static/ {
@@ -33,37 +56,9 @@ server {
         include proxy_params;
         proxy_pass http://unix:/home/ubuntu/DRF-Blog_Django/BackEnd/app.sock;
     }
-    
-    location /ws/ {
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_redirect off;
-        proxy_pass http://localhost:8001;
-    }
 }
 
 
-
-
-$ sudo nano /etc/systemd/system/daphne.service
-
-
-[Unit]
-Description=Daphne service
-After=network.target
-
-[Service]
-Type=simple
-User=root
-WorkingDirectory=/home/ubuntu/DRF-Blog_Django/BackEnd
-ExecStart=/home/ubuntu/env/bin/python /home/ubuntu/env/bin/daphne -b 0.0.0.0 -p 8001 core.asgi:application
-Restart=always
-StartLimitBurst=2
-
-#StartLimitInterval=600
-# Restart, but not more than once every 30s (for testing purposes)
-StartLimitInterval=30
-
-[Install]
-WantedBy=multi-user.target
+sudo nginx -t
+sudo ln django.conf /etc/nginx/sites-enabled
+sudo service nginx restart
