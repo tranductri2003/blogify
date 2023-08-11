@@ -26,4 +26,12 @@ sudo mv build/* .
 sudo systemctl status nginx
 sudo systemctl restart nginx
 
-cd /etc/nginx/
+
+Trouble shoot 404 when reload page: https://stackoverflow.com/questions/69723980/refreshing-page-showing-404-error-using-nginx
+cd /etc/nginx/sites-available
+sudo nano default
+location {
+    try_files $uri /index.html;
+}
+
+
