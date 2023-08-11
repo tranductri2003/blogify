@@ -33,4 +33,37 @@ server {
         include proxy_params;
         proxy_pass http://unix:/home/ubuntu/DRF-Blog_Django/BackEnd/app.sock;
     }
+    
+    location /ws/ {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_redirect off;
+        proxy_pass http://localhost:8001;
+    }
 }
+
+
+
+
+$ sudo nano /etc/systemd/system/daphne.service
+
+
+[Unit]
+Description=Daphne service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/ubuntu/DRF-Blog_Django/BackEnd
+ExecStart=/home/ubuntu/env/bin/python /home/ubuntu/env/bin/daphne -b 0.0.0.0 -p 8001 core.asgi:application
+Restart=always
+StartLimitBurst=2
+
+#StartLimitInterval=600
+# Restart, but not more than once every 30s (for testing purposes)
+StartLimitInterval=30
+
+[Install]
+WantedBy=multi-user.target
