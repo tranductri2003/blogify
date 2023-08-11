@@ -1,0 +1,11 @@
+https://medium.com/@stanocran/deploying-a-react-app-using-nginx-on-amazon-ec2-frontend-first-946635350581
+
+sudo apt-get install nginx -y 
+sudo apt-get install curl
+curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+cd /var/www/html/
+sudo git clone https://github.com/tranductri2003/DRF-Blog_Django.git
+sudo rm index.nginx-debian.html
+cd DRF-Blog_Django/FrontEnd/
+sudo npm install
