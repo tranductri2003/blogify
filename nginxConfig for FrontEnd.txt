@@ -23,3 +23,5 @@ sudo npm run build
 sudo cp -r build /var/www/html
 cd ../../../
 sudo mv build/* .
+sudo systemctl status nginx
+sudo systemctl restart nginx
