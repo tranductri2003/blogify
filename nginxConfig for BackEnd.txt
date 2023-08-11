@@ -2,6 +2,11 @@ https://www.youtube.com/watch?v=7O1H9kr1CsA
 
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt-get install python3-venv
+python3 -m venv env
+source env/bin/activate
+git clone https://github.com/tranductri2003/DRF-Blog_Django.git
+pip install -r requirements.txt 
 sudo apt-get install -y nginx
 pip install gunicorn
 sudo apt-get install supervisor
