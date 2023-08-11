@@ -25,3 +25,5 @@ cd ../../../
 sudo mv build/* .
 sudo systemctl status nginx
 sudo systemctl restart nginx
+
+cd /etc/nginx/
