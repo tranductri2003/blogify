@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Posts from './components/posts/posts';
-import PostLoadingComponent from './components/posts/postLoading';
+import PostLoadingComponent from './dataLoading';
 import axiosInstance from './axios';
 import queryString from 'query-string';
 import Button from '@material-ui/core/Button';

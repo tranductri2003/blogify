@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import UserSite from './components/user/userSite';
-import PostLoadingComponent from './components/posts/postLoading';
+import PostLoadingComponent from './dataLoading';
 import axiosInstance from './axios';
 import { useParams } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -83,7 +83,7 @@ function User() {
                 console.error('Error fetching user posts:', error);
                 setUserState((prevState) => ({ ...prevState, loading: false }));
             });
-    }, []);
+    }, [params.category, params.page, userName]);
 
     // Kiểm tra xem cả hai API request đã thành công và có dữ liệu trả về
     if (UserState.loading) {
