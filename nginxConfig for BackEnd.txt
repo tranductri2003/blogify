@@ -65,6 +65,61 @@ server {
 }
 
 
+
 sudo nginx -t
 sudo ln django.conf /etc/nginx/sites-enabled
 sudo service nginx restart
+
+
+
+Deploy ASGI application: https://plainenglish.io/blog/how-deploy-an-asgi-django-application-with-nginx-gunicorn-daphne-and-supervisor-on-ubuntu-server
+
+
+sudo nano /etc/systemd/system/daphne.service
+
+[Unit]
+Description=Daphne service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/ubuntu/DRF-Blog_Django/BackEnd
+ExecStart=/home/ubuntu/env/bin/python /home/ubuntu/env/bin/daphne -b 0.0.0.0 -p 8000 core.asgi:application
+Restart=always
+StartLimitBurst=2
+
+#StartLimitInterval=600
+# Restart, but not more than once every 30s (for testing purposes)
+StartLimitInterval=30
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo systemctl daemon-reload
+sudo systemctl start daphne.service
+systemctl status daphne.service
+
+deactivate
+sudo nano /root/boot.sh
+
+#!/bin/sh
+sudo systemctl start daphne.service
+
+sudo chmod u+x /root/boot.sh
+
+sudo nano /etc/systemd/system/on_boot.service
+
+[Service]
+ExecStart=/root/boot.sh
+
+[Install]
+WantedBy=default.target
+
+sudo systemctl daemon-reload
+sudo systemctl start on_boot
+sudo systemctl enable on_boot
+sudo ufw allow 8000
+sudo shutdown -r
+systemctl status on_boot.service

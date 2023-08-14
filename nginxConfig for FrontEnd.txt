@@ -19,6 +19,10 @@ sudo npm install --save --legacy-peer-deps @material-ui/core
 sudo npm install websocket
 sudo npm install @material-ui/icons
 sudo npm i --save material-ui-search-bar
+
+
+
+
 sudo npm run build
 sudo cp -r build /var/www/html
 cd ../../../

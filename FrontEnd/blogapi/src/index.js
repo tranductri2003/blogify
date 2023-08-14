@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import App from './App';
+import App from './MainSite';
 import Hall from './components/chat/hall';
-import Chat from './Chat'
+import Chat from './ChatSite'
 import Header from './components/header';
 import Footer from './components/footer';
 import Register from './components/auth/register';
@@ -13,13 +13,12 @@ import Login from './components/auth/login';
 import Logout from './components/auth/logout';
 import Single from './components/posts/single';
 import Search from './components/posts/search';
-import User from './User';
+import User from './UserSite';
 import Create from './components/user/createPost';
 import Edit from './components/user/editPost';
 import Delete from './components/user/deletePost';
 import EditProfile from './components/user/editProfile';
-import UserRanking from './components/ranking/userRanking';
-import PostRanking from './components/ranking/postRanking';
+import Ranking from './RankingSite';
 const routing = (
   <Router>
     <React.StrictMode>
@@ -31,8 +30,7 @@ const routing = (
         <Route exact path={`/profile/:userName/post/create`} component={Create} />
         <Route exact path={`/profile/:userName/post/edit/:id`} component={Edit} />
         <Route exact path={`/profile/:userName/post/delete/:id`} component={Delete} />
-        <Route path="/ranking/user" component={UserRanking} />
-        <Route path="/ranking/post" component={PostRanking} />
+        <Route path="/ranking/:object" component={Ranking} />
         <Route exact path="/hall/:slug" component={Chat} />
         <Route exact path="/hall" component={Hall} />
         <Route path="/register" component={Register} />
