@@ -18,7 +18,8 @@ import Create from './components/user/createPost';
 import Edit from './components/user/editPost';
 import Delete from './components/user/deletePost';
 import EditProfile from './components/user/editProfile';
-
+import UserRanking from './components/ranking/userRanking';
+import PostRanking from './components/ranking/postRanking';
 const routing = (
   <Router>
     <React.StrictMode>
@@ -30,8 +31,8 @@ const routing = (
         <Route exact path={`/profile/:userName/post/create`} component={Create} />
         <Route exact path={`/profile/:userName/post/edit/:id`} component={Edit} />
         <Route exact path={`/profile/:userName/post/delete/:id`} component={Delete} />
-
-
+        <Route path="/ranking/user" component={UserRanking} />
+        <Route path="/ranking/post" component={PostRanking} />
         <Route exact path="/hall/:slug" component={Chat} />
         <Route exact path="/hall" component={Hall} />
         <Route path="/register" component={Register} />

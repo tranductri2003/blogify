@@ -36,6 +36,11 @@ class CustomUserChatSerializer(serializers.ModelSerializer):
         model = NewUser
         fields = ['id', 'user_name', 'avatar']
 
+class CustomUserRankingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewUser
+        fields = ['num_post', 'num_view', 'num_like','num_comment','avatar', 'user_name', 'first_name', 'about', 'country', 'occupation', 'age']
+
 
 # class UpdateNumPostSerializer(serializers.ModelSerializer):
 #     class Meta:

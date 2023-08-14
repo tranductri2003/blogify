@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from blog.models import Post, Category, Like, Comment, View
 from users.models import NewUser
-from .serializers import PostSerializer, CommentSerializer, CreatePostSerializer, LikeSerializer, CommentSerializer, ViewSerializer
+from .serializers import PostSerializer, CommentSerializer, CreatePostSerializer, LikeSerializer, CommentSerializer, ViewSerializer, PostRankingSerializer
 # from .serializers import  UpdateViewSerializer, UpdateLikeSerializer, UpdateCommentSerializer,
 from rest_framework import viewsets, filters, generics, permissions
 from rest_framework.response import Response
@@ -33,7 +33,13 @@ class PostList(generics.ListAPIView):
     # Thêm trình xử lý phân trang vào view
     pagination_class = CustomPageNumberPagination
 
-
+class PostRankingList (generics.ListAPIView):
+    serializer_class = PostRankingSerializer
+    queryset = Post.objects.all()
+    filter_backends = [filters.OrderingFilter]
+    
+    
+    
 class PostDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = PostSerializer

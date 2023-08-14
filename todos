@@ -15,8 +15,6 @@
 ✔ BE: Add edited atribute to user model
 ✔ BE: Update URL 
 
-
-☐ -FE: Integrate React in to Django
 ✔ -FE: User API @started(23-07-24 23:23) @done(23-07-28 10:36) @lasted(3d11h13m22s)
         ✔ Update main screen @done(23-07-27 12:02)
         ✔ Update comment upon User API @done(23-07-28 10:35)
@@ -42,6 +40,17 @@
         ✔ FE: Update main page and usersite UI @done(23-08-02 16:36)
         ✔ BE: Pagination class @done(23-08-02 16:36)
 
+✔ -BE: Ranking User API according to many fields @done(23-08-14 11:03)
+✔ -BE: Ranking Post API according to many fields @done(23-08-14 11:03)
+☐ -FE: Ranking User API according to many fields
+☐ -FE: Ranking Post API according to many fields
+
+☐ -FE: Search User UI
+
+
+        
+
+
 ☐ -BE: Search User API
 ☐ -FE: Search User UI
 
@@ -65,5 +74,5 @@
 
 
 ✔ Tạo thẻ debit VISA @done(23-07-25 10:43)
-☐ Cập nhật tên miền
+✔ Cập nhật tên miền @done(23-08-14 09:33)
 ✔ Deploy AWS EC2 BE @started(23-07-26 09:48) @done(23-08-11 00:00) @lasted(2w1d14h12m39s)

@@ -30,8 +30,10 @@ class UserList(generics.ListAPIView):
     queryset = NewUser.objects.all()
 
 
+
 class UserDetail(generics.RetrieveAPIView):
     serializer_class = CustomUserSerializer
+    permission_classes = [AllowAny]
 
     def get_object(self):
         item = self.kwargs.get('user_name')
@@ -44,6 +46,15 @@ class EditUser(generics.UpdateAPIView):
     queryset = NewUser.objects.all()
 
 
+class UserRankingList(generics.ListAPIView):
+    
+    serializer_class = CustomUserSerializer
+    queryset = NewUser.objects.all()
+    filter_backends = [filters.OrderingFilter]
+    # ordering_fields = ['num_view', 'num_post', 'user_name']
+    # ordering = ['-num_view', '-num_post', 'user_name']
+    
+    
 class BlacklistTokenUpdateView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = ()

@@ -1,10 +1,11 @@
-from .views import PostList, PostDetail, PostListDetailfilter, CreatePost, EditPost, UserPostDetail, DeletePost, LikeAPIView, CommentAPIView, ViewAPIView
+from .views import PostList, PostDetail, PostListDetailfilter, CreatePost, EditPost, UserPostDetail, DeletePost, LikeAPIView, CommentAPIView, ViewAPIView, PostRankingList
 # from .views import UpdateLike, UpdateView, UpdateComment
 from django.urls import path
 
 app_name = 'blog'
 
 urlpatterns = [
+    path('post/ranking/', PostRankingList.as_view(), name='rankinguser'),
     path('post/create/', CreatePost.as_view(), name='createpost'),
     path('post/edit/postdetail/<int:pk>/',
          UserPostDetail.as_view(), name='admindetailpost'),
