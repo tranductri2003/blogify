@@ -10,7 +10,23 @@ import SearchBar from 'material-ui-search-bar';
 import Icon from '@material-ui/core/Icon';
 import Avatar from '@material-ui/core/Avatar';
 import { useHistory } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import {
+    UncontrolledCollapse,
+    DropdownMenu,
+    DropdownItem,
+    DropdownToggle,
+    UncontrolledDropdown,
+    Media,
+    NavbarBrand,
+    Navbar,
+    NavItem,
+    Nav,
+    Container,
+    Row,
+    Col,
+    UncontrolledTooltip,
+} from "reactstrap";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -120,38 +136,62 @@ function Header() {
                             Blog
                         </Typography>
                     </div>
+
                     <div className={classes.toolbarTitle}>
-                        {/* Thêm logo */}
                         <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#99DBF5', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
                         </Avatar>
-                        <Typography
-                            variant="h6"
-                            color="textPrimary"
-                            noWrap
-                            className={classes.logo}
-                            component={NavLink}
-                            to="/?category=buoc-qua-mau-xanh-hi-vong&page=1"
-                        >
-                            Lê Quý Đôn
-                        </Typography>
+                        <UncontrolledDropdown nav>
+                            <DropdownToggle nav>
+                                <Typography
+                                    variant="h6"
+                                    color="textPrimary"
+                                    noWrap
+                                    className={classes.logo}
+                                >
+                                    Category
+                                </Typography>
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem to="/?category=buoc-qua-mau-xanh-hi-vong&page=1" tag={Link}>
+                                    Bước qua màu xanh hi vọng
+                                </DropdownItem>
+                                <DropdownItem to="/?category=nang-bach-khoa&page=1" tag={Link}>
+                                    Nắng Bách khoa
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
                     </div>
+
+
+
                     <div className={classes.toolbarTitle}>
-                        {/* Thêm logo */}
-                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#A7ECEE', marginRight: '10px' }}>
+                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#99DBF5', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
                         </Avatar>
-                        <Typography
-                            variant="h6"
-                            color="textPrimary"
-                            noWrap
-                            className={classes.logo}
-                            component={NavLink}
-                            to="/?category=nang-bach-khoa&page=1"
-                        >
-                            Bách khoa
-                        </Typography>
+                        <UncontrolledDropdown nav>
+                            <DropdownToggle nav>
+                                <Typography
+                                    variant="h6"
+                                    color="textPrimary"
+                                    noWrap
+                                    className={classes.logo}
+                                >
+                                    Ranking
+                                </Typography>
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem tag="a" href="/ranking/user">
+                                    Writer Ranking
+                                </DropdownItem>
+                                <DropdownItem tag="a" href="/ranking/post">
+                                    Post Ranking
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
                     </div>
+
+
                     <div className={classes.toolbarTitle}>
                         {/* Thêm logo */}
                         <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#A7ECEE', marginRight: '10px' }}>

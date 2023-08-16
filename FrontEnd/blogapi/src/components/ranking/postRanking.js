@@ -49,6 +49,7 @@ const MEDIA_URL = process.env.REACT_APP_MEDIA_URL;
 
 const Leaderboard = (props) => {
     const { data } = props;
+    console.log(data);
 
     return (
         <div style={styles.leaderboard}>

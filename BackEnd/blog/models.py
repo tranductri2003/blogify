@@ -14,7 +14,6 @@ class Category(models.Model):
     # Trường slug tự động cập nhật từ name
     # slug = AutoSlugField(populate_from='name', null=False)
     slug = models.SlugField(max_length=250)
-
     def __str__(self):
         return self.name
 
