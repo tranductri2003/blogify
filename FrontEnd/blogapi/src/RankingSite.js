@@ -4,26 +4,30 @@ import PostRanking from './components/ranking/postRanking';
 import UserRanking from './components/ranking/userRanking';
 import DataLoadingComponent from './DataLoading';
 import axiosInstance from './axios';
-import queryString from 'query-string';
+import { useParams } from 'react-router-dom';
+
+
 
 function App() {
-    const params = queryString.parse(window.location.search);
+    const { object } = useParams();
     const [appState, setAppState] = useState({
         loading: true,
         data: null,
     });
-    const DataLoading = params.object === 'user' ? DataLoadingComponent(UserRanking) : DataLoadingComponent(PostRanking);
-    const apiUrl = params.object === 'user' ? '/api/user/ranking/' : '/api/post/ranking/';
-
+    const DataLoading = object === 'user' ? DataLoadingComponent(UserRanking) : DataLoadingComponent(PostRanking);
+    const apiUrl = object === 'user' ? '/user/ranking/?ordering=-num_post,-num_view,-num_like,-num_comment,user_name' : '/post/ranking/?ordering=-num_view,-num_like,-num_comment,slug';
     useEffect(() => {
         axiosInstance.get(apiUrl).then((response) => {
             setAppState({ loading: false, data: response.data });
-            console.log(useState.data);
+            console.log(response.data);
         });
     }, [setAppState, apiUrl]);
     return (
         <div className="App">
-            <DataLoading isLoading={appState.loading} posts={appState.posts} />
+            <div style={{ fontFamily: 'cursive', fontSize: '32px', fontWeight: 'bold', marginTop: '30px', marginBottom: '30px' }}>
+                <span role="img" aria-label="Ranking">📝</span> {object === 'user' ? 'Writer Ranking' : 'Post Ranking'}
+            </div>
+            <DataLoading isLoading={appState.loading} data={appState.data} />
         </div>
     );
 }

@@ -42,8 +42,8 @@
 
 ✔ -BE: Ranking User API according to many fields @done(23-08-14 11:03)
 ✔ -BE: Ranking Post API according to many fields @done(23-08-14 11:03)
-☐ -FE: Ranking User API according to many fields
-☐ -FE: Ranking Post API according to many fields
+✔ -FE: Ranking User API according to many fields @done(23-08-16 10:28)
+✔ -FE: Ranking Post API according to many fields @done(23-08-16 10:28)
 
 ☐ -FE: Search User UI
 

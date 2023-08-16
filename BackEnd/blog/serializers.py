@@ -91,10 +91,14 @@ class PostSerializer(serializers.ModelSerializer):
         return CustomUserSerializer(obj.author).data
 
 class PostRankingSerializer(serializers.ModelSerializer):
+    author = serializers.SerializerMethodField()
+
     class Meta:
         model = Post
         fields = ['category', 'id', 'title', 'image', 'slug',
                   'author', 'excerpt', 'edited', 'num_like', 'num_view', 'num_comment']
+    def get_author(self, obj):
+        return CustomUserSerializer(obj.author).data
 
 class UserRegisterSerializer(serializers.ModelSerializer):
 
