@@ -12,20 +12,10 @@ import Avatar from '@material-ui/core/Avatar';
 import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import {
-    UncontrolledCollapse,
     DropdownMenu,
     DropdownItem,
     DropdownToggle,
     UncontrolledDropdown,
-    Media,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    Nav,
-    Container,
-    Row,
-    Col,
-    UncontrolledTooltip,
 } from "reactstrap";
 
 const useStyles = makeStyles((theme) => ({

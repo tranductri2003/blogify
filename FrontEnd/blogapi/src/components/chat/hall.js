@@ -3,10 +3,24 @@ import { Card, CardContent, Grid, Typography, makeStyles } from '@material-ui/co
 import axiosInstance from '../../axios';
 import { useHistory } from 'react-router-dom';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     hall: {
-        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
         padding: '50px',
+        fontFamily: 'cursive', // Áp dụng font chữ cursive cho toàn bộ component
+    },
+    welcomeText: {
+        fontSize: '32px',
+        fontWeight: 'bold',
+        color: theme.palette.primary.main,
+        marginBottom: '20px',
+        fontFamily: 'cursive', // Áp dụng font chữ cursive cho toàn bộ component
+
+    },
+    gridContainer: {
+        justifyContent: 'center',
     },
     roomCard: {
         border: '1px solid #ccc',
@@ -25,7 +39,7 @@ const useStyles = makeStyles({
         fontSize: '20px',
         fontWeight: 'bold',
         marginBottom: '5px',
-        color: '#2196f3',
+        color: theme.palette.primary.main,
     },
     roomDescription: {
         fontSize: '14px',
@@ -36,7 +50,7 @@ const useStyles = makeStyles({
         fontSize: '14px',
         color: '#999',
     },
-});
+}));
 
 function ChatHall() {
     const classes = useStyles();
@@ -60,10 +74,10 @@ function ChatHall() {
 
     return (
         <div className={classes.hall}>
-            <Typography variant="h4" color="primary" gutterBottom>
+            <Typography className={classes.welcomeText}>
                 Welcome to the Chat Hall
             </Typography>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} className={classes.gridContainer}>
                 {rooms.map(room => (
                     <Grid item key={room.id} xs={12} sm={6} md={4}>
                         <Card className={classes.roomCard} onClick={() => handleCardClick(room.slug)}>
