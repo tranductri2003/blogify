@@ -77,7 +77,7 @@
 ✔ -BE: Update permissions for each views @done(23-08-17 15:54)
 ✔ -FE: Update error page for not permitted views @done(23-08-17 15:54)
 
-☐ -FE: Update logo and other stuff
+✔ -FE: Update logo and other stuff @done(23-08-17 16:35)
 
 
 ☐ -BE: Search User API
