@@ -4,10 +4,11 @@ from rest_framework.response import Response
 from .models import Room, Message
 from users.models import NewUser
 from .serializers import MessageSerializer, RoomSerializer
-from rest_framework import status
-
+from rest_framework import status, permissions
 
 class RoomListView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     def get(self, request):
         user = request.user  # Người dùng hiện tại
 
@@ -32,6 +33,8 @@ class RoomListView(APIView):
         
 
 class CreateRoom(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     def post(self, request):
         user = request.user
         room_data = request.data
@@ -55,6 +58,8 @@ class CreateRoom(APIView):
     
     
 class RoomView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     def get(self, request, slug):
         room = Room.objects.get(slug=slug)
         messages = Message.objects.filter(room=room)

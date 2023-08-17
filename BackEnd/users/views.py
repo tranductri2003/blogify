@@ -7,12 +7,11 @@ from .serializers import CustomUserSerializer, CustomUserEditSerializer
 # from .serializers import UpdateViewSerializer, UpdateCommentSerializer, UpdateLikeSerializer, UpdateNumPostSerializer
 from rest_framework import viewsets, filters, generics, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from users.models import NewUser
 
 
 class CustomUserCreate(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [permissions.AllowAny]
 
     def post(self, request, format='json'):
         serializer = CustomUserSerializer(data=request.data)
@@ -21,10 +20,14 @@ class CustomUserCreate(APIView):
             if user:
                 json = serializer.data
                 return Response(json, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({
+    'error': 'An account with this email or username already exists.'
+}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserList(generics.ListAPIView):
+    permission_classes = [permissions.IsAdminUser]
 
     serializer_class = CustomUserSerializer
     queryset = NewUser.objects.all()
@@ -33,7 +36,7 @@ class UserList(generics.ListAPIView):
 
 class UserDetail(generics.RetrieveAPIView):
     serializer_class = CustomUserSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
         item = self.kwargs.get('user_name')
@@ -56,7 +59,7 @@ class UserRankingList(generics.ListAPIView):
     
     
 class BlacklistTokenUpdateView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [permissions.AllowAny]
     authentication_classes = ()
 
     def post(self, request):

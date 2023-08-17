@@ -3,7 +3,7 @@ from blog.models import Post, Category, Like, Comment, View
 from users.models import NewUser
 from .serializers import PostSerializer, CommentSerializer, CreatePostSerializer, LikeSerializer, CommentSerializer, ViewSerializer, PostRankingSerializer
 # from .serializers import  UpdateViewSerializer, UpdateLikeSerializer, UpdateCommentSerializer,
-from rest_framework import viewsets, filters, generics, permissions
+from rest_framework import  filters, generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
@@ -25,7 +25,7 @@ class CustomPageNumberPagination(PageNumberPagination):
 
 
 class PostList(generics.ListAPIView):
-
+    permission_classes = [permissions.AllowAny]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     filter_backends = [DjangoFilterBackend]
@@ -34,6 +34,7 @@ class PostList(generics.ListAPIView):
     pagination_class = CustomPageNumberPagination
 
 class PostRankingList (generics.ListAPIView):
+    permission_classes = [permissions.AllowAny]
     serializer_class = PostRankingSerializer
     queryset = Post.objects.all()
     filter_backends = [filters.OrderingFilter]
@@ -56,6 +57,8 @@ class PostDetail(generics.RetrieveAPIView):
 
 
 class LikeAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     def post(self, request, slug):
         try:
             post = Post.objects.get(slug=slug)
@@ -76,6 +79,8 @@ class LikeAPIView(APIView):
 
 
 class CommentAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     def post(self, request, slug):
         try:
             post = Post.objects.get(slug=slug)
@@ -96,6 +101,8 @@ class CommentAPIView(APIView):
 
 
 class ViewAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     def post(self, request, slug):
         try:
             post = Post.objects.get(slug=slug)
@@ -110,40 +117,6 @@ class ViewAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Post.DoesNotExist:
             return Response({"detail": "Bài viết không tồn tại."}, status=status.HTTP_404_NOT_FOUND)
-
-
-# class UpdateView(APIView):
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def put(self, request, slug, num):
-#         post = Post.objects.get(slug=slug)
-#         post.num_view += num
-#         post.save()
-#         serializer = UpdateViewSerializer(post)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-# class UpdateLike(APIView):
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def put(self, request, slug, num):
-#         post = Post.objects.get(slug=slug)
-#         post.num_like += num
-#         post.save()
-#         serializer = UpdateLikeSerializer(post)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-# class UpdateComment(APIView):
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def put(self, request, slug, num):
-#         post = Post.objects.get(slug=slug)
-#         post.num_comment += num
-#         post.save()
-#         serializer = UpdateCommentSerializer(post)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
-# Post Search
 
 
 class PostListDetailfilter(generics.ListAPIView):
@@ -171,29 +144,12 @@ class CreatePost(APIView):
         serializer = CreatePostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-
             # Lấy thông tin tác giả từ request.user
             author = request.user
 
             author.num_post += 1
             author.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-            # # Gọi API cập nhật số lượng bài viết của tác giả
-            # author_update_url = f"http://127.0.0.1:8000/api/user/{author}/updatenumpost/1/"
-            # headers = {
-            #     "Content-type": "application/json",
-            #     "Authorization": request.META.get("HTTP_AUTHORIZATION"),
-            # }
-            # response = requests.put(author_update_url, headers=headers)
-
-            # # Kiểm tra phản hồi từ API cập nhật số lượng bài viết của tác giả
-            # if response.status_code == 200:
-            #     # Xử lý phản hồi nếu cần
-            #     return Response(serializer.data, status=status.HTTP_200_OK)
-            # else:
-            #     # Xử lý lỗi nếu có
-            #     return Response({"error": "Failed to update author's post count"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

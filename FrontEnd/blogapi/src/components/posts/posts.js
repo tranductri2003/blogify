@@ -13,6 +13,8 @@ import { format } from 'date-fns';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CommentIcon from '@material-ui/icons/Comment';
+import { useHistory } from 'react-router-dom';
+import { notification } from 'antd';
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -80,7 +82,31 @@ const MEDIA_URL = process.env.REACT_APP_MEDIA_URL;
 const Posts = (props) => {
     const { posts } = props;
     const classes = useStyles();
+    const history = useHistory();
 
+    const handleAvatarClick = (authorUsername) => {
+        if (!localStorage.getItem('access_token')) {
+            notification.warning({
+                message: 'Unauthorized',
+                description: 'You are not authorized to perform this action.',
+                placement: 'topRight',
+            });
+        } else {
+            history.push(`/profile/${authorUsername}`);
+        }
+    };
+
+    const handlePostClick = (slug) => {
+        if (!localStorage.getItem('access_token')) {
+            notification.warning({
+                message: 'Unauthorized',
+                description: 'You are not authorized to perform this action.',
+                placement: 'topRight',
+            });
+        } else {
+            history.push(`/post/${slug}`);
+        }
+    };
     if (!posts || posts.length === 0) return <p>Can not find any posts, sorry</p>;
     return (
         <React.Fragment>
@@ -90,14 +116,14 @@ const Posts = (props) => {
                         return (
                             <Grid item key={post.id} xs={12} md={4}>
                                 <Card className={classes.card}>
-                                    {/* Sử dụng thẻ Link để điều hướng */}
-                                    <Link to={`/post/${post.slug}`} className={classes.link}>
+                                    <div>
                                         <CardMedia
                                             className={classes.cardMedia}
                                             image={post.image}
                                             title="Image title"
+                                            onClick={() => handlePostClick(post.slug)} // Thêm sự kiện onClick ở đây
                                         />
-                                    </Link>
+                                    </div>
                                     <CardContent className={classes.cardContent}>
 
                                         <Typography gutterBottom variant="h6" component="h2" className={classes.postTitle}>
@@ -139,9 +165,9 @@ const Posts = (props) => {
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             {/* Avatar của tác giả */}
-                                            <NavLink to={`/profile/${post.author.user_name}`}>
+                                            <div onClick={() => handleAvatarClick(post.author.user_name)}>
                                                 <Avatar alt={post.author.user_name} src={`${MEDIA_URL}${post.author.avatar}`} />
-                                            </NavLink>
+                                            </div>
 
                                             <div style={{ marginLeft: '10px' }}>
                                                 <Typography variant="subtitle1" style={{ fontFamily: 'cursive' }}>

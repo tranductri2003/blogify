@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { notification } from 'antd';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,7 +67,7 @@ export default function SignIn() {
                 localStorage.setItem('user_name', res.data.user.user_name);
                 localStorage.setItem('first_name', res.data.user.first_name);
                 localStorage.setItem('avatar', res.data.user.avatar);
-
+                localStorage.setItem('user_id', res.data.user.id);
                 localStorage.setItem('access_token', res.data.access);
                 localStorage.setItem('refresh_token', res.data.refresh);
                 axiosInstance.defaults.headers['Authorization'] =
@@ -76,8 +77,35 @@ export default function SignIn() {
                 //console.log(res.data);
                 // Kích hoạt tái render cho thành phần Header sau khi đăng nhập thành công
                 window.dispatchEvent(new Event('storage'));
+                notification.success({
+                    message: 'Sign in successfully',
+                    description: `Welcome ${res.data.user.user_name}!!!`,
+                    placement: 'topRight'
+                })
+            })
+            .catch((error) => {
+                if (error.response) {
+                    if (error.response.status === 401) {
+                        // Xử lý thông tin đăng nhập sai
+                        notification.warning({
+                            message: 'Login Failed',
+                            description: 'No active account found with the given credentials, please active your account through your mail or register new account!',
+                            placement: 'topRight',
+                        });
+                    } else {
+                        // Xử lý lỗi khác
+                        notification.error({
+                            message: 'Error',
+                            description: 'Error logging in. Please try again.',
+                            placement: 'topRight',
+                        });
+                    }
+                } else {
+                    console.error('An error occurred:', error.message);
+                }
             });
     };
+
 
     const classes = useStyles();
 
