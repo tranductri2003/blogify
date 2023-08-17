@@ -16,7 +16,7 @@ class Profile extends React.Component {
 
         // Tạo slug từ tên người dùng
         const room_slug = `${sortedUserName[0]}-${sortedUserName[1]}`;
-        const room_name = `${sortedFirstName[0]} and ${sortedFirstName[1]}`;
+        const room_name = `${sortedFirstName[0]} (${sortedUserName[0]}) and ${sortedFirstName[1]} (${sortedUserName[1]})`;
         const room_description = `Space for ${first_name_1} and ${first_name_2}`;
         const room_participants = [user_name_1, user_name_2]
         const participants_string = room_participants.join(' ');

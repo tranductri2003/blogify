@@ -39,6 +39,7 @@ export default function SignUp() {
     const initialFormData = Object.freeze({
         email: '',
         username: '',
+        firstname: '',
         password: '',
     });
 
@@ -60,6 +61,7 @@ export default function SignUp() {
             .post(`user/register/`, {
                 email: formData.email,
                 user_name: formData.username,
+                first_name: formData.firstname,
                 password: formData.password,
             })
             .then((res) => {
@@ -110,6 +112,18 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                id="firstname"
+                                label="Firstname"
+                                name="firstname"
+                                autoComplete="firstname"
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
                                 name="password"
                                 label="Password"
                                 type="password"
@@ -137,7 +151,7 @@ export default function SignUp() {
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="/login" variant="body2">
                                 Already have an account? Sign in
                             </Link>
                         </Grid>

@@ -44,10 +44,10 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     user_name = models.CharField(max_length=150, unique=True)
     avatar = models.ImageField(
         _("Image"), upload_to=upload_to, default='users/default.jpg')
-    first_name = models.CharField(max_length=150, blank=True)
+    first_name = models.CharField(max_length=150)
     start_date = models.DateTimeField(default=timezone.now)
     about = models.TextField(_(
-        'about'), max_length=500, blank=True)
+        'about'), max_length=500, blank=True, default="Nhớ gì như nhớ người yêu?")
     country = models.CharField(max_length=100, default='Viet Nam')
     occupation = models.CharField(
         max_length=100, default='Student at Danang University Of Science And Technology')
