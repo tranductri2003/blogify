@@ -41,30 +41,47 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none', // Loại bỏ gạch chân cho tiêu đề "Blog"
         fontFamily: 'cursive', // Thay đổi font chữ sang cursive
     },
-    registerButton: {
-        marginRight: theme.spacing(1),
-        backgroundColor: '#0F4C75', // Màu nền cho nút "Register"
-        color: '#ffffff', // Màu chữ cho nút "Register"
-        fontFamily: 'cursive', // Font chữ cursive cho nút "Login"
 
-    },
-    loginButton: {
-        marginRight: theme.spacing(1),
-        backgroundColor: '#3282B8', // Màu nền cho nút "Login"
-        color: '#ffffff', // Màu chữ cho nút "Login"
-        fontFamily: 'cursive', // Font chữ cursive cho nút "Login"
-    },
-    logoutButton: {
-        backgroundColor: '#BBE1FA', // Màu nền cho nút "Logout"
-        color: '#ffffff', // Màu chữ cho nút "Logout"
-        fontFamily: 'cursive', // Font chữ cursive cho nút "Logout"
-    },
     searchInput: {
         backgroundColor: '#f5f5f5', // Màu nền cho ô tìm kiếm
     },
     avatar: {
         backgroundColor: '#3f51b5', // Màu nền cho avatar
         fontSize: '1.2rem', // Kích thước cho avatar
+    },
+    authButtons: {
+        display: 'flex',
+        alignItems: 'center',
+        marginLeft: 'auto',
+    },
+    authButton: {
+        fontFamily: 'cursive',
+        fontWeight: 600,
+        marginLeft: theme.spacing(2),
+        textTransform: 'none',
+    },
+    registerButton: {
+        backgroundColor: '#3f51b5',
+        color: '#ffffff',
+        '&:hover': {
+            backgroundColor: '#0B3D5E',
+        },
+    },
+    loginButton: {
+        backgroundColor: '#3f51b5',
+        color: '#ffffff',
+        fontFamily: 'cursive',
+        '&:hover': {
+            backgroundColor: '#26698D',
+        },
+    },
+    logoutButton: {
+        backgroundColor: '#3f51b5',
+        color: '#ffffff',
+        fontFamily: 'cursive',
+        '&:hover': {
+            backgroundColor: '#8CC3F7',
+        },
     },
 }));
 
@@ -112,9 +129,9 @@ function Header() {
                 <Toolbar className={classes.toolbar} style={{ justifyContent: 'space-between' }}>
                     <div className={classes.toolbarTitle}>
                         {/* Thêm logo */}
-                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#9AC5F4', marginRight: '10px' }}>
+                        {/* <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#9AC5F4', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
-                        </Avatar>
+                        </Avatar> */}
                         <Typography
                             variant="h6"
                             color="textPrimary"
@@ -128,9 +145,9 @@ function Header() {
                     </div>
 
                     <div className={classes.toolbarTitle}>
-                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#99DBF5', marginRight: '10px' }}>
+                        {/* <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#99DBF5', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
-                        </Avatar>
+                        </Avatar> */}
                         <UncontrolledDropdown nav>
                             <DropdownToggle nav>
                                 <Typography
@@ -156,9 +173,9 @@ function Header() {
 
 
                     <div className={classes.toolbarTitle}>
-                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#99DBF5', marginRight: '10px' }}>
+                        {/* <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#99DBF5', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
-                        </Avatar>
+                        </Avatar> */}
                         <UncontrolledDropdown nav>
                             <DropdownToggle nav>
                                 <Typography
@@ -184,9 +201,9 @@ function Header() {
 
                     <div className={classes.toolbarTitle}>
                         {/* Thêm logo */}
-                        <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#A7ECEE', marginRight: '10px' }}>
+                        {/* <Avatar variant="rounded" className={classes.avatar} style={{ backgroundColor: '#A7ECEE', marginRight: '10px' }}>
                             <Icon className="fas fa-blog" />
-                        </Avatar>
+                        </Avatar> */}
                         <Typography
                             variant="h6"
                             color="textPrimary"
