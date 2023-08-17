@@ -11,6 +11,7 @@ npm install --save --legacy-peer-deps @material-ui/core
 npm install websocket
 npm install @material-ui/icons
 npm i --save material-ui-search-bar
+npm install antd
 
 Info:
 Strict Mode

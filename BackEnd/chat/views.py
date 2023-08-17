@@ -35,6 +35,12 @@ class CreateRoom(APIView):
     def post(self, request):
         user = request.user
         room_data = request.data
+
+        # Kiểm tra xem slug đã tồn tại hay chưa
+        if Room.objects.filter(slug=room_data['slug']).exists():
+            return Response({"detail": "Room with this slug already exists"}, status=status.HTTP_400_BAD_REQUEST)
+
+
         # Tạo một room mới với thông tin từ request data
         room = Room.objects.create(name=room_data['name'], slug=room_data['slug'], description=room_data['description'], private=room_data['private'])
         

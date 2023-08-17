@@ -1,11 +1,61 @@
 
 import React from "react";
-
+import axiosInstance from '../../axios';
 // reactstrap components
 import { Button, Card, Container, Row, Col } from "reactstrap";
+import { notification } from 'antd';
 
 
 class Profile extends React.Component {
+
+    handleCreateRoom = (user_name_1, user_name_2, first_name_1, first_name_2) => {
+        // Sắp xếp tên người dùng theo thứ tự từ điển
+        const sortedUserName = [user_name_1, user_name_2].sort();
+        const sortedFirstName = [first_name_1, first_name_2].sort();
+
+
+        // Tạo slug từ tên người dùng
+        const room_slug = `${sortedUserName[0]}-${sortedUserName[1]}`;
+        const room_name = `${sortedFirstName[0]} and ${sortedFirstName[1]}`;
+        const room_description = `Space for ${first_name_1} and ${first_name_2}`;
+        const room_participants = [user_name_1, user_name_2]
+        const participants_string = room_participants.join(' ');
+
+        const requestData = {
+            name: room_name,
+            slug: room_slug,
+            description: room_description,
+            private: true,
+            participants: participants_string,
+        };
+        console.log(requestData);
+        axiosInstance.post('/chat/create/', requestData)
+            .then(response => {
+                console.log('Room created:', response.data);
+                notification.success({
+                    message: 'Room Created',
+                    description: 'Room created successfully!',
+                    placement: 'topRight'
+                });
+            })
+            .catch(error => {
+                console.error('Error creating room:', error);
+                if (error.response && error.response.status === 400 && error.response.data.detail === "Room with this slug already exists") {
+                    notification.warning({
+                        message: 'Room Already Exists',
+                        description: 'A room with this slug already exists.',
+                        placement: 'topRight'
+                    });
+                } else {
+                    notification.error({
+                        message: 'Error',
+                        description: 'Error creating room. Please try again.',
+                        placement: 'topRight'
+                    });
+                }
+            });
+    };
+
 
     componentDidMount() {
         document.documentElement.scrollTop = 0;
@@ -78,6 +128,15 @@ class Profile extends React.Component {
                                                         </Button>
                                                     </>
                                                 )}
+                                                {!isAuthorProfile() && (
+                                                    <Button
+                                                        onClick={() => this.handleCreateRoom(localStorage.getItem('user_name'), userInfo.user_name, localStorage.getItem('first_name'), userInfo.first_name)}
+                                                        className="mr-4"
+                                                        color="info"
+                                                        size="sm"
+                                                    >
+                                                        SEND MESSAGE
+                                                    </Button>)}
                                             </div>
                                         </Col>
                                         <Col className="order-lg-1" lg="4">

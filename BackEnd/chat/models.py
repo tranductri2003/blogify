@@ -4,7 +4,7 @@ from django.conf import settings
 # Create your models here.
 class Room(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(default="For those who love writing")
     private = models.BooleanField(default=True)
     participants = models.ManyToManyField(NewUser, related_name='chat_rooms', blank=True)
