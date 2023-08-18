@@ -11,10 +11,12 @@ Debug/
 __pycache__/
 **/__pycache__/
 local_settings.py
-# db.sqlite3
-# db_auth.sqlite3
-# db_test.sqlite3
-# db_auth_test.sqlite3
+
+
+db.sqlite3
+db_auth.sqlite3
+db_test.sqlite3
+db_auth_test.sqlite3
 # /assets/admin/
 # /assets/rest_framework/
 # /docs/
@@ -119,6 +121,7 @@ celerybeat-schedule
 
 # Environments
 .venv
+.env
 env/
 venv/
 test_venv/
@@ -144,6 +147,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -206,3 +210,31 @@ dmypy.json
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 .DS_Store
+
+
+
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
