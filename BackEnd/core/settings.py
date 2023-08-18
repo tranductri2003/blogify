@@ -51,6 +51,11 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'chat',
+    
+    'django.contrib.sites', # new
+    'allauth', # new
+    'allauth.account', # new
+    'allauth.socialaccount', #new
 ]
 
 ASGI_APPLICATION = 'chat.asgi.application' 
@@ -253,6 +258,36 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+
+
+
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+ACCOUNT_EMAIL_REQUIRED = True #new
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory '
+
+LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #new
+EMAIL_HOST = 'smtp.gmail.com' #new
+EMAIL_PORT = 587 #new
+EMAIL_HOST_USER = 'tranductri2003@gmail.com'  #new
+EMAIL_HOST_PASSWORD = "vhgohlqfpdtkqiql" #new
+EMAIL_USE_TLS = True #new
+
+
+
+
+
 """
 AllowAny
 The AllowAny permission class will allow unrestricted access, regardless of if the request was authenticated or unauthenticated.

@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 const MEDIA_URL = process.env.REACT_APP_MEDIA_URL;;
 const Search = () => {
     const classes = useStyles();
-    const search = 'search';
+    const search = 'post/search';
     const [appState, setAppState] = useState({
         search: '',
         posts: [],

@@ -26,3 +26,4 @@ django-filter
 channels
 daphne
 django-allauth
+django-utils-six

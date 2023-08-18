@@ -51,17 +51,18 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Blog_API Application
-    path('api/', include('blog.urls', namespace='blog')),
+    path('api/post/', include('blog.urls', namespace='blog')),
 
 
     # User Management
     path('api/user/', include('users.urls', namespace='users')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    #path('', include('blog.urls', namespace='blog')),
 
     #Chat Management
     path('api/chat/', include('chat.urls', namespace='chat')),
 
+
+    #Swagger API documentation
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0),
          name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger',

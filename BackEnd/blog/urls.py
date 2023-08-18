@@ -5,30 +5,30 @@ from django.urls import path
 app_name = 'blog'
 
 urlpatterns = [
-    path('post/ranking/', PostRankingList.as_view(), name='rankinguser'),
-    path('post/create/', CreatePost.as_view(), name='createpost'),
-    path('post/edit/postdetail/<int:pk>/',
+    path('ranking/', PostRankingList.as_view(), name='rankinguser'),
+    path('create/', CreatePost.as_view(), name='createpost'),
+    path('edit/postdetail/<int:pk>/',
          UserPostDetail.as_view(), name='admindetailpost'),
-    path('post/edit/<int:pk>/', EditPost.as_view(), name='editpost'),
-    path('post/delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
+    path('edit/<int:pk>/', EditPost.as_view(), name='editpost'),
+    path('delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
 
-    # path('post/<str:slug>/updateview/<int:num>/',
+    # path('<str:slug>/updateview/<int:num>/',
     #      UpdateView.as_view(), name='updatepostview'),
-    # path('post/<str:slug>/updatelike/<int:num>/',
+    # path('<str:slug>/updatelike/<int:num>/',
     #      UpdateLike.as_view(), name='updatepostlike'),
-    # path('post/<str:slug>/updatecomment/<int:num>/',
+    # path('<str:slug>/updatecomment/<int:num>/',
     #      UpdateComment.as_view(), name='updatepostcomment'),
-    path('post/like/create/<str:slug>', LikeAPIView.as_view(), name='likepost'),
-    path('post/comment/create/<str:slug>',
+    path('like/create/<str:slug>', LikeAPIView.as_view(), name='likepost'),
+    path('comment/create/<str:slug>',
          CommentAPIView.as_view(), name='commentpost'),
-    path('post/view/create/<str:slug>', ViewAPIView.as_view(), name='viewpost'),
+    path('view/create/<str:slug>', ViewAPIView.as_view(), name='viewpost'),
+    path('search/', PostListDetailfilter.as_view(), name='searchpost'),
 
 
     # path('', PostList.as_view(), name='listpost'),
-    path('post/', PostList.as_view(), name='listpost'),
-    path('post/<str:slug>/', PostDetail.as_view(), name='detailpost'),
+    path('', PostList.as_view(), name='listpost'),
+    path('<str:slug>/', PostDetail.as_view(), name='detailpost'),
 
 
-    path('search/', PostListDetailfilter.as_view(), name='searchpost'),
 
 ]
