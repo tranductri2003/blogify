@@ -14,10 +14,10 @@ local_settings.py
 # db_auth.sqlite3
 # db_test.sqlite3
 # db_auth_test.sqlite3
-/assets/admin/
-/assets/rest_framework/
+# /assets/admin/
+# /assets/rest_framework/
 /docs/
-media
+# media
 .idea/
 test_logs/
 
@@ -249,7 +249,7 @@ dmypy.json
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 
