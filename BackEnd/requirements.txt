@@ -25,4 +25,4 @@ pytz
 django-filter
 channels
 daphne
-channels
+django-allauth
