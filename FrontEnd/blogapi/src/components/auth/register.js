@@ -69,7 +69,7 @@ export default function SignUp() {
                 history.push('/login');
                 notification.success({
                     message: 'Register successfully',
-                    description: 'Please login to your account again',
+                    description: 'Please check your mail to activate your account!',
                     placement: 'topRight'
                 });
             })

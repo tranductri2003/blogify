@@ -3,13 +3,17 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import CustomUserSerializer, CustomUserEditSerializer
-# from .serializers import UpdateViewSerializer, UpdateCommentSerializer, UpdateLikeSerializer, UpdateNumPostSerializer
 from rest_framework import viewsets, filters, generics, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
 from users.models import NewUser
-
-
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.core.mail import EmailMessage
+from .serializers import CustomUserSerializer, CustomUserEditSerializer
+from rest_framework.decorators import api_view, permission_classes
 class CustomUserCreate(APIView):
     permission_classes = [permissions.AllowAny]
 
@@ -18,13 +22,50 @@ class CustomUserCreate(APIView):
         if serializer.is_valid():
             user = serializer.save()
             if user:
-                json = serializer.data
-                return Response(json, status=status.HTTP_201_CREATED)
+                current_site = get_current_site(request)
+                mail_subject = 'Activate your account.'
+                # message = render_to_string('acc_active_email.html', {
+                #     'user': user,
+                #     'domain': current_site.domain,
+                #     'uid':force_str(urlsafe_base64_encode(force_bytes(user.pk))),
+                #     'token':account_activation_token.make_token(user),
+                # })
+
+                message = f"Hi {user.user_name},\n\n" \
+                        f"Please click on the link to confirm your registration:\n" \
+                        f"{current_site.domain}activate/{urlsafe_base64_encode(force_bytes(user.pk))}/{account_activation_token.make_token(user)}/\n\n" \
+                        f"Best regards,\n" \
+                        f"tranductri2003"
+
+
+                to_email = user.email
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.send()
+
+                return Response({'success': 'please check your mail!'}, status=status.HTTP_201_CREATED)
         else:
             return Response({
     'error': 'An account with this email or username already exists.'
 }, status=status.HTTP_400_BAD_REQUEST)
-
+            
+            
+@api_view(['GET', 'POST'])
+@permission_classes([permissions.AllowAny])
+def activate(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = NewUser.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, NewUser.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        # return redirect('home')
+        return Response({'message':'Thank you for your email confirmation. Now you can login your account.'}, status=200)
+    else:
+        return Response({'error':'Activation link is invalid!'}, status=400)
 
 class UserList(generics.ListAPIView):
     permission_classes = [permissions.IsAdminUser]
@@ -70,58 +111,6 @@ class BlacklistTokenUpdateView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
-
-# class UpdateView(APIView):
-#     def put(self, request, user_name, num, format=None):
-#         try:
-#             user = NewUser.objects.get(user_name=user_name)
-#         except NewUser.DoesNotExist:
-#             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-
-#         user.num_view += num
-#         user.save()
-#         # serializer = UpdateViewSerializer(user)
-#         return Response({"success": "Number of views updated successfully"}, status=status.HTTP_200_OK)
-
-
-# class UpdateLike(APIView):
-#     def put(self, request, user_name, num, format=None):
-#         try:
-#             user = NewUser.objects.get(user_name=user_name)
-#         except NewUser.DoesNotExist:
-#             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-
-#         user.num_like += num
-#         user.save()
-#         # serializer = UpdateLikeSerializer(user)
-#         return Response({"success": "Number of likes updated successfully"}, status=status.HTTP_200_OK)
-
-
-# class UpdateComment(APIView):
-#     def put(self, request, user_name, num, format=None):
-#         try:
-#             user = NewUser.objects.get(user_name=user_name)
-#         except NewUser.DoesNotExist:
-#             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-
-#         user.num_comment += num
-#         user.save()
-#         # serializer = UpdateCommentSerializer(user)
-#         return Response({"success": "Number of comments updated successfully"}, status=status.HTTP_200_OK)
-
-
-# class UpdateNumPost(APIView):
-#     def put(self, request, user_name, num, format=None):
-#         try:
-#             user = NewUser.objects.get(user_name=user_name)
-#         except NewUser.DoesNotExist:
-#             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-#         print(num)
-#         user.num_post += num
-#         user.save()
-#         # serializer = UpdateNumPostSerializer(user)
-#         return Response({"success": "Number of posts updated successfully"}, status=status.HTTP_200_OK)
 
 class EditUser(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
