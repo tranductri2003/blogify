@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/django,python
 # Edit at https://www.gitignore.io/?templates=django,python
 .vscode/
@@ -11,16 +10,14 @@ Debug/
 __pycache__/
 **/__pycache__/
 local_settings.py
-
-
-db.sqlite3
-db_auth.sqlite3
-db_test.sqlite3
-db_auth_test.sqlite3
-# /assets/admin/
-# /assets/rest_framework/
-# /docs/
-# media
+# db.sqlite3
+# db_auth.sqlite3
+# db_test.sqlite3
+# db_auth_test.sqlite3
+/assets/admin/
+/assets/rest_framework/
+/docs/
+media
 .idea/
 test_logs/
 
@@ -120,8 +117,8 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.venv
 .env
+.venv
 env/
 venv/
 test_venv/
@@ -129,7 +126,7 @@ linux_venv/
 ENV/
 env.bak/
 venv.bak/
-.pem
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -147,7 +144,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -210,6 +206,41 @@ dmypy.json
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 .DS_Store
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
