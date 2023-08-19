@@ -21,7 +21,7 @@ class UserAdminConfig(UserAdmin):
         (None, {'fields': ('email', 'user_name',
          'first_name', 'avatar', 'start_date')}),
         ('Permissions', {'fields': ('is_staff', 'is_active', 'groups')}),
-        ('Personal', {'fields': ('about',)}),
+        ('Personal', {'fields': ('about', 'age', 'occupation', 'country')}),
         ('Statistics', {'fields': ('num_post',
          'num_view', 'num_like', 'num_comment',)}),
     )

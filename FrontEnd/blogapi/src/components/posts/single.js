@@ -368,7 +368,7 @@ export default function Post() {
                                 {/* Hiển thị Avatar và thông tin tác giả */}
                                 <Grid container alignItems="center" spacing={2} className={classes.authorContainer}>
                                     <Grid item>
-                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                        <a href={`/profile/${data.post.author.user_name}`}>
                                             <img
                                                 alt="..."
                                                 className="profile-avatar rounded-circle"

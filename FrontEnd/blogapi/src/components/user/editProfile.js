@@ -38,6 +38,7 @@ export default function Create() {
     });
     const user_name = localStorage.getItem('user_name');
     const [formData, updateFormData] = useState(initialFormData);
+    const [postimage, setPostImage] = useState(null);
 
     useEffect(() => {
         axiosInstance.get('user/' + user_name + '/').then((res) => {
@@ -54,35 +55,60 @@ export default function Create() {
     }, [updateFormData]);
 
     const handleChange = (e) => {
-        updateFormData({
-            ...formData,
-            // Trimming any whitespace
-            [e.target.name]: e.target.value.trim(),
-        });
+        if ([e.target.name] == 'image') {
+            setPostImage({
+                image: e.target.files,
+            });
+        } else {
+            updateFormData({
+                ...formData,
+                // Trimming any whitespace
+                [e.target.name]: e.target.value.trim(),
+            });
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: localStorage.getItem('access_token')
+                    ? 'JWT ' + localStorage.getItem('access_token')
+                    : null,
+            }
+        };
 
-        axiosInstance.put(`user/edit/` + user_name + '/', {
-            first_name: formData.first_name,
-            about: formData.about,
-            country: formData.country,
-            occupation: formData.occupation,
-            age: formData.age,
-        })
-            .then(function () {
+        const URL = process.env.REACT_APP_API_URL + `user/edit/` + user_name + '/';
+        let formDataToSend = new FormData(); // Đổi tên biến ở đây
+        formDataToSend.append('first_name', formData.first_name);
+        formDataToSend.append('about', formData.about);
+        formDataToSend.append('country', formData.country);
+        formDataToSend.append('occupation', formData.occupation);
+        formDataToSend.append('age', formData.age);
+        if (postimage && postimage.image[0]) {
+            formDataToSend.append('avatar', postimage.image[0]);
+        }
+        // In ra nội dung của formData để kiểm tra
+        for (var pair of formDataToSend.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        } axiosInstance
+            .put(URL, formDataToSend, config)
+            .then((res) => {
+                console.log(res.data);
                 notification.success({
-                    message: 'Edit profile successfully',
-                    description: 'Edit profile successfully',
+                    message: 'Update profile successfully',
+                    description: 'Update profile successfully',
                     placement: 'topRight'
                 });
+
+                // Tiến hành chuyển hướng sau khi hiển thị thông báo thành công
                 history.push({
                     pathname: `/profile/${localStorage.getItem('user_name')}/`,
                 });
-                // window.location.reload();
-            }).catch((error) => {
+                //window.location.reload(); // Không cần reload trang ở đây
+            })
+            .catch((error) => {
                 if (error.response) {
                     // Xử lý lỗi từ phản hồi của server (status code không thành công)
                     console.error('An error occurred while fetching data:', error.response.data);
@@ -145,6 +171,91 @@ export default function Create() {
             });
     };
 
+
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log(formData);
+
+    //     axiosInstance.put(`user/edit/` + user_name + '/', {
+    //         first_name: formData.first_name,
+    //         about: formData.about,
+    //         country: formData.country,
+    //         occupation: formData.occupation,
+    //         age: formData.age,
+    //     })
+    //         .then(function () {
+    //             notification.success({
+    //                 message: 'Edit profile successfully',
+    //                 description: 'Edit profile successfully',
+    //                 placement: 'topRight'
+    //             });
+    //             history.push({
+    //                 pathname: `/profile/${localStorage.getItem('user_name')}/`,
+    //             });
+    //             // window.location.reload();
+    //         }).catch((error) => {
+    //             if (error.response) {
+    //                 // Xử lý lỗi từ phản hồi của server (status code không thành công)
+    //                 console.error('An error occurred while fetching data:', error.response.data);
+    //                 console.error('Status code:', error.response.status);
+
+    //                 if (error.response.status === 400) {
+    //                     notification.error({
+    //                         message: 'Bad Request',
+    //                         description: 'The request sent to the server is invalid.',
+    //                         placement: 'topRight'
+    //                     });
+    //                 } else if (error.response.status === 401) {
+    //                     notification.warning({
+    //                         message: 'Unauthorized',
+    //                         description: 'You are not authorized to perform this action.',
+    //                         placement: 'topRight'
+    //                     });
+    //                 } else if (error.response.status === 403) {
+    //                     notification.warning({
+    //                         message: 'Forbidden',
+    //                         description: 'You do not have permission to access this resource.',
+    //                         placement: 'topRight'
+    //                     });
+    //                 } else if (error.response.status === 404) {
+    //                     notification.error({
+    //                         message: 'Not Found',
+    //                         description: 'The requested resource was not found on the server.',
+    //                         placement: 'topRight'
+    //                     });
+    //                 } else if (error.response.status === 405) {
+    //                     notification.error({
+    //                         message: 'Method Not Allowed',
+    //                         description: 'The requested HTTP method is not allowed for this resource.',
+    //                         placement: 'topRight'
+    //                     });
+    //                 } else {
+    //                     notification.error({
+    //                         message: 'Error',
+    //                         description: 'An error occurred while fetching data from the server.',
+    //                         placement: 'topRight'
+    //                     });
+    //                 }
+    //             } else if (error.request) {
+    //                 // Xử lý lỗi không có phản hồi từ server
+    //                 console.error('No response received from the server:', error.request);
+    //                 notification.error({
+    //                     message: 'No Response',
+    //                     description: 'No response received from the server.',
+    //                     placement: 'topRight'
+    //                 });
+    //             } else {
+    //                 // Xử lý lỗi khác
+    //                 console.error('An error occurred:', error.message);
+    //                 notification.error({
+    //                     message: 'Error',
+    //                     description: 'An error occurred while processing the request.',
+    //                     placement: 'topRight'
+    //                 });
+    //             }
+    //         });
+    // };
     const classes = useStyles();
     return (
         <Container component="main" maxWidth="sm">
@@ -168,6 +279,15 @@ export default function Create() {
                                 onChange={handleChange}
                             />
                         </Grid>
+                        Avatar
+                        <input
+                            accept="image/*"
+                            className={classes.input}
+                            id="post-image"
+                            onChange={handleChange}
+                            name="image"
+                            type="file"
+                        />
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"

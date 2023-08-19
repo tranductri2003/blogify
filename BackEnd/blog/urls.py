@@ -12,12 +12,6 @@ urlpatterns = [
     path('edit/<int:pk>/', EditPost.as_view(), name='editpost'),
     path('delete/<int:pk>/', DeletePost.as_view(), name='deletepost'),
 
-    # path('<str:slug>/updateview/<int:num>/',
-    #      UpdateView.as_view(), name='updatepostview'),
-    # path('<str:slug>/updatelike/<int:num>/',
-    #      UpdateLike.as_view(), name='updatepostlike'),
-    # path('<str:slug>/updatecomment/<int:num>/',
-    #      UpdateComment.as_view(), name='updatepostcomment'),
     path('like/create/<str:slug>', LikeAPIView.as_view(), name='likepost'),
     path('comment/create/<str:slug>',
          CommentAPIView.as_view(), name='commentpost'),
