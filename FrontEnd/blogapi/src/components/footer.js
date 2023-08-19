@@ -14,7 +14,7 @@ const footers = [
         ],
     },
     {
-        title: "Contact Me",
+        title: "About Me",
         description: [
             { label: "Facebook", url: "https://www.facebook.com/tranductri2003/" },
             { label: "LinkedIn", url: "https://www.linkedin.com/in/duc-tri-tran-464343218/" },

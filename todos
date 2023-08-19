@@ -87,6 +87,15 @@
 ☐ -BE: Search User API
 ☐ -FE: Search User UI
 
-☐ Avatar User
+✔ -FE: Update UI of single page @done(23-08-19 17:14)
+☐ -BE: User can change their avatar
+☐ -BE: User can change their category
+
+☐ -FE: Update avatar
+☐ -FE: Update category
+
+☐ -BE: Get new password
+☐ -FE: Get new password
+
 
 

@@ -53,6 +53,11 @@ const useStyles = makeStyles((theme) => ({
     authorAvatar: {
         marginRight: theme.spacing(2),
     },
+    authorDetails: {
+        fontFamily: 'cursive',
+        fontWeight: 'bold', // Chữ đậm
+        marginTop: theme.spacing(1), // Cách dưới phần thông tin tác giả
+    },
     viewLikeComment: {
         display: 'flex',
         alignItems: 'center',
@@ -84,14 +89,22 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(2),
     },
     commentAvatar: {
-        marginRight: theme.spacing(2),
+        width: theme.spacing(6),
+        height: theme.spacing(6),
     },
     commentContent: {
         textAlign: 'left',
+        marginTop: theme.spacing(1),
+        fontFamily: 'cursive',
+    },
+    commentAuthor: {
+        fontWeight: 'bold',
+        fontFamily: 'cursive',
     },
     commentCreatedAt: {
-        marginTop: theme.spacing(1),
         color: theme.palette.text.secondary,
+        marginTop: theme.spacing(1),
+        fontFamily: 'cursive',
     },
     postEdited: {
         textAlign: 'right', // Align the content to the right
@@ -117,7 +130,18 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'cursive',
         color: theme.palette.secondary.dark,
     },
-
+    commentTitle: {
+        marginBottom: theme.spacing(2),
+        fontWeight: 'bold',
+        fontFamily: 'cursive', // Cursive font for the title
+        color: theme.palette.primary.dark, // Dark primary color for the title
+    },
+    aboutContainer: {
+        marginTop: theme.spacing(2),
+    },
+    authorContainer: {
+        marginTop: theme.spacing(8), // Cập nhật giá trị margin để điều chỉnh khoảng cách
+    },
 }));
 
 const MEDIA_URL = process.env.REACT_APP_MEDIA_URL;;
@@ -341,30 +365,38 @@ export default function Post() {
                     <div className="card-profile-image">
                         {data.post.author && (
                             <Grid container alignItems="center" spacing={2}>
-                                {/* Hiển thị Avatar */}
-                                <Grid item>
-                                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                        <img
-                                            alt="..."
-                                            className="profile-avatar rounded-circle"
-                                            src={MEDIA_URL + data.post.author.avatar}
-                                        />
-                                    </a>
+                                {/* Hiển thị Avatar và thông tin tác giả */}
+                                <Grid container alignItems="center" spacing={2} className={classes.authorContainer}>
+                                    <Grid item>
+                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                            <img
+                                                alt="..."
+                                                className="profile-avatar rounded-circle"
+                                                src={MEDIA_URL + data.post.author.avatar}
+                                            />
+                                        </a>
+                                    </Grid>
+                                    <Grid item>
+                                        <div>
+                                            <Typography variant="h6" className={classes.postContent}>
+                                                {data.post.author.user_name} ({data.post.author.first_name}), {data.post.author.age}
+                                            </Typography>
+                                            <Typography variant="h6" className={classes.postContent}>
+                                                {data.post.author.country}
+                                            </Typography>
+                                        </div>
+                                    </Grid>
                                 </Grid>
-                                {/* Hiển thị About */}
-                                <Grid item>
-                                    <div>
-                                        <Typography variant="h6" className={classes.postContent}>
-                                            {data.post.author.user_name}
-                                        </Typography>
-                                    </div>
-                                    <div>
+                                <Grid item xs={12} sm={8}>
+                                    {/* Hiển thị About */}
+                                    <div className={classes.aboutContainer}>
                                         <Typography variant="h6" className={classes.postExcerpt}>
                                             {data.post.author.about}
                                         </Typography>
                                     </div>
                                 </Grid>
                             </Grid>
+
                         )}
                         {data.post.author && (
                             <div className={classes.profileStatsContainer}>
@@ -405,8 +437,8 @@ export default function Post() {
                         )}
                     </div>
                     <div className={classes.commentSection}>
-                        <Typography variant="h5" gutterBottom>
-                            Comments
+                        <Typography variant="h5" gutterBottom className={classes.commentTitle}>
+                            <span role="img" aria-label="comment-icon">💬</span> Comments
                         </Typography>
                         {/* Form nhập comment */}
                         <Grid container spacing={2} alignItems="center" className={classes.commentForm}>
@@ -418,7 +450,7 @@ export default function Post() {
                                             src={MEDIA_URL + localStorage.getItem('avatar')}
                                             className={classes.commentAvatar}
                                         />
-                                        <Typography variant="body1">
+                                        <Typography variant="subtitle1" className={classes.commentAuthor}>
                                             {localStorage.getItem('user_name')}
                                         </Typography>
                                     </>
@@ -463,22 +495,25 @@ export default function Post() {
                                                         className={classes.commentAvatar}
                                                     />
                                                 </Grid>
-                                                <Grid item xs zeroMinWidth>
-                                                    <Typography variant="h6" className={classes.commentContent}>
-                                                        {comment.author.user_name}
-                                                    </Typography>
-                                                    <Typography variant="body1" className={classes.commentContent}>
-                                                        {comment.content}
-                                                    </Typography>
-                                                    <Typography variant="body2" className={classes.commentCreatedAt}>
-                                                        Created at {comment.created_at}
-                                                    </Typography>
+                                                <Grid item xs>
+                                                    <div>
+                                                        <Typography variant="subtitle1" className={classes.commentAuthor}>
+                                                            {comment.author.user_name}
+                                                        </Typography>
+                                                        <Typography variant="body1" className={classes.commentContent}>
+                                                            {comment.content}
+                                                        </Typography>
+                                                        <Typography variant="body2" className={classes.commentCreatedAt}>
+                                                            Created at {comment.created_at}
+                                                        </Typography>
+                                                    </div>
                                                 </Grid>
                                             </>
                                         )}
                                     </Grid>
                                 </Paper>
                             ))}
+
                     </div>
                 </Grid>
             </Grid>
