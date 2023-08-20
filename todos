@@ -89,9 +89,10 @@
 
 ✔ -FE: Update UI of single page @done(23-08-19 17:14)
 ✔ -BE: User can change their avatar @done(23-08-19 23:57)
-✔ -BE: User can change their category @done(23-08-19 23:57)
+✔ -FE: Update avatar @done(23-08-19 23:58)
 
-☐ -FE: Update avatar
+
+☐ -BE: User can change their category
 ☐ -FE: Update category
 
 ☐ -BE: Get new password

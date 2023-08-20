@@ -35,6 +35,7 @@ export default function Create() {
         country: '',
         occupation: '',
         age: '',
+        new_password: '', // Thêm trường mới
     });
     const user_name = localStorage.getItem('user_name');
     const [formData, updateFormData] = useState(initialFormData);
@@ -86,6 +87,8 @@ export default function Create() {
         formDataToSend.append('country', formData.country);
         formDataToSend.append('occupation', formData.occupation);
         formDataToSend.append('age', formData.age);
+        formDataToSend.append('password', formData.new_password); // Thêm dòng này
+
         if (postimage && postimage.image[0]) {
             formDataToSend.append('avatar', postimage.image[0]);
         }
@@ -344,6 +347,20 @@ export default function Create() {
                                 onChange={handleChange}
                                 multiline
                                 rows={8}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="new-password"
+                                label="New Password"
+                                name="new_password"
+                                type="password"
+                                autoComplete="new-password"
+                                value={formData.new_password}
+                                onChange={handleChange}
                             />
                         </Grid>
                     </Grid>

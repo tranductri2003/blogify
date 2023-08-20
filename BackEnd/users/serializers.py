@@ -27,7 +27,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 class CustomUserEditSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewUser
-        fields = ['avatar', 'first_name', 'about', 'country', 'occupation', 'age']
+        fields = ['avatar', 'first_name', 'about', 'country', 'occupation', 'age', 'password']
 
 class CustomUserChatSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(required=True)

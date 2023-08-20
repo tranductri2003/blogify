@@ -117,3 +117,17 @@ class EditUser(generics.UpdateAPIView):
     serializer_class = CustomUserEditSerializer
     queryset = NewUser.objects.all()
     lookup_field = "user_name"
+
+    def update(self, request, *arg, **kwargs):
+        user = self.get_object()
+        serializer = self.get_serializer(user, data = request.data)
+        if serializer.is_valid():
+            new_password = request.data.get('password')
+            if new_password:
+                user.set_password(new_password)
+                user.save()
+            # serializer.save() nếu sử dụng db sẽ lưu mật khẩu đã mã hóa
+            return Response({'message': 'Profile updated successfully.', 'password': f'{new_password}'}, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
