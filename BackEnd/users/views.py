@@ -196,10 +196,11 @@ class EditUser(generics.UpdateAPIView):
         serializer = self.get_serializer(user, data = request.data)
         if serializer.is_valid():
             new_password = request.data.get('password')
+            
+            serializer.save()
             if new_password:
                 user.set_password(new_password)
                 user.save()
-            # serializer.save() nếu sử dụng db sẽ lưu mật khẩu đã mã hóa
             return Response({'message': 'Profile updated successfully.', 'password': f'{new_password}'}, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
