@@ -19,6 +19,9 @@ import Edit from './components/user/editPost';
 import Delete from './components/user/deletePost';
 import EditProfile from './components/user/editProfile';
 import Ranking from './RankingSite';
+import ForgotPassword from './components/auth/forgotPassword';
+import ResetPassword from './components/auth/resetPassword';
+
 const routing = (
   <Router>
     <React.StrictMode>
@@ -36,6 +39,8 @@ const routing = (
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
+        <Route path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/resetpassword/:uid/:token" component={ResetPassword} />
         <Route path="/post/:slug" component={Single} />
         <Route path="/search" component={Search} />
       </Switch>
