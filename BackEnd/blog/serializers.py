@@ -39,7 +39,6 @@ class LikeSerializer(serializers.ModelSerializer):
 
 
 class CreatePostSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Post
         fields = ['category', 'id', 'title', 'image', 'slug',

@@ -11,6 +11,12 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { notification } from 'antd';
+import {
+    FormControl,
+    FormControlLabel,
+    Radio,
+    RadioGroup,
+} from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -59,11 +65,16 @@ export default function Create() {
         slug: '',
         excerpt: '',
         content: '',
+        category: '',
     });
 
     const [postData, updateFormData] = useState(initialFormData);
     const [postimage, setPostImage] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState('nang-bach-khoa');
 
+    const handleCategoryChange = (event) => {
+        setSelectedCategory(event.target.value);
+    };
     const handleChange = (e) => {
         if ([e.target.name] == 'image') {
             setPostImage({
@@ -102,9 +113,12 @@ export default function Create() {
         formData.append('author', `${localStorage.getItem('user_id')}`);
         formData.append('excerpt', postData.excerpt);
         formData.append('content', postData.content);
+        formData.append('category', selectedCategory); // Thêm category vào formData
         if (postimage && postimage.image[0]) {
             formData.append('image', postimage.image[0]);
         }
+        console.log(selectedCategory);
+        console.log(formData);
         axiosInstance
             .post(URL, formData, config)
             .then((res) => {
@@ -258,6 +272,25 @@ export default function Create() {
                             name="image"
                             type="file"
                         />
+                        <FormControl component="fieldset">
+                            <RadioGroup
+                                aria-label="category"
+                                name="category"
+                                value={selectedCategory}
+                                onChange={handleCategoryChange}
+                            >
+                                <FormControlLabel
+                                    value="nang-bach-khoa"
+                                    control={<Radio />}
+                                    label="Nắng bách khoa"
+                                />
+                                <FormControlLabel
+                                    value="buoc-qua-mau-xanh-hi-vong"
+                                    control={<Radio />}
+                                    label="Bước qua màu xanh hy vọng"
+                                />
+                            </RadioGroup>
+                        </FormControl>
                     </Grid>
                     <Button
                         type="submit"

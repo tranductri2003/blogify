@@ -141,7 +141,13 @@ class CreatePost(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, format=None):
-        serializer = CreatePostSerializer(data=request.data)
+        category_slug = request.data.get('category',None)
+        category = Category.objects.get(slug=category_slug)
+        data_copy = request.data.copy()  # Tạo bản sao có thể thay đổi
+        data_copy['category'] = category.id  # Gán giá trị mới
+        # print("\033[91m{}\033[00m".format(data_copy))
+
+        serializer = CreatePostSerializer(data=data_copy)  # Sử dụng bản sao đã thay đổi
         if serializer.is_valid():
             serializer.save()
             # Lấy thông tin tác giả từ request.user
