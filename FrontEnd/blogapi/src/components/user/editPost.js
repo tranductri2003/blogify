@@ -10,6 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { notification } from 'antd';
+import {
+    FormControl,
+    FormControlLabel,
+    Radio,
+    RadioGroup,
+} from '@material-ui/core';
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -36,10 +43,15 @@ export default function Create() {
         slug: '',
         excerpt: '',
         content: '',
+        category: '',
     });
 
     const [formData, updateFormData] = useState(initialFormData);
+    const [selectedCategory, setSelectedCategory] = useState('nang-bach-khoa');
 
+    const handleCategoryChange = (event) => {
+        setSelectedCategory(event.target.value);
+    };
     useEffect(() => {
         axiosInstance.get('post/edit/postdetail/' + id + '/').then((res) => {
             updateFormData({
@@ -48,6 +60,7 @@ export default function Create() {
                 ['excerpt']: res.data.excerpt,
                 ['slug']: res.data.slug,
                 ['content']: res.data.content,
+                ['category']: res.data.category,
             });
             console.log(res.data);
         });
@@ -68,9 +81,10 @@ export default function Create() {
         axiosInstance.put(`post/edit/` + id + '/', {
             title: formData.title,
             slug: formData.slug,
-            author: 1,
+            author: `${localStorage.getItem('user_id')}`,
             excerpt: formData.excerpt,
             content: formData.content,
+            category: selectedCategory,
         })
             .then(function () {
                 notification.success({
@@ -212,6 +226,25 @@ export default function Create() {
                                 rows={8}
                             />
                         </Grid>
+                        <FormControl component="fieldset">
+                            <RadioGroup
+                                aria-label="category"
+                                name="category"
+                                value={selectedCategory}
+                                onChange={handleCategoryChange}
+                            >
+                                <FormControlLabel
+                                    value="nang-bach-khoa"
+                                    control={<Radio />}
+                                    label="Nắng bách khoa"
+                                />
+                                <FormControlLabel
+                                    value="buoc-qua-mau-xanh-hi-vong"
+                                    control={<Radio />}
+                                    label="Bước qua màu xanh hy vọng"
+                                />
+                            </RadioGroup>
+                        </FormControl>
                     </Grid>
                     <Button
                         type="submit"

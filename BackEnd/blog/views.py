@@ -141,20 +141,16 @@ class CreatePost(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, format=None):
-        category_slug = request.data.get('category',None)
+        category_slug = request.data.get('category')
         category = Category.objects.get(slug=category_slug)
-        data_copy = request.data.copy()  # Tạo bản sao có thể thay đổi
-        data_copy['category'] = category.id  # Gán giá trị mới
-        # print("\033[91m{}\033[00m".format(data_copy))
+        data_copy = request.data.copy()
+        data_copy['category'] = category.id
 
-        serializer = CreatePostSerializer(data=data_copy)  # Sử dụng bản sao đã thay đổi
+        serializer = CreatePostSerializer(data=data_copy)
         if serializer.is_valid():
             serializer.save()
-            # Lấy thông tin tác giả từ request.user
-            author = request.user
-
-            author.num_post += 1
-            author.save()
+            request.user.num_post += 1
+            request.user.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -170,6 +166,15 @@ class EditPost(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+
+    def update(self, request, *args, **kwargs):
+        category_slug = request.data.get('category', None)
+        category = Category.objects.get(slug=category_slug)
+
+        request.data['category'] = category.id
+
+        return super().update(request, *args, **kwargs)
+
 
 
 class DeletePost(generics.RetrieveDestroyAPIView):
