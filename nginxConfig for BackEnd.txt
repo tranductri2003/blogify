@@ -10,7 +10,7 @@ pip install -r requirements.txt
 sudo apt-get install -y nginx
 pip install gunicorn
 sudo apt-get install supervisor
-cd etc/supervisor/conf.d/
+cd /etc/supervisor/conf.d/
 
 sudo touch gunicorn.conf
 sudo nano gunicorn.conf
