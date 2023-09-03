@@ -31,6 +31,7 @@ programs:gunicorn
 
 
 sudo mkdir /var/log/gunicorn
+sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl status
 cd ..
