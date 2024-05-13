@@ -24,7 +24,7 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = "6ws9t__me%uqwjxnxds8+x-mr-w7d**udbq#z4(=35aoo0!axt"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,6 +80,8 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'your_project.middleware.NoRedirectMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # Add this line
+
 ]
 
 ROOT_URLCONF = "core.urls"
