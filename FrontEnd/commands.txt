@@ -1,17 +1,17 @@
 npx create-react-app blogapi .
 cd blogapi
 npm start
-npm install react-router-dom
-npm install @material-ui/core
-npm install query-string --save
-npm install axios
-npm install date-fns
-npm install @mui/material @emotion/react @emotion/styled
-npm install --save --legacy-peer-deps @material-ui/core
-npm install websocket
-npm install @material-ui/icons
-npm i --save material-ui-search-bar
-npm install antd
+npm install react-router-dom --force
+npm install @material-ui/core --force
+npm install query-string --save --force
+npm install axios --force
+npm install date-fns --force
+npm install @mui/material @emotion/react @emotion/styled --force
+npm install --save --legacy-peer-deps @material-ui/core --force
+npm install websocket --force
+npm install @material-ui/icons --force
+npm i --save material-ui-search-bar --force
+npm install antd --force
 
 Info:
 Strict Mode

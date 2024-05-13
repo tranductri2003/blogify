@@ -9,8 +9,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
         refresh = self.get_token(self.user)
-        data["refresh"] = str(refresh)
         data["access"] = str(refresh.access_token)
+        data["refresh"] = str(refresh)
 
         # Lấy thông tin của người dùng từ request
         user = self.user

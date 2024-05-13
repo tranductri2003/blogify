@@ -83,10 +83,6 @@
 ✔ -BE: Activate account by email @done(23-08-18 16:13)
 
 
-
-☐ -BE: Search User API
-☐ -FE: Search User UI
-
 ✔ -FE: Update UI of single page @done(23-08-19 17:14)
 ✔ -BE: User can change their avatar @done(23-08-19 23:57)
 ✔ -FE: Update avatar @done(23-08-19 23:58)
@@ -98,7 +94,3 @@
 ✔ -BE: Get new password @done(23-08-21 15:18)
 ✔ -FE: Get new password @done(23-08-21 15:18)
 
-
-☐ DEPLOY FE
-☐ DEPLOY BE
-☐ WRITING DOCUMENTATION
