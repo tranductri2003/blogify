@@ -55,9 +55,7 @@ INSTALLED_APPS = [
     'chat',
     
     'django.contrib.sites', # new
-    'allauth', # new
-    'allauth.account', # new
-    'allauth.socialaccount', #new
+
 ]
 
 ASGI_APPLICATION = 'chat.asgi.application' 
@@ -271,7 +269,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
 ACCOUNT_EMAIL_REQUIRED = True #new
 
