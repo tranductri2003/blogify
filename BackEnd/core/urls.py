@@ -61,6 +61,8 @@ urlpatterns = [
     #Chat Management
     path('api/chat/', include('chat.urls', namespace='chat')),
 
+    #Notifications Management
+    path('api/notifications/', include('notifications.urls', namespace='notifications')),
 
     #Swagger API documentation
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0),

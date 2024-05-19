@@ -16,4 +16,4 @@ class Notification(models.Model):
     is_read = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.sender.username} - {self.action} - {self.post.title}"
+        return f"{self.sender.user_name} - {self.action} - {self.post.title}"
