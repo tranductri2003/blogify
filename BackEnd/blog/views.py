@@ -62,18 +62,27 @@ class LikeAPIView(APIView):
     def post(self, request, slug):
         try:
             post = Post.objects.get(slug=slug)
-            # Kiểm tra xem người dùng đã Like bài viết chưa
             user = request.user
-            if Like.objects.filter(post=post, author=user).exists():
-                return Response({"detail": "Bạn đã Like bài viết này rồi."}, status=status.HTTP_400_BAD_REQUEST)
+            like = Like.objects.filter(post=post, author=user).first()
 
-            like = Like.objects.create(post=post, author=user)
-            serializer = LikeSerializer(like)
-            post.author.num_like += 1
-            post.num_like += 1
-            post.save()
-            post.author.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            if like:
+                # Nếu người dùng đã Like bài viết, xóa Like đó và giảm num_like
+                like.delete()
+                post.author.num_like -= 1
+                post.num_like -= 1
+                post.save()
+                post.author.save()
+                return Response({"detail": "Bạn đã bỏ Like bài viết này."}, status=status.HTTP_200_OK)
+            else:
+                # Nếu người dùng chưa Like bài viết, tạo Like mới và tăng num_like
+                like = Like.objects.create(post=post, author=user)
+                serializer = LikeSerializer(like)
+                post.author.num_like += 1
+                post.num_like += 1
+                post.save()
+                post.author.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
         except Post.DoesNotExist:
             return Response({"detail": "Bài viết không tồn tại."}, status=status.HTTP_404_NOT_FOUND)
 
