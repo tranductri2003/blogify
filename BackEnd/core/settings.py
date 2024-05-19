@@ -79,7 +79,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'your_project.middleware.NoRedirectMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # Add this line
+    # 'allauth.account.middleware.AccountMiddleware',  # Add this line
 
 ]
 
