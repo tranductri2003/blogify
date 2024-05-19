@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'chat',
+    'notifications',
     
     'django.contrib.sites', # new
 

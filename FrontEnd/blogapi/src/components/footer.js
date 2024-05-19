@@ -7,19 +7,22 @@ import Container from "@material-ui/core/Container";
 
 const footers = [
     {
-        title: "Source Code",
+        title: "About Us",
         description: [
-            { label: "Source Code", url: "https://example.com/source-code" },
-            { label: "Reference", url: "https://www.youtube.com/watch?v=8QLCaye3YjQ" },
+            { label: "Trí", url: "https://www.facebook.com/tranductri2003/" },
+            { label: "Phát", url: "https://www.facebook.com/phamnguyenanhphat" },],
+    },
+    {
+        title: "Referrences",
+        description: [
+            { label: "Github", url: "https://github.com/tranductri2003/My-Blog_DRF-REACT" },
         ],
     },
     {
-        title: "About Me",
+        title: "Contact",
         description: [
             { label: "Facebook", url: "https://www.facebook.com/tranductri2003/" },
             { label: "LinkedIn", url: "https://www.linkedin.com/in/duc-tri-tran-464343218/" },
-            { label: "Codeforces", url: "https://codeforces.com/profile/tranductri2003" },
-            { label: "Github", url: "https://github.com/tranductri2003" },
         ],
     },
 ];
@@ -31,7 +34,7 @@ export default function Footer() {
                 <Grid container spacing={4} justify="space-evenly">
                     {footers.map((footer) => (
                         <Grid item xs={6} sm={3} key={footer.title}>
-                            <Typography variant="h6" color="textPrimary" gutterBottom style={{ fontFamily: 'cursive', fontSize: '28px', fontWeight: 'bold' }}>
+                            <Typography variant="h6" color="textPrimary" gutterBottom style={{ fontFamily: '"Helvetica Neue", Arial, sans-serif', fontSize: '28px', fontWeight: 'bold' }}>
                                 {footer.title}
                             </Typography>
                             <ul>
@@ -43,7 +46,7 @@ export default function Footer() {
                                             color="textSecondary"
                                             target="_blank"
                                             rel="noopener"
-                                            style={{ fontFamily: 'cursive', fontSize: '18px' }}
+                                            style={{ fontFamily: '"Helvetica Neue", Arial, sans-serif', fontSize: '18px' }}
                                         >
                                             {item.label}
                                         </Link>
@@ -55,8 +58,8 @@ export default function Footer() {
                 </Grid>
             </Container>
             <Box mt={5} textAlign="center">
-                <Typography variant="body2" color="textSecondary" style={{ fontFamily: 'cursive', fontSize: '14px' }}>
-                    © {new Date().getFullYear()} Your Website. All rights reserved.
+                <Typography variant="body2" color="textSecondary" style={{ fontFamily: '"Helvetica Neue", Arial, sans-serif', fontSize: '14px' }}>
+                    © {new Date().getFullYear()} Bản quyền Trường Đại học Bách khoa - Đại học Đà Nẵng
                 </Typography>
             </Box>
         </React.Fragment>
