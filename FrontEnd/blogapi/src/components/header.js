@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import SearchBar from 'material-ui-search-bar';
-import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
@@ -17,6 +17,9 @@ import {
     DropdownToggle,
     UncontrolledDropdown,
 } from "reactstrap";
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import axiosInstance from '../axios';
+
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -115,6 +118,15 @@ function Header() {
     };
 
 
+    const handleNotificationClick = () => {
+        axiosInstance.get('notifications/unread/')
+            .then(response => {
+                console.log(response.data); // Xử lý dữ liệu nhận được từ API ở đây
+            })
+            .catch(error => {
+                console.error('Error fetching unread notifications:', error);
+            });
+    };
 
     return (
         <React.Fragment>
@@ -222,6 +234,12 @@ function Header() {
                         onRequestSearch={() => goSearch(data.search)}
                         inputClassName={classes.searchInput}
                     />
+
+                    {/* Biểu tượng thông báo */}
+                    <IconButton color="inherit" onClick={handleNotificationClick}>
+                        <NotificationsIcon />
+                    </IconButton>
+
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {/* Avatar của người dùng */}
                         <NavLink to={`/profile/${localStorage.getItem('user_name')}`}>
