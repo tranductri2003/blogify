@@ -19,7 +19,8 @@ import {
 } from "reactstrap";
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import axiosInstance from '../axios';
-
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -95,6 +96,8 @@ function Header() {
     const [data, setData] = useState({ search: '' });
     const [isLoggedIn, setIsLoggedIn] = useState(Boolean(localStorage.getItem('access_token')));
     const history = useHistory();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [notifications, setNotifications] = useState([]);
 
     useEffect(() => {
         // Lắng nghe sự kiện storage, khi có thay đổi trong localStorage, ta cập nhật lại trạng thái isLoggedIn
@@ -118,15 +121,29 @@ function Header() {
     };
 
 
-    const handleNotificationClick = () => {
+    const handleNotificationClick = (event) => {
+        setAnchorEl(event.currentTarget);
         axiosInstance.get('notifications/unread/')
             .then(response => {
-                console.log(response.data); // Xử lý dữ liệu nhận được từ API ở đây
+                console.log(response.data);
+                setNotifications(response.data); // Lưu danh sách thông báo vào state
+            })
+            .catch(error => {
+                console.error('Error fetching unread notifications:', error);
+            });
+
+        axiosInstance.patch('notifications/mark-all-as-read/')
+            .then(response => {
             })
             .catch(error => {
                 console.error('Error fetching unread notifications:', error);
             });
     };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
 
     return (
         <React.Fragment>
@@ -239,6 +256,26 @@ function Header() {
                     <IconButton color="inherit" onClick={handleNotificationClick}>
                         <NotificationsIcon />
                     </IconButton>
+
+                    {/* Menu thông báo */}
+                    <Menu
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        {notifications.length === 0 ? (
+                            <MenuItem onClick={handleClose}>No notifications</MenuItem>
+                        ) : (
+                            notifications.map((notification, index) => (
+                                <MenuItem key={index} onClick={handleClose}>
+                                    {notification.sender_username} has {notification.action} on your {notification.post_title}
+                                </MenuItem>
+                            ))
+                        )}
+                    </Menu>
+
+
 
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         {/* Avatar của người dùng */}

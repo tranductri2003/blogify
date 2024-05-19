@@ -267,6 +267,19 @@ export default function Post() {
             .catch((error) => {
                 console.error('Error adding comment:', error);
             });
+
+        axiosInstance.post('notifications/add/', {
+            sender: localStorage.getItem('user_id'),
+            receiver: data.post.author.id,
+            post: data.post.id,
+            action: 'comment'
+        })
+            .then(response => {
+                console.log('Notification added successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error adding notification:', error);
+            });
     };
 
     const handleLikePost = () => {
@@ -286,6 +299,19 @@ export default function Post() {
             })
             .catch((error) => {
                 console.error('Error liking post:', error);
+            });
+
+        axiosInstance.post('notifications/add/', {
+            sender: localStorage.getItem('user_id'),
+            receiver: data.post.author.id,
+            post: data.post.id,
+            action: 'like'
+        })
+            .then(response => {
+                console.log('Notification added successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error adding notification:', error);
             });
     };
 
