@@ -1,0 +1,6 @@
+# Configuration for FrontEnd environment variables
+# Place this file in the FrontEnd folder
+
+REACT_APP_API_URL=http://127.0.0.1:8000/api/
+REACT_APP_MEDIA_URL=http://127.0.0.1:8000
+REACT_APP_WEBSOCKET_URL=ws://127.0.0.1:8000/ws/

@@ -25,6 +25,5 @@ pytz
 django-filter
 channels
 daphne
-django-allauth
 django-utils-six
 django-environ
