@@ -44,6 +44,8 @@ After cloning my project from GitHub, you will need to set up both the BackEnd a
    npm start
 
 Here is the directory structure of the project after successful installation:
+
+
 ![image](https://github.com/tranductri2003/My-Blog_DRF-REACT/assets/89126960/99e2e4e7-8f34-4d95-8da0-76c5b0c38fbb)
 
 Feel free to contact me if you would like to learn more about how to install and deploy this project.
