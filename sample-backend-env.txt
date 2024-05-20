@@ -1,0 +1,8 @@
+# Configuration for BackEnd environment variables
+# Place this file in the core folder of BackEnd folder
+
+API_IP=http://127.0.0.1
+IP_SERVER=127.0.0.1
+FRONTEND_IP=http://127.0.0.1:3000/
+EMAIL_HOST_PASSWORD=put-yours-here
+SECRET_KEY=put-yours-here
