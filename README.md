@@ -44,23 +44,23 @@ After cloning my project from GitHub, you will need to set up both the BackEnd a
    npm start
 
 Here is the directory structure of the project after successful installation:
-![image](https://github.com/tranductri2003/PBL04_DUT_Student-CheckIn-System/assets/89126960/4429fa26-aece-435c-a658-d8173385bbc0)
+![image](https://github.com/tranductri2003/My-Blog_DRF-REACT/assets/89126960/99e2e4e7-8f34-4d95-8da0-76c5b0c38fbb)
 
 Feel free to contact me if you would like to learn more about how to install and deploy this project.
 
 ## Quick View of the Project
 - Interface homepage:
-![image](https://github.com/tranductri2003/PBL04_DUT_Student-CheckIn-System/assets/89126960/4429fa26-aece-435c-a658-d8173385bbc0)
+![image](https://github.com/tranductri2003/My-Blog_DRF-REACT/assets/89126960/66e015cf-21f1-4206-bda9-f0cb8e3c6979)
 - Post interface:
-![image](https://github.com/tranductri2003/PBL04_DUT_Student-CheckIn-System/assets/89126960/1ee5e79c-0631-40fc-8205-7015287c6f6d)
+![image](https://github.com/tranductri2003/My-Blog_DRF-REACT/assets/89126960/4c1eac07-5b0a-4c45-a25d-8c97d8f091b5)
 - User profile interface:
-![image](https://github.com/tranductri2003/PBL04_DUT_Student-CheckIn-System/assets/89126960/be6872bd-2601-4512-bdc3-09bfe2971b3b)
+![image](https://github.com/tranductri2003/My-Blog_DRF-REACT/assets/89126960/b4ab0d49-a0b6-4cec-bd0b-caa72663cac8)
 - Chat lobby:
-![image](https://github.com/tranductri2003/PBL04_DUT_Student-CheckIn-System/assets/89126960/b4aed26e-fcb9-4086-92f1-b749fe4c7d71)
+![image](https://github.com/tranductri2003/My-Blog_DRF-REACT/assets/89126960/616e748f-f514-46ed-9530-b8a4a5f4c142)
 - Leaderboard:
-![image](https://github.com/tranductri2003/PBL04_DUT_Student-CheckIn-System/assets/89126960/77b5468a-1a39-4479-aab8-0c8a79df6a32)
+![image](https://github.com/tranductri2003/My-Blog_DRF-REACT/assets/89126960/115bfd9c-2d8c-4284-a049-71863778f68f)
 - Notification:
-![image](https://github.com/tranductri2003/PBL04_DUT_Student-CheckIn-System/assets/89126960/b934e02b-15dd-428c-b2cf-15b1f8437490)
+![image](https://github.com/tranductri2003/My-Blog_DRF-REACT/assets/89126960/2c2ea790-f154-47d1-8048-6673ca6e0e22)
 ## Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
