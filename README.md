@@ -20,6 +20,38 @@ Additionally, I have integrated new features such as:
 
 Please note that this project is a basic implementation and contains various shortcomings and potential bugs, as it is primarily a learning exercise for Django Rest Framework. For a more polished and comprehensive source code example, you can refer to my school attendance support website project here: [PBL04_DUT_student-checkin-system](https://github.com/tranductri2003/PBL04_DUT_student-checkin-system).
 
+## How the System Works
+### System Overview:
+1. **Server**
+   URLs directed to the domain lqdlover.ddns.net will be redirected by Nginx to various servers running locally on the Raspberry (currently I have turned off the server). This includes two Backend servers running Django code to handle APIs for database queries linked together in a load balancing Cluster and a WebSocket server running Django code to handle operations related to WebSocket connectivity (chat), and a Frontend server running ReactJS code to create a user interaction interface for the website.
+
+   - First Backend Server: Uses Django Framework to handle incoming APIs (port 8000) and placed in the NLB backend cluster.
+   - Second Backend Server: Uses Django Framework to handle incoming APIs (port 8001) and also placed in the NLB backend cluster.
+   - WebSocket Server: Uses Django Framework to handle WebSocket connectivity operations (port 8002).
+   - Frontend Server: Uses ReactJS library to create the user interface.
+
+2. **Admin Client**
+
+   The Admin interface can be accessed at [Admin Login URL](https://lqdlover.ddns.net/admin/login/?next=/admin/). This interface provides administrators with comprehensive control over the system. Key functionalities include:
+
+   - **Article and Category Management**: Efficiently manage articles and categories with CRUD operations..
+   - **User Engagement Metrics**: Track and manage views, likes, comments and notifications on articles..
+   - **Chat Room Management**: Facilitate real-time communication through chat rooms, allowing users to engage in discussions.
+   - **User Management**: Admins also have the privilege to access the User Client interface for a more visual representation of user data, authentication, information,...
+
+3. **User Client**
+
+   The primary interface for teachers and students is available at [LQDLover Main URL](https://lqdlover.ddns.net/). User-friendly and easy-to-use web interface:
+
+   - **View the list of articles**
+   - **View detailed articles with various article interactions**
+   - **User’s personal page**
+   - **Chat lobby**
+
+   This is just a small project of mine while learning Django. If you want to refer to a complex project with detailed reports on the network system as well as the Backend, you can refer to the project at this [DUTChecker](https://github.com/tranductri2003/PBL04_DUT_student-checkin-system/blob/main/README.md)
+
+
+
 ## Installation
 
 We welcome you to install and try out our program.
